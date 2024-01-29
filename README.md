@@ -1,6 +1,21 @@
-# Base de code du projet P6 - Parcours Front-end
+# FishEye project 📸
 
-## Démarrer le projet
+**FishEye** is a website that allows independent photographers to showcase their best work.
 
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
+## Technologies 🖥️
+
+HTML, CSS and JavaScript 
+
+## Objectives 🎯
+
+**Priority : accessibility**  
+- Pattern Factory Method  
+- Understanding of layouts  
+- Importing data (JSON / fetch)  
+- Integration  
+- Aria  
+- Modal management  
+- Display and management of likes  
+- Sorting system  
+- Linter  
 
