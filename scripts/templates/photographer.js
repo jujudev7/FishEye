@@ -9,11 +9,14 @@ function photographerTemplate(data) {
         img.setAttribute("src", picture)
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
-        const location = document.createElement( 'h3' );
+        const location = document.createElement( 'p' );
+        location.classList.add('location');
         location.textContent = city + ', ' + country;
         const baseline = document.createElement( 'p' );
+        baseline.classList.add('baseline');
         baseline.textContent = tagline;
         const pricing = document.createElement( 'p' );
+        pricing.classList.add('pricing');
         pricing.textContent = price + '€/jour';
         article.appendChild(img);
         article.appendChild(h2);
