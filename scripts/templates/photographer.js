@@ -1,30 +1,45 @@
 function photographerTemplate(data) {
-    const { name, portrait, city, country, tagline, price } = data;
+  const { id, name, portrait, city, country, tagline, price } = data;
 
-    const picture = `assets/photographers/${portrait}`;
+  const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM() {
-        const article = document.createElement( 'article' );
-        const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        const h2 = document.createElement( 'h2' );
-        h2.textContent = name;
-        const location = document.createElement( 'p' );
-        location.classList.add('location');
-        location.textContent = city + ', ' + country;
-        const baseline = document.createElement( 'p' );
-        baseline.classList.add('baseline');
-        baseline.textContent = tagline;
-        const pricing = document.createElement( 'p' );
-        pricing.classList.add('pricing');
-        pricing.textContent = price + '€/jour';
-        article.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(location);
-        article.appendChild(baseline);
-        article.appendChild(pricing);
-        
-        return (article);
-    }
-    return { name, picture, getUserCardDOM }
+  const photographerUrl = `photographer.html?id=${id}`; // URL de la page du photographe
+
+  function getUserCardDOM() {
+    const article = document.createElement("article");
+    
+     // Création du lien autour de l'image
+     const imgLink = document.createElement('a');
+     imgLink.setAttribute('href', photographerUrl);
+     article.appendChild(imgLink); // Ajout du lien autour de l'image à l'article
+
+     const img = document.createElement('img');
+     img.setAttribute('src', picture);
+     imgLink.appendChild(img); // Ajout de l'image dans le lien
+
+     // Création du lien autour du titre (h2)
+     const titleLink = document.createElement('a');
+     titleLink.setAttribute('href', photographerUrl);
+     article.appendChild(titleLink); // Ajout du lien autour du titre à l'article
+
+     const h2 = document.createElement('h2');
+     h2.textContent = name;
+     titleLink.appendChild(h2); // Ajout du titre dans le lien
+
+    const location = document.createElement("p");
+    location.classList.add("location");
+    location.textContent = city + ", " + country;
+    const baseline = document.createElement("p");
+    baseline.classList.add("baseline");
+    baseline.textContent = tagline;
+    const pricing = document.createElement("p");
+    pricing.classList.add("pricing");
+    pricing.textContent = price + "€/jour";
+    article.appendChild(location);
+    article.appendChild(baseline);
+    article.appendChild(pricing);
+
+    return article;
+  }
+  return { name, picture, getUserCardDOM };
 }
