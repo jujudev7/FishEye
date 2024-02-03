@@ -8,14 +8,21 @@
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
-    <title>Fisheye</title>
+    <title>Accueil - Fisheye</title>
   </head>
   <body>
-    <header>
-        <img src="assets/images/logo.png" class="logo" alt="fisheye logo" />
-        <h1>Nos photographes</h1>
+    <!-- role="banner" added -->
+    <header role="banner">
+      <!-- link home page added + aria-label -->
+      <a
+        href="index.html"
+        aria-label="Accéder à la page d'accueil"
+      >
+        <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye" />
+      </a>
+      <h1>Nos photographes</h1>
     </header>
-    <main id="main">
+    <main id="main"role="main">
       <div class="photographer_section"></div>
     </main>
     <script src="scripts/templates/photographer.js"></script>
