@@ -7,24 +7,27 @@ function photographerTemplate(data) {
 
   function getUserCardDOM() {
     const article = document.createElement("article");
-    
-     // Création du lien autour de l'image
-     const imgLink = document.createElement('a');
-     imgLink.setAttribute('href', photographerUrl);
-     article.appendChild(imgLink); // Ajout du lien autour de l'image à l'article
 
-     const img = document.createElement('img');
-     img.setAttribute('src', picture);
-     imgLink.appendChild(img); // Ajout de l'image dans le lien
+    // Création du lien autour de l'image
+    const linkPhotographer = document.createElement("a");
+    linkPhotographer.setAttribute("href", photographerUrl);
+    linkPhotographer.setAttribute("aria-label", "Aller à la page " + name);
+    article.appendChild(linkPhotographer); // Ajout du lien autour de l'image à l'article
 
-     // Création du lien autour du titre (h2)
-     const titleLink = document.createElement('a');
-     titleLink.setAttribute('href', photographerUrl);
-     article.appendChild(titleLink); // Ajout du lien autour du titre à l'article
+    const img = document.createElement("img");
+    img.setAttribute("src", picture);
+    img.setAttribute("alt", name);
+    linkPhotographer.appendChild(img); // Ajout de l'image dans le lien
 
-     const h2 = document.createElement('h2');
-     h2.textContent = name;
-     titleLink.appendChild(h2); // Ajout du titre dans le lien
+    // Création du lien autour du titre (h2)
+    const titleLink = document.createElement("a");
+    titleLink.setAttribute("href", photographerUrl);
+    titleLink.setAttribute("aria-label", "Aller à la page " + name);
+    article.appendChild(titleLink); // Ajout du lien autour du titre à l'article
+
+    const h2 = document.createElement("h2");
+    h2.textContent = name;
+    titleLink.appendChild(h2); // Ajout du titre dans le lien
 
     const location = document.createElement("p");
     location.classList.add("location");
