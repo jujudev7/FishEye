@@ -19,3 +19,6 @@ HTML, CSS and JavaScript
 - Sorting system  
 - Linter  
 
+# créer getUserHeaderDom() dans templates/photographer
+
+# dans photographer.js (L26) : remplacer const userHeaderDOM = photographerHeader.getUserCardDOM(); par getUserHeaderDom()
