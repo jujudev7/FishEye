@@ -12,12 +12,12 @@ function photographerTemplate(data) {
     const linkPhotographer = document.createElement("a");
     linkPhotographer.setAttribute("href", photographerUrl);
     linkPhotographer.setAttribute("aria-label", "Aller à la page " + name);
-    article.appendChild(linkPhotographer); // Ajout du lien autour de l'image à l'article
+    article.appendChild(linkPhotographer); // Ajout du lien dans l'article
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", name);
-    linkPhotographer.appendChild(img); // Ajout de l'image dans le lien
+    linkPhotographer.appendChild(img); // Ajout du lien autour de l'image
 
     // Création du lien autour du titre (h2)
     const titleLink = document.createElement("a");
@@ -46,8 +46,7 @@ function photographerTemplate(data) {
   }
 
   function getUserHeaderDOM() {
-
-    const profileZone = document.createElement("div");
+    const profileZone = document.createElement("section");
     profileZone.classList.add("profile-zone");
 
     const photographerProfile = document.createElement("div");
@@ -55,11 +54,11 @@ function photographerTemplate(data) {
 
     const h1 = document.createElement("h1");
     h1.textContent = name;
-    
+
     const location = document.createElement("p");
     location.classList.add("location");
     location.textContent = city + ", " + country;
-    
+
     const baseline = document.createElement("p");
     baseline.classList.add("baseline");
     baseline.textContent = tagline;
@@ -68,12 +67,15 @@ function photographerTemplate(data) {
     const button = document.createElement("button");
     button.classList.add("contact_button");
     button.textContent = "Contactez-moi";
+    // Ajout de l'événement onclick
+    button.onclick = function () {
+      displayModal();
+    };
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", name);
 
-    
     profileZone.appendChild(photographerProfile);
     photographerProfile.appendChild(h1);
     photographerProfile.appendChild(location);

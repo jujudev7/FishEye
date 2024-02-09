@@ -80,14 +80,14 @@ h1 {
 
 /* PROFILE ZONE */
 .photograph-header {
-    
+    display: grid;
 }
 
 .profile-zone {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin: 40px;
 }
 
 .photographer-profile h1 {
