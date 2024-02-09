@@ -18,7 +18,3 @@ HTML, CSS and JavaScript
 - Display and management of likes  
 - Sorting system  
 - Linter  
-
-# créer getUserHeaderDom() dans templates/photographer
-
-# dans photographer.js (L26) : remplacer const userHeaderDOM = photographerHeader.getUserCardDOM(); par getUserHeaderDom()
