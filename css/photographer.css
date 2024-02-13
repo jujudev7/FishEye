@@ -8,6 +8,45 @@
     margin: 0 100px;
 }
 
+/* PROFILE ZONE */
+.photograph-header {
+    display: grid;
+}
+
+.profile-zone {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px;
+}
+
+.photographer-profile h1 {
+    color: #D3573C;
+    font-size: 3em;
+    font-weight: normal;
+    margin: 0;
+}
+
+.photographer-profile  p.location {
+    color: #901C1C;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.photographer-profile p.baseline {
+    color: #000;
+    font-size: 1em;
+    margin: 3px 0;
+}
+
+.profile-zone img
+{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;
