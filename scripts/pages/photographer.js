@@ -1,35 +1,70 @@
-//Mettre le code JavaScript lié à la page photographer.html
-
-async function getOnePhotographer() {
+// on importe les données des photographes depuis le fichier JSON
+async function getPhotographers() {
   const response = await fetch("data/photographers.json");
   if (response.ok === true) {
-    return response.json();
+    const data = await response.json();
+    return data.photographers;
   }
-  throw new Error("Impossible de contacter le serveur");
+  throw new Error("Impossible de récupérer les données des photographes");
 }
 
-async function displayOnePhotographer(photographers) {
-  const queryString = window.location.search; // on récupère la partie de l'URL qui contient les paramètres de requête (ce qui suit le ?)
-  const urlParams = new URLSearchParams(queryString); // on crée un nouvel objet URLSearchParams à partir de la requête (queryString) obtenue précédemment. Cet objet permet de manipuler facilement les paramètres de la requête.
-  const id = urlParams.get("id"); // on utilise la méthode get() de l'objet URLSearchParams pour obtenir la valeur du paramètre "id" de l'URL
+// on importe les données des médias depuis le fichier JSON
+async function getMedia() {
+  const response = await fetch("data/photographers.json");
+  if (response.ok === true) {
+    const data = await response.json();
+    return data.media;
+  }
+  throw new Error("Impossible de récupérer les données des médias");
+}
+
+async function displayOnePhotographer(photographers, media) {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const id = urlParams.get("id");
 
   const photographersHeader = document.querySelector(".photograph-header");
 
   photographers.forEach((photographer) => {
-    if (photographer.id != id) return; // si l'identifiant (id) du photographe actuellement parcouru dans la boucle est différent de l'identifiant récupéré à partir des paramètres de requête de l'URL, alors la boucle passe immédiatement au prochain photographe sans exécuter le reste du code à l'intérieur de la boucle
+    if (photographer.id != id) return;
 
-    //On construit le header
     const photographerHeader = photographerTemplate(photographer);
     const userHeaderDOM = photographerHeader.getUserHeaderDOM();
     photographersHeader.appendChild(userHeaderDOM);
 
+    const affichageGallery = document.querySelector(".gallery");
+
+    // on récupère les médias du photographe actuel
+    const mediaData = media.filter((media) => media.photographerId == id);
+
+    // on vérifie que le photographe actuel possède bien des médias
+    if (mediaData.length > 0) {
+      mediaData.forEach((media) => {
+        // on passe l'ID du photographe à mediaFactory
+        const gallery = mediaFactory(media, photographer.id);
+        const userGalleryDOM = gallery.getUserGalleryDOM();
+        affichageGallery.appendChild(userGalleryDOM);
+      });
+    }
   });
 }
 
 async function init() {
-  // Récupère les datas des photographes
-  const { photographers } = await getOnePhotographer();
-  displayOnePhotographer(photographers)
+  try {
+    // on récupère les données des photographes
+    const photographers = await getPhotographers();
+
+    // on récupère les données des médias
+    const media = await getMedia();
+
+    // on affiche les données du photographe
+    displayOnePhotographer(photographers, media);
+  } catch (error) {
+    console.error(
+      "Une erreur s'est produite lors de l'initialisation :",
+      error
+    );
+  }
 }
 
 init();
