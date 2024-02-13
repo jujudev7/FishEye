@@ -1,4 +1,9 @@
 # TO-DO LIST
+- Créer le petit encart qui affiche le tarif journalier du photographe affiché
+- Créer et Gérer le nombre de likes
+- LightBox 
+- ContactForm 
+~~- Afficher infos photographe sur page photographer.html~~
 
 ## ACCESSIBILITÉ
 - ARIA
@@ -7,12 +12,12 @@
 - clavier
 - ALT
 
-1) Afficher infos photographe sur page photographer.html
-2) Centrer verticalement en CSS
-3) Gérer le zoom sur visages de certaines photos des Photographes
+## ISSUES
+- Gérer le zoom sur visages de certaines photos des Photographes
 (cf. Figma)
-4) Réduire dimensions img à la mano ? (trop lourdes) **PhotoFiltre** library JS (Sharp)
-5) Remplir DOC / TUTOS
+- Title media (fr/en)
+- Réduire dimensions img à la mano ? (trop lourdes) **PhotoFiltre** library JS (Sharp)
+- Remplir DOC / TUTOS
 
 ## Le code est complet quand :
 ❒ Aucun bug n'est rencontré.  
