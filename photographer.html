@@ -2,46 +2,98 @@
 <html>
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fisheye - photographe</title>
   </head>
   <body>
     <header>
-         <!-- link home page added + aria-label -->
-         <a
-         href="index.html"
-         aria-label="Accéder à la page d'accueil"
-       >
-         <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye" />
-       </a>
+      <!-- link home page added + aria-label -->
+      <a href="index.html" aria-label="Accéder à la page d'accueil">
+        <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye" />
+      </a>
     </header>
     <main id="main">
       <div class="photograph-header">
         <!-- on supprime le bouton Contactez-moi du code html pour l'intégrer via le template photographer  -->
         <!-- <button class="contact_button" onclick="displayModal()">Contactez-moi</button> -->
       </div>
-      <div class="gallery">
-
+      <div class="gallery"></div>
+      <!-- on ajoute l'encart avec le nb total de likes et le tarif/jour -->
+      <div class="insert">
+        <!-- <div class="total-likes">297 081 🖤</div>
+        <div class="price">300 € / jour</div> -->
       </div>
-      
     </main>
     <div id="contact_modal">
-			<div class="modal">
-				<header>
+      <div class="modal">
+        <header>
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+      
+        <form>
+          <div class="formData">
+              <label for="firstname">Prénom</label><br />
+              <input
+                  class="text-control"
+                  type="text"
+                  id="firstname"
+                  name="firstname"
+                  minlength="2"
+                  aria-labelledby="firstname"
+                  required
+              />
+              <!-- Adding a span error-"field" in order to send an error text message if needed -->
+              <span id="error-firstname" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="formData">
+              <label for="lastname">Nom</label><br />
+              <input
+                  class="text-control"
+                  type="text"
+                  id="lastname"
+                  name="lastname"
+                  aria-labelledby="lastname"
+                  required
+              />
+              <span id="error-lastname" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="formData">
+              <label for="email">E-mail</label><br />
+              <input
+                  class="text-control"
+                  type="email"
+                  id="email"
+                  name="email"
+                  aria-labelledby="email"
+                  required
+              />
+              <span id="error-email" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="formData">
+              <label for="message">Votre message</label>
+              <textarea
+                  id="message"
+                  name="message"
+                  rows="9"
+                  required
+                  aria-labelledby="message"
+              ></textarea>
+          </div>
+      
+          <button class="contact_button" type="submit" role="button" aria-label="Envoyer le formulaire">
+              Envoyer
+          </button>
+      </form>
+      
+      </div>
+    </div>
+    <script src="https://kit.fontawesome.com/54c01b8a7c.js" crossorigin="anonymous"></script>
     <script src="/scripts/factories/MediaFactory.js"></script>
     <script src="/scripts/templates/photographer.js"></script>
     <script src="/scripts/pages/photographer.js"></script>

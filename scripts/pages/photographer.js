@@ -32,6 +32,10 @@ async function displayOnePhotographer(photographers, media) {
     const userHeaderDOM = photographerHeader.getUserHeaderDOM();
     photographersHeader.appendChild(userHeaderDOM);
 
+    // Afficher le prénom du photographe dans le h2 du form
+    document.querySelector("header h2").innerHTML = `Contactez-moi<br>${photographer.name}`;
+
+
     const affichageGallery = document.querySelector(".gallery");
 
     // on récupère les médias du photographe actuel
