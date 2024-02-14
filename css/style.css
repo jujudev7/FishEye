@@ -76,12 +76,14 @@ h1 {
 }
 
 .gallery {
-  margin: 0 100px;
+  margin: 70px 100px;
   justify-content: center;
   display: grid;
-  place-items: center;
+  /* place-items: center; */
+  align-items: baseline;
+  justify-items: center;
   grid-template-columns: repeat(auto-fit, 350px);
-  gap: 100px; /* Espacement entre les médias */
+  column-gap: 80px;
 }
 
 .gallery img,
@@ -89,9 +91,22 @@ video {
   width: 350px; /* Hauteur fixe de 350px */
   height: 300px; /* Hauteur fixe de 300px */
   object-fit: cover;
+  border-radius: 7px;
 }
 
-figcaption {
+.caption-likes {
   color: #901c1c;
   font-size: 1.5em;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.likes-zone {
+  display: flex;
+  align-items: center;
+}
+
+.fa-heart {
+  padding-left: 5px;
 }

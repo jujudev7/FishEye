@@ -1,5 +1,5 @@
 function mediaFactory(data, photographerId) {
-  const { image, video, title } = data;
+  const { image, video, title, likes } = data;
 
   const mediaPhoto = `assets/medias/${photographerId}/${image}`;
   // On vérifie si video est défini
@@ -7,8 +7,18 @@ function mediaFactory(data, photographerId) {
 
   function getUserGalleryDOM() {
     const figure = document.createElement("figure");
+    const captionLikes = document.createElement("div");
+    captionLikes.classList.add("caption-likes");
     const figCaption = document.createElement("figcaption");
     figCaption.textContent = title;
+    const likesZone = document.createElement("div");
+    likesZone.classList.add("likes-zone");
+    const nbLikes = document.createElement("span")
+    nbLikes.classList.add("likes");
+    nbLikes.textContent = likes;
+    const heartIcon = document.createElement("i");
+    // heartIcon.classList.add("fa-solid fa-heart");
+    heartIcon.className = "fa-solid fa-heart";
 
     const format = "video/mp4";
     // On vérifie si mediaVideo est défini avant de créer l'élément vidéo
@@ -21,13 +31,21 @@ function mediaFactory(data, photographerId) {
       sourceVideo.setAttribute("type", format);
       videoElement.appendChild(sourceVideo);
       figure.appendChild(videoElement); // on ajoute la vidéo à figure
-      figure.appendChild(figCaption); // on ajoute la légende à la vidéo
+      figure.appendChild(captionLikes); 
+      captionLikes.appendChild(figCaption); 
+      captionLikes.appendChild(likesZone); 
+      likesZone.appendChild(nbLikes); 
+      likesZone.appendChild(heartIcon); 
     } else {
       const img = document.createElement("img");
       img.setAttribute("src", mediaPhoto);
       img.setAttribute("alt", title);
       figure.appendChild(img); // on ajoute l'image à figure
-      figure.appendChild(figCaption); // on ajoute la légende à l'image
+      figure.appendChild(captionLikes); 
+      captionLikes.appendChild(figCaption); 
+      captionLikes.appendChild(likesZone); 
+      likesZone.appendChild(nbLikes); 
+      likesZone.appendChild(heartIcon); 
     }
 
     return figure;
