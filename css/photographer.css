@@ -71,12 +71,14 @@
 .insert {
   position: fixed;
   bottom: 0;
-  right: 180px;
+  right: 60px;
   background-color: #db8876;
+  font-weight: 500;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 300px;
-  padding: 20px;
+  padding: 18px 40px;
   font-size: 1.5em;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
