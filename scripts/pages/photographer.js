@@ -28,23 +28,49 @@ async function displayOnePhotographer(photographers, media) {
   photographers.forEach((photographer) => {
     if (photographer.id != id) return;
 
-    const photographerHeader = photographerTemplate(photographer);
+    const photographerHeader = photographerTemplate(photographer, media);
     const userHeaderDOM = photographerHeader.getUserHeaderDOM();
     photographersHeader.appendChild(userHeaderDOM);
+    // photographerHeader.getUserInsertDOM();
 
     // Afficher le prénom du photographe dans le h2 du form
-    document.querySelector("header h2").innerHTML = `Contactez-moi<br>${photographer.name}`;
-
+    document.querySelector(
+      "header h2"
+    ).innerHTML = `Contactez-moi<br>${photographer.name}`;
 
     const affichageGallery = document.querySelector(".gallery");
 
-    // on récupère les médias du photographe actuel
-    const mediaData = media.filter((media) => media.photographerId == id);
+    // On vérifie que le photographe actuel possède bien des médias
+    if (media.length > 0) {
+      // On filtre les médias pour ne conserver que ceux du photographe actuel
+      const mediaOfCurrentPhotographer = media.filter(
+        (media) => media.photographerId === photographer.id
+      );
 
-    // on vérifie que le photographe actuel possède bien des médias
-    if (mediaData.length > 0) {
-      mediaData.forEach((media) => {
-        // on passe l'ID du photographe à mediaFactory
+      // INSERT (total likes + pricing)
+      // On calcule le total des likes des médias du photographe actuel
+      const totalLikes = mediaOfCurrentPhotographer.reduce(
+        (acc, curr) => acc + curr.likes,
+        0
+      );
+      const insert = document.querySelector(".insert");
+
+      const zoneTotalLikes = document.createElement("span");
+      zoneTotalLikes.classList.add("likes");
+      zoneTotalLikes.textContent = totalLikes;
+  
+      const heartIcon = document.createElement("i");
+      heartIcon.className = "fa-solid fa-heart";
+      insert.appendChild(zoneTotalLikes);
+      zoneTotalLikes.appendChild(heartIcon);
+  
+      const pricingPhotographer = document.createElement("span");
+      pricingPhotographer.className = "pricing-photographer";
+      pricingPhotographer.textContent = photographer.price + "€ / jour";
+      insert.appendChild(pricingPhotographer);
+  
+      mediaOfCurrentPhotographer.forEach((media) => {
+        // On passe l'ID du photographe à mediaFactory
         const gallery = mediaFactory(media, photographer.id);
         const userGalleryDOM = gallery.getUserGalleryDOM();
         affichageGallery.appendChild(userGalleryDOM);
@@ -60,7 +86,6 @@ async function init() {
 
     // on récupère les données des médias
     const media = await getMedia();
-
     // on affiche les données du photographe
     displayOnePhotographer(photographers, media);
   } catch (error) {

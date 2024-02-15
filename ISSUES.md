@@ -3,6 +3,14 @@
 - Créer et Gérer le nombre de likes
 - LightBox 
 - ContactForm 
+- Gérer le focus :
+Les pseudo-classes dont vous aurez besoin pour les liens seront :
+    • :active qui “permet de cibler un élément lorsque celui-ci est activé par l'utilisateur” (par exemple, quand l’utilisateur a cliqué dessus) ;
+    • :hover qui permet de spécifier l'apparence d'un élément au moment où l'utilisateur le survole avec le pointeur, sans nécessairement l'activer ;
+    • :link qui cible tous les liens n’ayant pas encore été visités ;
+    • :visited concernant tous les liens visités ;
+    • :focus qui permet de cibler un élément lorsque celui-ci reçoit le focus (élément sélectionné au clavier ou à la souris).
+- remplacer div par class ou balises html
 ~~- Afficher infos photographe sur page photographer.html~~
 
 ## ACCESSIBILITÉ
@@ -13,6 +21,7 @@
 - ALT
 
 ## ISSUES
+- Centrer "Contactez-moi" / photographer
 - Gérer le zoom sur visages de certaines photos des Photographes
 (cf. Figma)
 - Title media (fr/en)

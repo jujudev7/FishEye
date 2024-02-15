@@ -17,7 +17,6 @@ function mediaFactory(data, photographerId) {
     nbLikes.classList.add("likes");
     nbLikes.textContent = likes;
     const heartIcon = document.createElement("i");
-    // heartIcon.classList.add("fa-solid fa-heart");
     heartIcon.className = "fa-solid fa-heart";
 
     const format = "video/mp4";

@@ -1,9 +1,12 @@
-function photographerTemplate(data) {
-  const { id, name, portrait, city, country, tagline, price, button } = data;
+function photographerTemplate(data, media) {
+  const { id, name, portrait, city, country, tagline, price } = data;
 
   const picture = `assets/photographers/${portrait}`;
 
   const photographerUrl = `photographer.html?id=${id}`; // URL de la page du photographe
+
+  // Calcul du total des likes
+  // const totalLikes = media.reduce((acc, curr) => acc + curr.likes, 0);
 
   function getUserCardDOM() {
     const article = document.createElement("article");
@@ -86,5 +89,8 @@ function photographerTemplate(data) {
     return profileZone;
   }
 
-  return { name, picture, button, getUserCardDOM, getUserHeaderDOM };
+  return {
+    getUserCardDOM,
+    getUserHeaderDOM,
+  };
 }
