@@ -1,6 +1,7 @@
 # TO-DO LIST
-- Créer le petit encart qui affiche le tarif journalier du photographe affiché
-- Créer et Gérer le nombre de likes
+~~- Créer l'encart qui affiche le tarif journalier du photographe affiché~~
+~~- Créer et Gérer le nombre de likes~~
+- Griser/Masquer page quand modale ouverte ?
 - LightBox 
 - ContactForm 
 - Gérer le focus :
