@@ -32,7 +32,12 @@
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
       
-        <form>
+        <form id="form-photographer"
+        name="contact-photographer"
+        action="photographer.html"
+        method="get"
+        novalidate
+        onsubmit="return validate();">
           <div class="formData">
               <label for="firstname">Prénom</label><br />
               <input
@@ -40,7 +45,7 @@
                   type="text"
                   id="firstname"
                   name="firstname"
-                  minlength="2"
+                  pattern="[A-Za-zÀ-ÿ\-']+"
                   aria-labelledby="firstname"
                   required
               />
@@ -54,6 +59,7 @@
                   type="text"
                   id="lastname"
                   name="lastname"
+                  pattern="[A-Za-zÀ-ÿ\-']+"
                   aria-labelledby="lastname"
                   required
               />
@@ -74,12 +80,14 @@
           <div class="formData">
               <label for="message">Votre message</label>
               <textarea
+                  class="text-control"
                   id="message"
                   name="message"
-                  rows="9"
+                  rows="6"
                   required
                   aria-labelledby="message"
               ></textarea>
+              <span id="error-message" role="alert" aria-live="polite"></span>
           </div>
       
           <button class="contact_button" type="submit" role="button" aria-label="Envoyer le formulaire">

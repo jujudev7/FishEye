@@ -3,7 +3,7 @@
 ~~- Créer et Gérer le nombre de likes~~
 - Griser/Masquer page quand modale ouverte ?
 - LightBox 
-- ContactForm 
+- ContactForm : gérer conditions / erreurs / collecte
 - Gérer le focus :
 Les pseudo-classes dont vous aurez besoin pour les liens seront :
     • :active qui “permet de cibler un élément lorsque celui-ci est activé par l'utilisateur” (par exemple, quand l’utilisateur a cliqué dessus) ;
@@ -43,7 +43,7 @@ Les pseudo-classes dont vous aurez besoin pour les liens seront :
 ❒ Les **identificateurs** tels que les noms de classe, de méthode et de variable décrivent leur but avec exactitude et précision.  
 ❒ Les versions récentes de JavaScript sont utilisées sans caractéristiques dépréciées.
 
-❒ Des éléments HTML pertinents et spécifiques sont choisis (ex. : < nav >, < article > au lieu d'utiliser < div > et < span > pour tout).  
+❒ Des éléments HTML pertinents et spécifiques sont choisis (ex. : < nav >, < article > au lieu d'utiliser < div > et < span > pour tout).
 ❒ Les **balises ARIA** sont utilisées pour décrire des éléments personnalisés.  
 ❒ Les balises d'accessibilité passent le **test AChecker** sans "known issues".  
 ❒ Le site est **navigable avec un clavier**.

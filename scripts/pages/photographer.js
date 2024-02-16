@@ -31,9 +31,8 @@ async function displayOnePhotographer(photographers, media) {
     const photographerHeader = photographerTemplate(photographer, media);
     const userHeaderDOM = photographerHeader.getUserHeaderDOM();
     photographersHeader.appendChild(userHeaderDOM);
-    // photographerHeader.getUserInsertDOM();
 
-    // Afficher le prénom du photographe dans le h2 du form
+    // On affiche le prénom du photographe dans le h2 du form
     document.querySelector(
       "header h2"
     ).innerHTML = `Contactez-moi<br>${photographer.name}`;
@@ -48,27 +47,30 @@ async function displayOnePhotographer(photographers, media) {
       );
 
       // INSERT (total likes + pricing)
+
       // On calcule le total des likes des médias du photographe actuel
-      const totalLikes = mediaOfCurrentPhotographer.reduce(
-        (acc, curr) => acc + curr.likes,
-        0
-      );
+      let totalLikes = 0;
+      for (let i = 0; i < mediaOfCurrentPhotographer.length; i++) {
+        totalLikes += media[i].likes;
+      }
+      // const totalLikes = mediaOfCurrentPhotographer.reduce((acc, curr) => acc + curr.likes, 0);
+
       const insert = document.querySelector(".insert");
 
       const zoneTotalLikes = document.createElement("span");
       zoneTotalLikes.classList.add("likes");
       zoneTotalLikes.textContent = totalLikes;
-  
+
       const heartIcon = document.createElement("i");
       heartIcon.className = "fa-solid fa-heart";
       insert.appendChild(zoneTotalLikes);
       zoneTotalLikes.appendChild(heartIcon);
-  
+
       const pricingPhotographer = document.createElement("span");
       pricingPhotographer.className = "pricing-photographer";
       pricingPhotographer.textContent = photographer.price + "€ / jour";
       insert.appendChild(pricingPhotographer);
-  
+
       mediaOfCurrentPhotographer.forEach((media) => {
         // On passe l'ID du photographe à mediaFactory
         const gallery = mediaFactory(media, photographer.id);
@@ -86,6 +88,7 @@ async function init() {
 
     // on récupère les données des médias
     const media = await getMedia();
+    
     // on affiche les données du photographe
     displayOnePhotographer(photographers, media);
   } catch (error) {

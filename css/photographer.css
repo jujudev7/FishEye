@@ -131,16 +131,42 @@ form div {
   flex-direction: column;
   width: 100%;
   align-items: self-start;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 form input {
   width: 100%;
-  height: 54px;
+  height: 50px;
   border: none;
   border-radius: 5px;
+  font-size: 1.1em;
 }
 
 textarea {
   width: 100%;
+  font-family: "DM Sans", sans-serif;
+}
+
+/* textarea #message {
+  font-size: 1.1em;
+} */
+
+/* Formatting of Errors and Validations */
+
+#error-firstname,
+#error-lastname,
+#error-email,
+#error-message {
+  font-size: 1em;
+  color: #0000BC;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.invalid {
+  border: 3px solid red;
+}
+
+.valid {
+  border: 3px solid rgb(0, 227, 19);
 }
