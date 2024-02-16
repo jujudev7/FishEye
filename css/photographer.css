@@ -3,7 +3,7 @@
   position: fixed;
   z-index: 1;
   left: 0;
-  top: 50px;
+  top: 40px;
   width: 100%;
   overflow: auto;
 }
@@ -57,13 +57,17 @@
   font-weight: bold;
   color: white;
   padding: 11px;
-  margin-top: 10px;
   width: 170px;
   height: 70px;
   border: none;
-  background-color: #901c1c;
+  background-color: #901C1C;
   border-radius: 5px;
   cursor: pointer;
+}
+
+form .contact_button {
+  margin-top: 10px;
+  height: 54px;
 }
 
 /* ENCART */
@@ -123,7 +127,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 1.5em;
+  font-size: 1.3em;
 }
 
 form div {
@@ -131,27 +135,28 @@ form div {
   flex-direction: column;
   width: 100%;
   align-items: self-start;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 form input {
-  width: 100%;
+  width: 95%;
   height: 50px;
   border: none;
   border-radius: 5px;
   font-size: 1.1em;
+  padding: 0 10px;
 }
 
 textarea {
-  width: 100%;
+  width: 95%;
   font-family: "DM Sans", sans-serif;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
 }
 
-/* textarea #message {
-  font-size: 1.1em;
-} */
 
-/* Formatting of Errors and Validations */
+/* Formatage des Erreurs et Validations */
 
 #error-firstname,
 #error-lastname,
@@ -162,6 +167,7 @@ textarea {
   margin-top: 5px;
   font-weight: bold;
 }
+
 
 .invalid {
   border: 3px solid red;
