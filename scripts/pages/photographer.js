@@ -18,6 +18,60 @@ async function getMedia() {
   throw new Error("Impossible de récupérer les données des médias");
 }
 
+function lightbox(clickedMedia) {
+  // Créer la modale Lightbox
+  const lightbox = document.querySelector(".lightbox");
+  const mediaContainer = document.createElement("div");
+  mediaContainer.classList.add("media-container");
+
+  const figure = document.createElement("figure");
+  const figCaption = document.createElement("figcaption");
+
+  // Créer un élément pour afficher le média en grand
+  let mediaElement = document.createElement(clickedMedia.tagName);
+  if (clickedMedia.tagName === "IMG") {
+    mediaElement.src = clickedMedia.src;
+    mediaElement.alt = clickedMedia.alt;
+
+    figCaption.textContent = mediaElement.alt || "Titre non disponible"; // Vérifie si alt est défini, sinon utilise une valeur par défaut
+  } else if (clickedMedia.tagName === "VIDEO") {
+    // Créer l'élément vidéo
+    mediaElement = document.createElement("video");
+    mediaElement.controls = true;
+
+    // Récupérer le titre depuis l'attribut alt de la source
+    const videoTitle = clickedMedia.querySelector("source").getAttribute("alt");
+
+    // Créer l'élément source pour définir la source vidéo
+    const sourceElement = document.createElement("source");
+    sourceElement.src = clickedMedia.querySelector("source").src; // Récupérer la source depuis la balise <source>
+    sourceElement.type = clickedMedia.querySelector("source").type; // Récupérer le type depuis la balise <source>
+
+    mediaElement.appendChild(sourceElement);
+    figCaption.textContent = videoTitle || "Titre non disponible";
+  }
+
+  figure.appendChild(mediaElement);
+  figure.appendChild(figCaption);
+
+  // const btnCloseLightbox = document.createElement("button");
+  const iconCloseLightbox = document.createElement("i");
+  iconCloseLightbox.classList.add("fa-solid", "fa-xmark");
+  iconCloseLightbox.addEventListener("click", closeLightbox);
+
+  const iconPreviousMedia = document.createElement("i");
+  iconPreviousMedia.classList.add("fa-solid", "fa-chevron-left");
+  const iconNextMedia = document.createElement("i");
+  iconNextMedia.classList.add("fa-solid", "fa-chevron-right");
+
+  // btnCloseLightbox.appendChild(iconCloseLightbox);
+  mediaContainer.appendChild(iconCloseLightbox);
+  mediaContainer.appendChild(iconPreviousMedia);
+  mediaContainer.appendChild(figure);
+  mediaContainer.appendChild(iconNextMedia);
+  lightbox.appendChild(mediaContainer);
+}
+
 async function displayOnePhotographer(photographers, media) {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
@@ -77,6 +131,26 @@ async function displayOnePhotographer(photographers, media) {
         const userGalleryDOM = gallery.getUserGalleryDOM();
         affichageGallery.appendChild(userGalleryDOM);
       });
+
+      affichageGallery.addEventListener("click", (event) => {
+        const clickedMedia = event.target;
+        // Récupérer l'élément vidéo ou image cliqué
+        const video =
+          clickedMedia.tagName === "VIDEO"
+            ? clickedMedia
+            : clickedMedia.querySelector("video");
+        const img =
+          clickedMedia.tagName === "IMG"
+            ? clickedMedia
+            : clickedMedia.querySelector("img");
+
+        if (video || img) {
+          // Afficher la modale et le média en grand
+          lightbox(clickedMedia);
+          // Appeler la fonction displayLightbox() du fichier lightBbox.js
+          displayLightbox();
+        }
+      });
     }
   });
 }
@@ -88,7 +162,7 @@ async function init() {
 
     // on récupère les données des médias
     const media = await getMedia();
-    
+
     // on affiche les données du photographe
     displayOnePhotographer(photographers, media);
   } catch (error) {

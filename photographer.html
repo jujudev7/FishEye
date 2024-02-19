@@ -25,79 +25,92 @@
         <div class="price">300 € / jour</div> -->
       </div>
     </main>
+
+    <!-- MODAL FORMULAIRE  -->
     <div id="contact_modal">
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-      
-        <form id="form-photographer"
-        name="contact-photographer"
-        action="photographer.html"
-        method="get"
-        novalidate
-        onsubmit="return validate();">
+
+        <form
+          id="form-photographer"
+          name="contact-photographer"
+          action="photographer.html"
+          method="get"
+          novalidate
+          onsubmit="return validate();"
+        >
           <div class="formData">
-              <label for="firstname">Prénom</label><br />
-              <input
-                  class="text-control"
-                  type="text"
-                  id="firstname"
-                  name="firstname"
-                  pattern="[A-Za-zÀ-ÿ\-']+"
-                  aria-labelledby="firstname"
-                  required
-              />
-              <!-- Adding a span error-"field" in order to send an error text message if needed -->
-              <span id="error-firstname" role="alert" aria-live="polite"></span>
+            <label for="firstname">Prénom</label><br />
+            <input
+              class="text-control"
+              type="text"
+              id="firstname"
+              name="firstname"
+              pattern="[A-Za-zÀ-ÿ\-']+"
+              aria-labelledby="firstname"
+              required
+            />
+            <!-- Adding a span error-"field" in order to send an error text message if needed -->
+            <span id="error-firstname" role="alert" aria-live="polite"></span>
           </div>
           <div class="formData">
-              <label for="lastname">Nom</label><br />
-              <input
-                  class="text-control"
-                  type="text"
-                  id="lastname"
-                  name="lastname"
-                  pattern="[A-Za-zÀ-ÿ\-']+"
-                  aria-labelledby="lastname"
-                  required
-              />
-              <span id="error-lastname" role="alert" aria-live="polite"></span>
+            <label for="lastname">Nom</label><br />
+            <input
+              class="text-control"
+              type="text"
+              id="lastname"
+              name="lastname"
+              pattern="[A-Za-zÀ-ÿ\-']+"
+              aria-labelledby="lastname"
+              required
+            />
+            <span id="error-lastname" role="alert" aria-live="polite"></span>
           </div>
           <div class="formData">
-              <label for="email">E-mail</label><br />
-              <input
-                  class="text-control"
-                  type="email"
-                  id="email"
-                  name="email"
-                  aria-labelledby="email"
-                  required
-              />
-              <span id="error-email" role="alert" aria-live="polite"></span>
+            <label for="email">E-mail</label><br />
+            <input
+              class="text-control"
+              type="email"
+              id="email"
+              name="email"
+              aria-labelledby="email"
+              required
+            />
+            <span id="error-email" role="alert" aria-live="polite"></span>
           </div>
           <div class="formData">
-              <label for="message">Votre message</label>
-              <textarea
-                  class="text-control"
-                  id="message"
-                  name="message"
-                  rows="6"
-                  required
-                  aria-labelledby="message"
-              ></textarea>
-              <span id="error-message" role="alert" aria-live="polite"></span>
+            <label for="message">Votre message</label>
+            <textarea
+              class="text-control"
+              id="message"
+              name="message"
+              rows="6"
+              required
+              aria-labelledby="message"
+            ></textarea>
+            <span id="error-message" role="alert" aria-live="polite"></span>
           </div>
-      
-          <button class="contact_button" type="submit" role="button" aria-label="Envoyer le formulaire">
-              Envoyer
+
+          <button
+            class="contact_button"
+            type="submit"
+            role="button"
+            aria-label="Envoyer le formulaire"
+          >
+            Envoyer
           </button>
-      </form>
-      
+        </form>
       </div>
     </div>
-    <script src="https://kit.fontawesome.com/54c01b8a7c.js" crossorigin="anonymous"></script>
+    <div class="lightbox"></div>
+    <script
+      src="https://kit.fontawesome.com/54c01b8a7c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/scripts/utils/lightBox.js"></script>
     <script src="/scripts/factories/MediaFactory.js"></script>
     <script src="/scripts/templates/photographer.js"></script>
     <script src="/scripts/pages/photographer.js"></script>

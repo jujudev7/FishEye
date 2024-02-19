@@ -20,11 +20,12 @@ function mediaFactory(data, photographerId) {
     heartIcon.className = "fa-solid fa-heart";
 
     const format = "video/mp4";
+
     // On vérifie si mediaVideo est défini avant de créer l'élément vidéo
     if (mediaVideo) {
       const videoElement = document.createElement("video");
       const sourceVideo = document.createElement("source");
-      videoElement.setAttribute("controls", "");
+      // videoElement.setAttribute("controls", "");
       sourceVideo.setAttribute("src", mediaVideo);
       sourceVideo.setAttribute("alt", title);
       sourceVideo.setAttribute("type", format);

@@ -24,7 +24,7 @@ const form = document.querySelector("form");
 
 // On ajoute un écouteur d'évènement au moment du submit
 form.addEventListener("submit", (event) => {
-  // On empêche le comportement par défaut du formulaire s'il n'est pas valide (soumission et rechargemeent de la page) 
+  // On empêche le comportement par défaut du formulaire s'il n'est pas valide (soumission et rechargement de la page) 
   event.preventDefault();
   if (validate()) {
     closeModal();
