@@ -18,96 +18,174 @@ async function getMedia() {
   throw new Error("Impossible de récupérer les données des médias");
 }
 
-function lightbox(clickedMedia) {
-  // Créer la modale Lightbox
-  const lightbox = document.querySelector(".lightbox");
-  const mediaContainer = document.createElement("div");
-  mediaContainer.classList.add("media-container");
+document.addEventListener("DOMContentLoaded", async function () {
+  try {
+    const [photographers, media] = await Promise.all([
+      getPhotographers(),
+      getMedia(),
+    ]);
 
-  const figure = document.createElement("figure");
-  const figCaption = document.createElement("figcaption");
+    // Définition des icônes pour la lightbox
+    const iconPreviousMedia = document.createElement("i");
+    iconPreviousMedia.classList.add("fa-solid", "fa-chevron-left");
+    const iconNextMedia = document.createElement("i");
+    iconNextMedia.classList.add("fa-solid", "fa-chevron-right");
 
-  // Créer un élément pour afficher le média en grand
-  let mediaElement = document.createElement(clickedMedia.tagName);
-  if (clickedMedia.tagName === "IMG") {
-    mediaElement.src = clickedMedia.src;
-    mediaElement.alt = clickedMedia.alt;
+    // Fonction pour afficher la lightbox
+    function openLightbox(url, type, title) {
+      const lightbox = document.querySelector(".lightbox");
+    
+      const content = document.createElement("div");
+      content.className = "lightbox-content";
+    
+      // Création de la figure contenant le média et sa légende
+      const figure = document.createElement("figure");
+      const figCaption = document.createElement("figcaption");
+    
+      if (type === "image") {
+        const img = document.createElement("img");
+        img.src = url;
+        figure.appendChild(img);
+        figCaption.textContent = title;
+      } else if (type === "video") {
+        const video = document.createElement("video");
+        video.controls = true;
+        const source = document.createElement("source");
+        source.src = url;
+        video.appendChild(source);
+        figure.appendChild(video);
+        figCaption.textContent = title;
+      }
+    
+      const iconCloseLightbox = document.createElement("i");
+      iconCloseLightbox.classList.add("fa-solid", "fa-xmark");
+      iconCloseLightbox.addEventListener("click", closeLightbox);
+    
+      // Ajout de la figure et de la légende au contenu de la lightbox
+      figure.appendChild(figCaption);
+      content.appendChild(iconCloseLightbox);
+      content.appendChild(iconPreviousMedia);
+      content.appendChild(figure);
+      content.appendChild(iconNextMedia);
+      lightbox.appendChild(content);
+      displayLightbox(); // Appeler la fonction pour afficher la lightbox
+    }
 
-    figCaption.textContent = mediaElement.alt || "Titre non disponible"; // Vérifie si alt est défini, sinon utilise une valeur par défaut
-  } else if (clickedMedia.tagName === "VIDEO") {
-    // Créer l'élément vidéo
-    mediaElement = document.createElement("video");
-    mediaElement.controls = true;
+    // Récupérer l'ID du photographe à partir de l'URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const photographerId = parseInt(urlParams.get("id"));
 
-    // Récupérer le titre depuis l'attribut alt de la source
-    const videoTitle = clickedMedia.querySelector("source").getAttribute("alt");
+    // Récupérer les médias du photographe correspondant
+    const photographerMedia = media.filter(
+      (m) => m.photographerId === photographerId
+    );
 
-    // Créer l'élément source pour définir la source vidéo
-    const sourceElement = document.createElement("source");
-    sourceElement.src = clickedMedia.querySelector("source").src; // Récupérer la source depuis la balise <source>
-    sourceElement.type = clickedMedia.querySelector("source").type; // Récupérer le type depuis la balise <source>
+    // Récupérer la galerie d'affichage
+    const gallery = document.querySelector(".gallery");
 
-    mediaElement.appendChild(sourceElement);
-    figCaption.textContent = videoTitle || "Titre non disponible";
+    // Index du média actuellement affiché dans la lightbox
+    let currentIndex = 0;
+
+    // Fonction pour afficher le média suivant dans la lightbox
+    function showNextMedia() {
+      currentIndex = (currentIndex + 1) % photographerMedia.length;
+      const nextMediaItem = photographerMedia[currentIndex];
+      const nextMediaUrl =
+        nextMediaItem.video ?
+        `assets/medias/${photographerId}/${nextMediaItem.video}` :
+        `assets/medias/${photographerId}/${nextMediaItem.image}`;
+      const nextMediaType = nextMediaItem.video ? "video" : "image";
+      const nextMediaTitle = nextMediaItem.title;
+      openLightbox(nextMediaUrl, nextMediaType, nextMediaTitle);
+    }
+
+    // Fonction pour afficher le média précédent dans la lightbox
+    function showPreviousMedia() {
+      currentIndex =
+        (currentIndex - 1 + photographerMedia.length) % photographerMedia.length;
+      const previousMediaItem = photographerMedia[currentIndex];
+      const previousMediaUrl =
+        previousMediaItem.video ?
+        `assets/medias/${photographerId}/${previousMediaItem.video}` :
+        `assets/medias/${photographerId}/${previousMediaItem.image}`;
+      const previousMediaType = previousMediaItem.video ? "video" : "image";
+      const previousMediaTitle = previousMediaItem.title;
+      openLightbox(
+        previousMediaUrl,
+        previousMediaType,
+        previousMediaTitle
+      );
+    }
+
+    // Écouteur d'événement pour le clic sur l'icône précédente
+    iconPreviousMedia.addEventListener("click", showPreviousMedia);
+
+    // Écouteur d'événement pour le clic sur l'icône suivante
+    iconNextMedia.addEventListener("click", showNextMedia);
+
+    // Parcourir les médias du photographe et les afficher dans la galerie
+    photographerMedia.forEach((mediaItem) => {
+      const mediaUrl = mediaItem.video
+        ? `assets/medias/${photographerId}/${mediaItem.video}`
+        : `assets/medias/${photographerId}/${mediaItem.image}`;
+      const mediaType = mediaItem.video ? "video" : "image";
+
+      const figure = mediaFactory(
+        mediaItem,
+        photographerId
+      ).getUserGalleryDOM();
+      const mediaElement = figure.querySelector("img, video");
+
+      if (mediaType === "video") {
+        const source = mediaElement.querySelector("source");
+        source.src = mediaUrl;
+      } else {
+        mediaElement.src = mediaUrl;
+      }
+
+      gallery.appendChild(figure);
+
+      mediaElement.addEventListener("click", () => {
+        openLightbox(mediaUrl, mediaType, mediaItem.title); // Passer le titre du média à la fonction openLightbox
+      });
+    });
+  } catch (error) {
+    console.error("Error loading data:", error);
   }
+});
 
-  figure.appendChild(mediaElement);
-  figure.appendChild(figCaption);
-
-  // const btnCloseLightbox = document.createElement("button");
-  const iconCloseLightbox = document.createElement("i");
-  iconCloseLightbox.classList.add("fa-solid", "fa-xmark");
-  iconCloseLightbox.addEventListener("click", closeLightbox);
-
-  const iconPreviousMedia = document.createElement("i");
-  iconPreviousMedia.classList.add("fa-solid", "fa-chevron-left");
-  const iconNextMedia = document.createElement("i");
-  iconNextMedia.classList.add("fa-solid", "fa-chevron-right");
-
-  // btnCloseLightbox.appendChild(iconCloseLightbox);
-  mediaContainer.appendChild(iconCloseLightbox);
-  mediaContainer.appendChild(iconPreviousMedia);
-  mediaContainer.appendChild(figure);
-  mediaContainer.appendChild(iconNextMedia);
-  lightbox.appendChild(mediaContainer);
-}
 
 async function displayOnePhotographer(photographers, media) {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  const id = urlParams.get("id");
+  try {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const id = urlParams.get("id");
 
-  const photographersHeader = document.querySelector(".photograph-header");
+    const photographersHeader = document.querySelector(".photograph-header");
 
-  photographers.forEach((photographer) => {
-    if (photographer.id != id) return;
+    photographers.forEach((photographer) => {
+      if (photographer.id != id) return;
 
-    const photographerHeader = photographerTemplate(photographer, media);
-    const userHeaderDOM = photographerHeader.getUserHeaderDOM();
-    photographersHeader.appendChild(userHeaderDOM);
+      const photographerHeader = photographerTemplate(photographer, media);
+      const userHeaderDOM = photographerHeader.getUserHeaderDOM();
+      photographersHeader.appendChild(userHeaderDOM);
 
-    // On affiche le prénom du photographe dans le h2 du form
-    document.querySelector(
-      "header h2"
-    ).innerHTML = `Contactez-moi<br>${photographer.name}`;
+      // On affiche le prénom du photographe dans le h2 du form
+      document.querySelector(
+        "header h2"
+      ).innerHTML = `Contactez-moi<br>${photographer.name}`;
 
-    const affichageGallery = document.querySelector(".gallery");
-
-    // On vérifie que le photographe actuel possède bien des médias
-    if (media.length > 0) {
-      // On filtre les médias pour ne conserver que ceux du photographe actuel
-      const mediaOfCurrentPhotographer = media.filter(
-        (media) => media.photographerId === photographer.id
+      // On récupère les médias du photographe actuel
+      const photographerMedia = media.filter(
+        (m) => m.photographerId === photographer.id
       );
-
-      // INSERT (total likes + pricing)
 
       // On calcule le total des likes des médias du photographe actuel
       let totalLikes = 0;
-      for (let i = 0; i < mediaOfCurrentPhotographer.length; i++) {
-        totalLikes += media[i].likes;
-      }
-      // const totalLikes = mediaOfCurrentPhotographer.reduce((acc, curr) => acc + curr.likes, 0);
+      photographerMedia.forEach((mediaItem) => {
+        totalLikes += mediaItem.likes;
+      });
 
       const insert = document.querySelector(".insert");
 
@@ -124,35 +202,13 @@ async function displayOnePhotographer(photographers, media) {
       pricingPhotographer.className = "pricing-photographer";
       pricingPhotographer.textContent = photographer.price + "€ / jour";
       insert.appendChild(pricingPhotographer);
-
-      mediaOfCurrentPhotographer.forEach((media) => {
-        // On passe l'ID du photographe à mediaFactory
-        const gallery = mediaFactory(media, photographer.id);
-        const userGalleryDOM = gallery.getUserGalleryDOM();
-        affichageGallery.appendChild(userGalleryDOM);
-      });
-
-      affichageGallery.addEventListener("click", (event) => {
-        const clickedMedia = event.target;
-        // Récupérer l'élément vidéo ou image cliqué
-        const video =
-          clickedMedia.tagName === "VIDEO"
-            ? clickedMedia
-            : clickedMedia.querySelector("video");
-        const img =
-          clickedMedia.tagName === "IMG"
-            ? clickedMedia
-            : clickedMedia.querySelector("img");
-
-        if (video || img) {
-          // Afficher la modale et le média en grand
-          lightbox(clickedMedia);
-          // Appeler la fonction displayLightbox() du fichier lightBbox.js
-          displayLightbox();
-        }
-      });
-    }
-  });
+    });
+  } catch (error) {
+    console.error(
+      "Une erreur s'est produite lors de l'affichage du photographe :",
+      error
+    );
+  }
 }
 
 async function init() {

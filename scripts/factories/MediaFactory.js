@@ -25,7 +25,7 @@ function mediaFactory(data, photographerId) {
     if (mediaVideo) {
       const videoElement = document.createElement("video");
       const sourceVideo = document.createElement("source");
-      // videoElement.setAttribute("controls", "");
+      // videoElement.setAttribute("controls", "false");
       sourceVideo.setAttribute("src", mediaVideo);
       sourceVideo.setAttribute("alt", title);
       sourceVideo.setAttribute("type", format);

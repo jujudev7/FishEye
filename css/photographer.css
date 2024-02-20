@@ -186,6 +186,7 @@ textarea {
   justify-items: center;
   grid-template-columns: repeat(auto-fit, 350px);
   column-gap: 80px;
+  row-gap: 20px;
 }
 
 .gallery img,
@@ -231,7 +232,7 @@ video {
   background-color: rgba(255, 255, 255, 0.9); 
 }
 
-.media-container {
+.lightbox-content {
   position: relative;
   width: 1000px;
   top: 40px;
@@ -241,7 +242,7 @@ video {
   margin: auto;
 }
 
-.media-container .fa-solid {
+.lightbox-content .fa-solid {
   font-size: 42px;
   color: #901c1c;
 }
@@ -259,8 +260,8 @@ video {
   cursor: pointer;
 }
 
-.media-container video,
-.media-container img {
+.lightbox-content video,
+.lightbox-content img {
   width: 840px;
   height: 720px;
   object-fit: cover;
