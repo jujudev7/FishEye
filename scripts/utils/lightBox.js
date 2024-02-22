@@ -17,9 +17,15 @@ function closeLightbox() {
 
 const btnCloseLightbox = document.querySelector("button");
 
+// Déclaration de la variable globale pour suivre l'index du média actuellement affiché
+let currentIndex = 0;
+
 // Fonction pour afficher la lightbox
-function openLightbox(url, type, title) {
+function openLightbox(url, type, title, index) {
   const lightbox = document.querySelector(".lightbox");
+
+  // Initialiser l'index du média actuellement affiché
+  currentIndex = index; // Utilisation de la variable globale currentIndex
 
   const content = document.createElement("div");
   content.className = "lightbox-content";
@@ -53,9 +59,6 @@ function openLightbox(url, type, title) {
   const iconNextMedia = document.createElement("i");
   iconNextMedia.classList.add("fa-solid", "fa-chevron-right");
 
-  // Déclaration de la variable globale pour suivre l'index du média actuellement affiché
-  let currentIndex = 0;
-
   // Ajout des gestionnaires d'événements pour les icônes "iconPreviousMedia" et "iconNextMedia"
   iconPreviousMedia.addEventListener("click", () => navigateLightbox(-1));
   iconNextMedia.addEventListener("click", () => navigateLightbox(1));
@@ -73,14 +76,9 @@ function openLightbox(url, type, title) {
   // Fonction pour naviguer dans la lightbox
   function navigateLightbox(direction) {
     // Mettre à jour l'index du média en fonction de la direction
-    currentIndex += direction;
-
-    // Vérifier si l'index dépasse les limites des médias disponibles
-    if (currentIndex < 0) {
-      currentIndex = photographerMedia.length - 1;
-    } else if (currentIndex >= photographerMedia.length) {
-      currentIndex = 0;
-    }
+    currentIndex =
+      (currentIndex + direction + photographerMedia.length) %
+      photographerMedia.length;
 
     // Récupérer les informations sur le nouveau média
     const newMediaInfo = getMediaInfo(currentIndex, photographerMedia);
@@ -120,3 +118,5 @@ function openLightbox(url, type, title) {
     content.insertBefore(newFigure, iconNextMedia); // Insérer newFigure avant iconNextMedia
   }
 }
+
+

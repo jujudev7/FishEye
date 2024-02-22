@@ -76,15 +76,18 @@ document.addEventListener("DOMContentLoaded", async function () {
 
       gallery.appendChild(figure);
 
-      mediaElement.addEventListener("click", () => {
-        openLightbox(mediaUrl, mediaType, mediaItem.title); // Passer le titre du média à la fonction openLightbox
-        let currentIndex = index; // Sauvegarder l'index actuel du média dans la lightbox
+      // Ajouter un écouteur d'événements click pour chaque élément de la galerie
+      figure.addEventListener("click", () => {
+        // Appel à openLightbox avec l'index approprié
+        openLightbox(mediaUrl, mediaType, mediaItem.title, index);
       });
     });
+
   } catch (error) {
     console.error("Error loading data:", error);
   }
 });
+
 
 async function displayOnePhotographer(photographers, media) {
   try {
