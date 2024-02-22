@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       gallery.appendChild(figure);
 
       // Ajouter un écouteur d'événements click pour chaque élément de la galerie
-      figure.addEventListener("click", () => {
+      mediaElement.addEventListener("click", () => {
         // Appel à openLightbox avec l'index approprié
         openLightbox(mediaUrl, mediaType, mediaItem.title, index);
       });
@@ -88,6 +88,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
+
+let totalLikesForCurrentPhotographer = 0; // Variable pour stocker le total des likes du photographe actuel
 
 async function displayOnePhotographer(photographers, media) {
   try {
@@ -115,27 +117,26 @@ async function displayOnePhotographer(photographers, media) {
       );
 
       // On calcule le total des likes des médias du photographe actuel
-      let totalLikes = 0;
+      totalLikesForCurrentPhotographer = 0; // Réinitialiser le total des likes
       photographerMedia.forEach((mediaItem) => {
-        // likesZone.classList.add("likes-zone");
-        const heartIcon = document.querySelector(".likes-zone i.fa-solid.fa-heart");
-        // const likes = document.querySelector(".likes-zone span.likes");
-        heartIcon.addEventListener("click", () => {
-          mediaItem.likes ++;
-        });
-        totalLikes += mediaItem.likes;
+        totalLikesForCurrentPhotographer += mediaItem.likes;
       });
+
+      updateTotalLikes(); // Mettre à jour le total des likes affichés
 
       const insert = document.querySelector(".insert");
 
       const zoneTotalLikes = document.createElement("span");
-      zoneTotalLikes.classList.add("likes");
-      zoneTotalLikes.textContent = totalLikes;
+      zoneTotalLikes.classList.add("total-likes");
+      const nombreLikes = document.createElement("span");
+      nombreLikes.classList.add("nombre-likes");
+      nombreLikes.textContent = totalLikesForCurrentPhotographer;
 
       const heartIcon = document.createElement("i");
       heartIcon.className = "fa-solid fa-heart";
-      insert.appendChild(zoneTotalLikes);
+      zoneTotalLikes.appendChild(nombreLikes);
       zoneTotalLikes.appendChild(heartIcon);
+      insert.appendChild(zoneTotalLikes);
 
       const pricingPhotographer = document.createElement("span");
       pricingPhotographer.className = "pricing-photographer";
@@ -152,14 +153,17 @@ async function displayOnePhotographer(photographers, media) {
 
 async function init() {
   try {
-    // on récupère les données des photographes
+    // Récupérer les données des photographes
     const photographers = await getPhotographers();
 
-    // on récupère les données des médias
+    // Récupérer les données des médias
     const media = await getMedia();
 
-    // on affiche les données du photographe
-    displayOnePhotographer(photographers, media);
+    // Afficher les données du photographe
+    await displayOnePhotographer(photographers, media);
+
+    // Incrémenter ou décrémenter les likes lors du clic sur l'icône de cœur
+    incrementDecrementLikesOnClick(media);
   } catch (error) {
     console.error(
       "Une erreur s'est produite lors de l'initialisation :",
@@ -167,5 +171,50 @@ async function init() {
     );
   }
 }
+
+function incrementDecrementLikesOnClick(media) {
+  const heartIcons = document.querySelectorAll(".gallery i.fa-solid.fa-heart");
+  heartIcons.forEach((heartIcon, index) => {
+    heartIcon.addEventListener("click", () => {
+      // Récupérer l'ID du média associé à cet icône
+      const mediaId = photographerMedia[index].id;
+
+      // Vérifier si le média a déjà été liké
+      const alreadyLiked = media.some((mediaItem) => mediaItem.id === mediaId && mediaItem.liked);
+
+      // Trouver le média dans le tableau media
+      const mediaItem = media.find((mediaItem) => mediaItem.id === mediaId);
+
+      if (alreadyLiked) {
+        // Décrémenter le nombre de likes et marquer comme non liké
+        mediaItem.likes--;
+        mediaItem.liked = false;
+        totalLikesForCurrentPhotographer--; // Décrémenter le total des likes
+        heartIcon.classList.remove("clicked"); // Retirer la classe "clicked" pour désactiver le cœur
+      } else {
+        // Incrémenter le nombre de likes et marquer comme liké
+        mediaItem.likes++;
+        mediaItem.liked = true;
+        totalLikesForCurrentPhotographer++; // Incrémenter le total des likes
+        heartIcon.classList.add("clicked"); // Ajouter la classe "clicked" pour activer le cœur
+      }
+
+      // Mettre à jour l'affichage du nombre de likes
+      const likesCountSpan = heartIcon.previousElementSibling;
+      likesCountSpan.textContent = mediaItem.likes;
+
+      updateTotalLikes(); // Mettre à jour le total des likes affichés
+    });
+  });
+}
+
+
+function updateTotalLikes() {
+  const nombreLikes = document.querySelector(".nombre-likes");
+  if (nombreLikes) {
+    nombreLikes.textContent = totalLikesForCurrentPhotographer;
+  } 
+}
+
 
 init();

@@ -222,6 +222,10 @@ video {
   color:pink;
 }
 
+.gallery .fa-heart.clicked {
+  color: red; /* Couleur rouge pour indiquer que le cœur est activé */
+}
+
 /* LIGHTBOX */
 
 .lightbox {
