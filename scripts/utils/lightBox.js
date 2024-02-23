@@ -13,7 +13,12 @@ function closeLightbox() {
   const lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "none";
   lightbox.setAttribute("aria-hidden", "true");
+
+  // Supprimer le contenu de la lightbox
+  const lightboxContent = document.querySelector(".lightbox-content");
+  lightboxContent.innerHTML = ""; // Supprime tous les éléments enfants de la lightbox
 }
+
 
 const btnCloseLightbox = document.querySelector("button");
 
