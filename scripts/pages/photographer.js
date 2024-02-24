@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
 
       gallery.appendChild(figure);
-
       // Ajouter un écouteur d'événements click pour chaque élément de la galerie
       mediaElement.addEventListener("click", () => {
         // Appel à openLightbox avec l'index approprié
@@ -83,11 +82,12 @@ document.addEventListener("DOMContentLoaded", async function () {
       });
     });
 
+    // Créer le menu de tri HTML
+    createSortMenu();
   } catch (error) {
     console.error("Error loading data:", error);
   }
 });
-
 
 let totalLikesForCurrentPhotographer = 0; // Variable pour stocker le total des likes du photographe actuel
 
@@ -180,7 +180,9 @@ function incrementDecrementLikesOnClick(media) {
       const mediaId = photographerMedia[index].id;
 
       // Vérifier si le média a déjà été liké
-      const alreadyLiked = media.some((mediaItem) => mediaItem.id === mediaId && mediaItem.liked);
+      const alreadyLiked = media.some(
+        (mediaItem) => mediaItem.id === mediaId && mediaItem.liked
+      );
 
       // Trouver le média dans le tableau media
       const mediaItem = media.find((mediaItem) => mediaItem.id === mediaId);
@@ -208,13 +210,11 @@ function incrementDecrementLikesOnClick(media) {
   });
 }
 
-
 function updateTotalLikes() {
   const nombreLikes = document.querySelector(".nombre-likes");
   if (nombreLikes) {
     nombreLikes.textContent = totalLikesForCurrentPhotographer;
-  } 
+  }
 }
-
 
 init();

@@ -1,10 +1,10 @@
 # TO-DO LIST
-~~- Créer l'encart qui affiche le tarif journalier du photographe affiché~~
-~~- Créer et Gérer le nombre de likes~~
-- Griser/Masquer page quand modale ouverte ?
-- LightBox 
-- ContactForm : gérer conditions / erreurs / collecte
-- Gérer le focus :
+✅ Créer l'encart qui affiche le tarif journalier du photographe affiché
+✅ Créer et Gérer le nombre de likes
+✅ Griser/Masquer page quand modale ouverte ?
+✅ LightBox 
+⛔ ContactForm : gérer conditions / erreurs / collecte
+⛔ Gérer le focus :
 Les pseudo-classes dont vous aurez besoin pour les liens seront :
     • :active qui “permet de cibler un élément lorsque celui-ci est activé par l'utilisateur” (par exemple, quand l’utilisateur a cliqué dessus) ;
     • :hover qui permet de spécifier l'apparence d'un élément au moment où l'utilisateur le survole avec le pointeur, sans nécessairement l'activer ;
@@ -12,7 +12,7 @@ Les pseudo-classes dont vous aurez besoin pour les liens seront :
     • :visited concernant tous les liens visités ;
     • :focus qui permet de cibler un élément lorsque celui-ci reçoit le focus (élément sélectionné au clavier ou à la souris).
 - remplacer div par class ou balises html
-~~- Afficher infos photographe sur page photographer.html~~
+✅ Afficher infos photographe sur page photographer.html
 
 ## ACCESSIBILITÉ
 - ARIA
