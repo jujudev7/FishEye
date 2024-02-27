@@ -1,88 +1,67 @@
+// Déclaration de la variable selectedOption pour suivre l'option sélectionnée
+let selectedOption = "Popularité";
+
+// Fonction pour créer le menu de tri
 function createSortMenu() {
-  
   const sortMenuContainer = document.getElementById("sort");
-  const sortByContainer = document.createElement("div");
-  sortByContainer.id = "sort-by";
-  const sortBy = document.createElement("span");
-  sortBy.id = "sortBy";
+  const sortBy = document.createElement("div");
+  sortBy.id = "sort-by";
   sortBy.textContent = "Trier par";
-  sortByContainer.appendChild(sortBy);
   
-  const sortOptionsContainer = document.createElement("div");
-  sortOptionsContainer.classList.add("sort-options");
-
-  const sortOptions = ["Popularité", "Date", "Titre"];
-
-  // Créer un conteneur pour la première option et l'icône
-  const firstOptionContainer = document.createElement("div");
-  firstOptionContainer.classList.add("sort-option-container");
-
-  const firstOption = document.createElement("div");
-  firstOption.textContent = sortOptions[0];
-  firstOption.classList.add("sort-option");
-  firstOption.classList.add(sortOptions[0].toLowerCase());
-  firstOptionContainer.appendChild(firstOption);
-
+  const dropdown = document.querySelector(".dropdown");
+  sortMenuContainer.appendChild(sortBy);
+  sortMenuContainer.appendChild(dropdown);
+  const button = document.querySelector(".dropbtn");
   const sortIcon = document.createElement("i");
   sortIcon.className = "fa-solid fa-chevron-down";
-  firstOptionContainer.appendChild(sortIcon);
 
-  sortOptionsContainer.appendChild(firstOptionContainer);
-
-  sortOptions.forEach((option, index) => {
-    if (index !== 0) {
-      const optionElement = document.createElement("div");
-      optionElement.textContent = option;
-      optionElement.classList.add("sort-option");
-      optionElement.classList.add(option.toLowerCase());
-      optionElement.style.display = "none"; // Masquer les options autres que la première
-      sortOptionsContainer.appendChild(optionElement);
-    }
-  });
-
-  sortByContainer.appendChild(sortOptionsContainer);
-  sortMenuContainer.appendChild(sortByContainer);
-
-  // Ajouter un gestionnaire d'événements pour afficher les autres options et changer l'icône au clic
-  firstOptionContainer.addEventListener("click", () => {
-    const otherOptions = sortOptionsContainer.querySelectorAll(".sort-option:not(:first-child)");
-    otherOptions.forEach(option => {
-      if (option.style.display === "none") {
-        option.style.display = "block";
-        sortIcon.className = "fa-solid fa-chevron-up";
-      } else {
-        option.style.display = "none";
-        sortIcon.className = "fa-solid fa-chevron-down";
-      }
-    });
-  });
-
-  // Ajouter des gestionnaires d'événements pour le tri
-  sortOptionsContainer.querySelectorAll(".sort-option").forEach(option => {
-    option.addEventListener("click", () => {
-      const selectedOption = option.textContent;
-      firstOption.textContent = selectedOption; // Mettre à jour le texte de la première option
-      sortOptionsContainer.querySelectorAll(".sort-option").forEach(opt => {
-        if (opt.textContent !== selectedOption) {
-          opt.style.display = "none";
-        }
-      });
-      sortIcon.className = "fa-solid fa-chevron-down";
-
-      // Appliquer le tri approprié
-      if (selectedOption === "Popularité") {
-        sortMediaByPopularity();
-      } else if (selectedOption === "Date") {
-        sortMediaByDate();
-      } else if (selectedOption === "Titre") {
-        sortMediaByTitle();
-      }
-    });
-  });
+  button.appendChild(sortIcon);
 }
 
-// Reste du code inchangé...
+function toggleOptions() {
+  const dropdownContent = document.getElementById("myDropdown");
+  if (dropdownContent.style.display === "block") {
+    dropdownContent.style.display = "none";
+    document.querySelector(".dropbtn i").classList.remove("fa-chevron-up");
+    document.querySelector(".dropbtn i").classList.add("fa-chevron-down");
+  } else {
+    dropdownContent.style.display = "block";
+    document.querySelector(".dropbtn i").classList.remove("fa-chevron-down");
+    document.querySelector(".dropbtn i").classList.add("fa-chevron-up");
+  }
+}
 
+function selectOption(index) {
+  const dropdownContent = document.getElementById("myDropdown");
+  const dropdownOptions = dropdownContent.getElementsByTagName("button");
+  const selectedOptionText = dropdownOptions[index].innerText;
+  const currentButtonText = document.querySelector(".dropbtn").innerText;
+  const sortIcon = document.querySelector(".dropbtn i");
+
+  document.querySelector(".dropbtn").innerText = selectedOptionText;
+  dropdownOptions[index].innerText = currentButtonText;
+
+  dropdownContent.style.display = "none";
+
+  // Déplacer l'icône dans le bouton
+  const button = document.querySelector(".dropbtn");
+  button.appendChild(sortIcon);
+
+  document.querySelector(".dropbtn i").classList.remove("fa-chevron-up");
+  document.querySelector(".dropbtn i").classList.add("fa-chevron-down");
+
+  // Mise à jour de la variable selectedOption
+  selectedOption = selectedOptionText;
+
+  // Appliquer le tri approprié
+  if (selectedOption === "Popularité") {
+    sortMediaByPopularity();
+  } else if (selectedOption === "Date") {
+    sortMediaByDate();
+  } else if (selectedOption === "Titre") {
+    sortMediaByTitle();
+  }
+}
 
 // Fonction pour trier les médias par Popularité
 function sortMediaByPopularity() {

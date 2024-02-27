@@ -3,7 +3,10 @@
 ✅ Créer et Gérer le nombre de likes
 ✅ Griser/Masquer page quand modale ouverte ?
 ✅ LightBox 
-⛔ ContactForm : gérer conditions / erreurs / collecte
+✅ ContactForm : gérer conditions / erreurs / collecte
+✅ TRI : html
+✅ TRI : filter.js
+✅ TRI : css
 ⛔ Gérer le focus :
 Les pseudo-classes dont vous aurez besoin pour les liens seront :
     • :active qui “permet de cibler un élément lorsque celui-ci est activé par l'utilisateur” (par exemple, quand l’utilisateur a cliqué dessus) ;
@@ -13,6 +16,7 @@ Les pseudo-classes dont vous aurez besoin pour les liens seront :
     • :focus qui permet de cibler un élément lorsque celui-ci reçoit le focus (élément sélectionné au clavier ou à la souris).
 - remplacer div par class ou balises html
 ✅ Afficher infos photographe sur page photographer.html
+⛔ ATTENTION au contraste, font NOIR sur fond orangé ??
 
 ## ACCESSIBILITÉ
 - ARIA
@@ -22,9 +26,7 @@ Les pseudo-classes dont vous aurez besoin pour les liens seront :
 - ALT
 
 ## ISSUES
-- Centrer "Contactez-moi" / photographer
-- Gérer le zoom sur visages de certaines photos des Photographes
-(cf. Figma)
+- Gérer le zoom sur visages de certaines photos des Photographes (cf. Figma)
 - Title media (fr/en)
 - Réduire dimensions img à la mano ? (trop lourdes) **PhotoFiltre** library JS (Sharp)
 - Remplir DOC / TUTOS

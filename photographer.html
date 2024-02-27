@@ -18,8 +18,17 @@
         <!-- on supprime le bouton Contactez-moi du code html pour l'intégrer via le template photographer  -->
         <!-- <button class="contact_button" onclick="displayModal()">Contactez-moi</button> -->
       </div>
+      
       <div id="sort">
-        
+        <div class="dropdown">
+          <button onclick="toggleOptions()" class="dropbtn first-option">
+            Popularité
+          </button>
+          <div id="myDropdown" class="dropdown-content">
+            <button onclick="selectOption(0)">Date</button>
+            <button onclick="selectOption(1)">Titre</button>
+          </div>
+        </div>
       </div>
 
       <div class="gallery-container">
