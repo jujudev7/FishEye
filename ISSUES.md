@@ -1,4 +1,10 @@
 # TO-DO LIST
+⛔ Navigation Lightbox ne fonctionne plus une fois qu'on a fermé une 1ère fois la lightbox
+⛔ Accessibilité
+⛔ Responsive
+⛔ ESLint 
+⛔ Vérifier Guide du Mentor
+
 ✅ Créer l'encart qui affiche le tarif journalier du photographe affiché
 ✅ Créer et Gérer le nombre de likes
 ✅ Griser/Masquer page quand modale ouverte ?

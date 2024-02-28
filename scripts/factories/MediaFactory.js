@@ -1,3 +1,5 @@
+/* exported mediaFactory */
+/* eslint-disable-next-line no-unused-vars */
 function mediaFactory(data, photographerId) {
   const { image, video, title, likes } = data;
 
@@ -13,7 +15,7 @@ function mediaFactory(data, photographerId) {
     figCaption.textContent = title;
     const likesZone = document.createElement("div");
     likesZone.classList.add("likes-zone");
-    const nbLikes = document.createElement("span")
+    const nbLikes = document.createElement("span");
     nbLikes.classList.add("likes");
     nbLikes.textContent = likes;
     const heartIcon = document.createElement("i");

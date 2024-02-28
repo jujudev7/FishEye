@@ -19,6 +19,8 @@ async function getMedia() {
 }
 
 // Fonction pour obtenir les informations sur le média en fonction de son index
+/* exported getMediaInfo */
+/* eslint-disable-next-line no-unused-vars */
 function getMediaInfo(index, media) {
   const mediaItem = media[index];
   const mediaUrl = mediaItem.video
@@ -38,6 +40,7 @@ let photographerMedia; // Déclaration de la variable en dehors de la fonction D
 
 document.addEventListener("DOMContentLoaded", async function () {
   try {
+    /* eslint-disable-next-line no-unused-vars */
     const [photographers, media] = await Promise.all([
       getPhotographers(),
       getMedia(),

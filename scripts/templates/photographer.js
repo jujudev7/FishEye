@@ -1,3 +1,5 @@
+/* exported photographerTemplate */
+/* eslint-disable-next-line no-unused-vars */
 function photographerTemplate(data, media) {
   const { id, name, portrait, city, country, tagline, price } = data;
 

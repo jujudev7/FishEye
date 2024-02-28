@@ -2,6 +2,8 @@
 let selectedOption = "Popularité";
 
 // Fonction pour créer le menu de tri
+/* exported createSortMenu */
+/* eslint-disable-next-line no-unused-vars */
 function createSortMenu() {
   const sortMenuContainer = document.getElementById("sort");
   const sortBy = document.createElement("div");
@@ -18,6 +20,8 @@ function createSortMenu() {
   button.appendChild(sortIcon);
 }
 
+/* exported toggleOptions */
+/* eslint-disable-next-line no-unused-vars */
 function toggleOptions() {
   const dropdownContent = document.getElementById("myDropdown");
   if (dropdownContent.style.display === "block") {
@@ -31,6 +35,8 @@ function toggleOptions() {
   }
 }
 
+/* exported selectOption */
+/* eslint-disable-next-line no-unused-vars */
 function selectOption(index) {
   const dropdownContent = document.getElementById("myDropdown");
   const dropdownOptions = dropdownContent.getElementsByTagName("button");

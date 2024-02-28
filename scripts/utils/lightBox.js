@@ -19,13 +19,12 @@ function closeLightbox() {
   lightboxContent.innerHTML = ""; // Supprime tous les éléments enfants de la lightbox
 }
 
-
-const btnCloseLightbox = document.querySelector("button");
-
 // Déclaration de la variable globale pour suivre l'index du média actuellement affiché
 let currentIndex = 0;
 
 // Fonction pour afficher la lightbox
+/* exported openLightbox */
+/* eslint-disable-next-line no-unused-vars */
 function openLightbox(url, type, title, index) {
   const lightbox = document.querySelector(".lightbox");
 

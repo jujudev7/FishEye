@@ -1,3 +1,5 @@
+/* exported displayModal */
+/* eslint-disable-next-line no-unused-vars */
 function displayModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
@@ -24,7 +26,7 @@ const form = document.querySelector("form");
 
 // On ajoute un écouteur d'évènement au moment du submit
 form.addEventListener("submit", (event) => {
-  // On empêche le comportement par défaut du formulaire s'il n'est pas valide (soumission et rechargement de la page) 
+  // On empêche le comportement par défaut du formulaire s'il n'est pas valide (soumission et rechargement de la page)
   event.preventDefault();
   if (validate()) {
     closeModal();
@@ -42,14 +44,14 @@ function validate() {
   const message = document.getElementById("message").value;
 
   // on sélectionne les inputs, dans le but d'afficher à l'utilisateur s'il est valide ou non
-  const inputFirstname = document.getElementById("firstname"); 
+  const inputFirstname = document.getElementById("firstname");
   const inputLastname = document.getElementById("lastname");
   const inputEmail = document.getElementById("email");
   const inputMessage = document.getElementById("message");
 
   // Expression régulière pour vérifier si le prénom contient uniquement des lettres
   const patternText = /^[A-Za-zÀ-ÿ\-']+$/;
-  
+
   const emailRegExp = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   // ^: Début de la string
   // [^\s@]+: Un ou plusieurs caractères qui ne sont ni des espace ni '@' (partie du mail AVANT l'arobase)
@@ -87,14 +89,16 @@ function validate() {
 
   // Validation du Nom
   if (lastname.trim() == "") {
-    errorLastname.textContent = "* Veuillez renseigner votre nom de famille svp";
+    errorLastname.textContent =
+      "* Veuillez renseigner votre nom de famille svp";
     inputLastname.classList.add("invalid");
     isValid = false;
   } else if (!patternText.test(lastname.trim())) {
-    errorLastname.textContent = "* Veuillez renseigner un nom de famille valide svp";
+    errorLastname.textContent =
+      "* Veuillez renseigner un nom de famille valide svp";
     inputLastname.classList.add("invalid");
     isValid = false;
-  }  else if (lastname.trim().length < 2) {
+  } else if (lastname.trim().length < 2) {
     errorLastname.textContent = "* Votre nom est trop court !";
     inputLastname.classList.add("invalid");
     inputLastname.classList.remove("valid");
@@ -104,8 +108,9 @@ function validate() {
     errorLastname.textContent = "";
   }
 
-  // // Validation de l'Email 
-  if (!emailRegExp.test(email)) {  // = if (emailRegExp.test(email) == false) {
+  // // Validation de l'Email
+  if (!emailRegExp.test(email)) {
+    // = if (emailRegExp.test(email) == false) {
     errorEmail.textContent = "* Veuillez saisir une adresse e-mail valide svp";
     inputEmail.classList.add("invalid");
     inputEmail.classList.remove("valid");
@@ -115,12 +120,12 @@ function validate() {
     errorEmail.textContent = "";
   }
 
-   // Validation du Message
-   if (message.trim() == "") {
+  // Validation du Message
+  if (message.trim() == "") {
     errorMessage.textContent = "* Veuillez écrire votre message svp";
     inputMessage.classList.add("invalid");
     isValid = false;
-  }  else if (message.trim().length < 40) {
+  } else if (message.trim().length < 40) {
     errorMessage.textContent = "* Votre message est trop court !";
     inputMessage.classList.add("invalid");
     inputMessage.classList.remove("valid");
@@ -136,9 +141,9 @@ function validate() {
 
 // On supprime les classes "valid" / "invalid" une fois que le formulaire est validé
 function resetStyleClasses() {
-  const fields = document.querySelectorAll('.text-control');
+  const fields = document.querySelectorAll(".text-control");
 
-  fields.forEach(function(field) {
-      field.classList.remove('valid', 'invalid');
+  fields.forEach(function (field) {
+    field.classList.remove("valid", "invalid");
   });
 }

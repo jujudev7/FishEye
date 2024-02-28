@@ -1,0 +1,32 @@
+{
+  "name": "fisheye",
+  "version": "1.0.0",
+  "description": "website portfolio for photographers",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint",
+    "dev": "http-server",
+    "lint": "eslint scripts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jujudev7/FishEye.git"
+  },
+  "keywords": [
+    "photographers",
+    "portfolio",
+    "photos",
+    "video",
+    "website",
+    "javascript"
+  ],
+  "author": "jujudev7",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jujudev7/FishEye/issues"
+  },
+  "homepage": "https://github.com/jujudev7/FishEye#readme",
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
+}
