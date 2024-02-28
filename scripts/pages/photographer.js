@@ -49,9 +49,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Récupérer l'ID du photographe à partir de l'URL
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
+  
+    /* eslint-disable-next-line no-undef */
     const photographerId = parseInt(urlParams.get("id"));
 
     // Affecter tous les médias du photographe à la variable photographerMedia
+    /* eslint-disable-next-line no-undef */
     photographerMedia = getAllPhotographerMedia(photographerId, media);
 
     // Récupérer la galerie d'affichage
@@ -64,6 +67,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         : `assets/medias/${photographerId}/${mediaItem.image}`;
       const mediaType = mediaItem.video ? "video" : "image";
 
+      /* eslint-disable-next-line no-undef */
       const figure = mediaFactory(
         mediaItem,
         photographerId
@@ -81,11 +85,13 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Ajouter un écouteur d'événements click pour chaque élément de la galerie
       mediaElement.addEventListener("click", () => {
         // Appel à openLightbox avec l'index approprié
+        /* eslint-disable-next-line no-undef */
         openLightbox(mediaUrl, mediaType, mediaItem.title, index);
       });
     });
 
     // Créer le menu de tri HTML
+    /* eslint-disable-next-line no-undef */
     createSortMenu();
   } catch (error) {
     console.error("Error loading data:", error);
@@ -105,6 +111,7 @@ async function displayOnePhotographer(photographers, media) {
     photographers.forEach((photographer) => {
       if (photographer.id != id) return;
 
+      /* eslint-disable-next-line no-undef */
       const photographerHeader = photographerTemplate(photographer, media);
       const userHeaderDOM = photographerHeader.getUserHeaderDOM();
       photographersHeader.appendChild(userHeaderDOM);

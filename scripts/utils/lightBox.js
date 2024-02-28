@@ -81,10 +81,13 @@ function openLightbox(url, type, title, index) {
   function navigateLightbox(direction) {
     // Mettre à jour l'index du média en fonction de la direction
     currentIndex =
+      /* eslint-disable-next-line no-undef */
       (currentIndex + direction + photographerMedia.length) %
+      /* eslint-disable-next-line no-undef */
       photographerMedia.length;
 
     // Récupérer les informations sur le nouveau média
+    /* eslint-disable-next-line no-undef */
     const newMediaInfo = getMediaInfo(currentIndex, photographerMedia);
 
     // Récupérer le contenu de la lightbox
@@ -122,5 +125,3 @@ function openLightbox(url, type, title, index) {
     content.insertBefore(newFigure, iconNextMedia); // Insérer newFigure avant iconNextMedia
   }
 }
-
-

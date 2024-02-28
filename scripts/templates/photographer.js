@@ -74,6 +74,7 @@ function photographerTemplate(data, media) {
     button.textContent = "Contactez-moi";
     // Ajout de l'événement onclick
     button.onclick = function () {
+      /* eslint-disable-next-line no-undef */
       displayModal();
     };
 

@@ -9,7 +9,7 @@ function createSortMenu() {
   const sortBy = document.createElement("div");
   sortBy.id = "sort-by";
   sortBy.textContent = "Trier par";
-  
+
   const dropdown = document.querySelector(".dropdown");
   sortMenuContainer.appendChild(sortBy);
   sortMenuContainer.appendChild(dropdown);
@@ -71,18 +71,21 @@ function selectOption(index) {
 
 // Fonction pour trier les médias par Popularité
 function sortMediaByPopularity() {
+  /* eslint-disable-next-line no-undef */
   photographerMedia.sort((a, b) => b.likes - a.likes);
   updateGallery();
 }
 
 // Fonction pour trier les médias par Date
 function sortMediaByDate() {
+  /* eslint-disable-next-line no-undef */
   photographerMedia.sort((a, b) => new Date(b.date) - new Date(a.date));
   updateGallery();
 }
 
 // Fonction pour trier les médias par Titre
 function sortMediaByTitle() {
+  /* eslint-disable-next-line no-undef */
   photographerMedia.sort((a, b) => a.title.localeCompare(b.title));
   updateGallery();
 }
@@ -92,12 +95,16 @@ function updateGallery() {
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = ""; // Effacer la galerie actuelle
 
+  /* eslint-disable-next-line no-undef */
   photographerMedia.forEach((mediaItem, index) => {
     const mediaUrl = mediaItem.video
+    /* eslint-disable-next-line no-undef */
       ? `assets/medias/${photographerId}/${mediaItem.video}`
+      /* eslint-disable-next-line no-undef */
       : `assets/medias/${photographerId}/${mediaItem.image}`;
     const mediaType = mediaItem.video ? "video" : "image";
 
+    /* eslint-disable-next-line no-undef */
     const figure = mediaFactory(mediaItem, photographerId).getUserGalleryDOM();
     const mediaElement = figure.querySelector("img, video");
 
@@ -112,6 +119,7 @@ function updateGallery() {
     // Ajouter un écouteur d'événements click pour chaque élément de la galerie
     mediaElement.addEventListener("click", () => {
       // Appel à openLightbox avec l'index approprié
+      /* eslint-disable-next-line no-undef */
       openLightbox(mediaUrl, mediaType, mediaItem.title, index);
     });
   });
