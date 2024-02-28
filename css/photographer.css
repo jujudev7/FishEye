@@ -240,7 +240,6 @@ textarea {
   margin: 80px 100px;
   justify-content: center;
   display: grid;
-  /* place-items: center; */
   align-items: baseline;
   justify-items: center;
   grid-template-columns: repeat(auto-fit, 350px);
