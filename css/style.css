@@ -54,19 +54,18 @@ h1 {
 
 .photographer_section article p.location {
   color: #901c1c;
-  font-size: 0.81em;
   margin: 0;
 }
 
 .photographer_section article p.baseline {
   color: #000;
-  font-size: 0.625em;
+  font-size: 0.8em;
   margin: 3px 0;
 }
 
 .photographer_section article p.pricing {
   color: #757575;
-  font-size: 0.56em;
+  font-size: 0.8em;
   margin: 0;
 }
 

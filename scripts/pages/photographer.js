@@ -93,7 +93,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Créer le menu de tri HTML
     /* eslint-disable-next-line no-undef */
     createSortMenu();
-    sortMediaByPopularity()
+    /* eslint-disable-next-line no-undef */
+    sortMediaByPopularity();
   } catch (error) {
     console.error("Error loading data:", error);
   }

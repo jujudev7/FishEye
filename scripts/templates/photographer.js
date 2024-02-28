@@ -16,7 +16,7 @@ function photographerTemplate(data, media) {
     // Création du lien autour de l'image
     const linkPhotographer = document.createElement("a");
     linkPhotographer.setAttribute("href", photographerUrl);
-    linkPhotographer.setAttribute("aria-label", "Aller à la page " + name);
+    linkPhotographer.setAttribute("aria-label", "Voir la page de " + name);
     article.appendChild(linkPhotographer); // Ajout du lien dans l'article
 
     const img = document.createElement("img");
@@ -27,7 +27,7 @@ function photographerTemplate(data, media) {
     // Création du lien autour du titre (h2)
     const titleLink = document.createElement("a");
     titleLink.setAttribute("href", photographerUrl);
-    titleLink.setAttribute("aria-label", "Aller à la page " + name);
+    titleLink.setAttribute("aria-label", "Aller à la page de " + name);
     article.appendChild(titleLink); // Ajout du lien autour du titre à l'article
 
     const h2 = document.createElement("h2");
@@ -60,7 +60,7 @@ function photographerTemplate(data, media) {
     const h1 = document.createElement("h1");
     h1.textContent = name;
 
-    const location = document.createElement("p");
+    const location = document.createElement("h2");
     location.classList.add("location");
     location.textContent = city + ", " + country;
 
