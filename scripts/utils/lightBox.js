@@ -15,8 +15,7 @@ function closeLightbox() {
   lightbox.setAttribute("aria-hidden", "true");
 
   // Supprimer le contenu de la lightbox
-  const lightboxContent = document.querySelector(".lightbox-content");
-  lightboxContent.innerHTML = ""; // Supprime tous les éléments enfants de la lightbox
+  lightbox.innerHTML = ""; // Supprime tous les éléments enfants de la lightbox
 }
 
 // Déclaration de la variable globale pour suivre l'index du média actuellement affiché
