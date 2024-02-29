@@ -3,10 +3,6 @@ function displayLightbox() {
   lightbox.style.display = "block";
   lightbox.setAttribute("aria-hidden", "false");
   lightbox.setAttribute("role", "dialog");
-
-  // Ajouter un filtre blanc sur le corps de la page
-  const bodyOverlay = document.querySelector("body");
-  bodyOverlay.classList.add("body-overlay");
 }
 
 function closeLightbox() {
