@@ -361,7 +361,7 @@ figure {
     margin-bottom: 10px;
   }
 
-  .contact_button {
+  .profile-zone .contact_button {
     z-index: 1;
     position: absolute;
     top: 10px;
@@ -394,7 +394,10 @@ figure {
     top: 0;
   }
 
-  .contact_button {
+  .profile-zone .contact_button {
+    z-index: 1;
+    position: absolute;
+    top: 10px;
     height: 60px;
     right: 40px;
   }
