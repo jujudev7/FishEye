@@ -1,5 +1,5 @@
 @import url("photographer.css");
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 
 body {
   font-family: "DM Sans", sans-serif;
@@ -12,25 +12,25 @@ header {
   justify-content: space-between;
   align-items: center;
   height: 90px;
+  margin: 0 100px;
 }
 
 h1 {
   color: #901c1c;
-  margin-right: 100px;
   font-weight: normal;
 }
 
 .logo {
   height: 50px;
-  margin-left: 100px;
 }
 
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  column-gap: 40px;
+  row-gap: 70px;
+  margin: 100px 50px;
+  justify-content: space-between;
 }
 
 .photographer_section article {
@@ -74,4 +74,32 @@ h1 {
   width: 200px;
   object-fit: cover;
   border-radius: 50%;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 1023px) {
+  header {
+    flex-direction: column;
+  }
+
+  .logo {
+    margin-top: 20px;
+  }
+
+   .photographer_section {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 40px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+
+  h1 {
+    margin-top: 0;
+  }
+
+  .photographer_section {
+    grid-template-columns: 1fr;
+    margin-top: 70px;
+  }
 }
