@@ -1,6 +1,7 @@
 # TO-DO LIST
 ⛔ Accessibilité
-⛔ Responsive
+⛔ Responsive Lightbox
+⛔ Responsive Modale
 ⛔ Vérifier Guide du Mentor
 
 ✅ Créer l'encart qui affiche le tarif journalier du photographe affiché
@@ -13,6 +14,8 @@
 ✅ TRI : css
 ✅ Navigation Lightbox ne fonctionne plus une fois qu'on a fermé une 1ère fois la lightbox
 ✅ ESLint 
+✅ Responsive Home
+✅ Responsive Photographer
 
 ⛔ Gérer le focus :
 Les pseudo-classes dont vous aurez besoin pour les liens seront :
