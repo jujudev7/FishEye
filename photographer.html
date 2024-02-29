@@ -2,6 +2,7 @@
 <html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <title>Fisheye - photographe</title>
@@ -43,14 +44,18 @@
     </main>
 
     <!-- MODAL FORMULAIRE  -->
-    <div id="contact_modal">
+    <div id="contact_modal" aria-hidden="true" role="dialog">
       <div class="modal">
         <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="Fermer la modale" onclick="closeModal()" />
+          <img
+            src="assets/icons/close.svg"
+            alt="Fermer la modale"
+            onclick="closeModal()"
+          />
         </header>
 
-        <form role="dialog"
+        <form
           id="form-photographer"
           name="contact-photographer"
           action="photographer.html"
@@ -59,7 +64,7 @@
           onsubmit="return validate();"
         >
           <div class="formData">
-            <label  id="firstname-label" for="firstname">Prénom</label><br />
+            <label id="firstname-label" for="firstname">Prénom</label>
             <input
               class="text-control"
               type="text"
@@ -73,7 +78,7 @@
             <span id="error-firstname" role="alert" aria-live="polite"></span>
           </div>
           <div class="formData">
-            <label id="lastname-label" for="lastname">Nom</label><br />
+            <label id="lastname-label" for="lastname">Nom</label>
             <input
               class="text-control"
               type="text"
@@ -86,7 +91,7 @@
             <span id="error-lastname" role="alert" aria-live="polite"></span>
           </div>
           <div class="formData">
-            <label id="email-label" for="email">E-mail</label><br />
+            <label id="email-label" for="email">E-mail</label>
             <input
               class="text-control"
               type="email"
@@ -121,6 +126,7 @@
         </form>
       </div>
     </div>
+
     <div class="lightbox"></div>
     <script
       src="https://kit.fontawesome.com/54c01b8a7c.js"

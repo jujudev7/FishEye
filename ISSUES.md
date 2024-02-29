@@ -1,8 +1,6 @@
 # TO-DO LIST
-⛔ Navigation Lightbox ne fonctionne plus une fois qu'on a fermé une 1ère fois la lightbox
 ⛔ Accessibilité
 ⛔ Responsive
-⛔ ESLint 
 ⛔ Vérifier Guide du Mentor
 
 ✅ Créer l'encart qui affiche le tarif journalier du photographe affiché
@@ -13,6 +11,9 @@
 ✅ TRI : html
 ✅ TRI : filter.js
 ✅ TRI : css
+✅ Navigation Lightbox ne fonctionne plus une fois qu'on a fermé une 1ère fois la lightbox
+✅ ESLint 
+
 ⛔ Gérer le focus :
 Les pseudo-classes dont vous aurez besoin pour les liens seront :
     • :active qui “permet de cibler un élément lorsque celui-ci est activé par l'utilisateur” (par exemple, quand l’utilisateur a cliqué dessus) ;
