@@ -67,9 +67,21 @@
   cursor: pointer;
 }
 
+.contact_button:hover {
+  color: #000;
+  background-color: #db8876;
+}
+
 form .contact_button {
   margin-top: 10px;
   height: 54px;
+}
+
+form .contact_button:hover {
+  margin-top: 10px;
+  height: 54px;
+  color: #901c1c;
+  background-color: #fff;
 }
 
 /* ENCART */
@@ -124,6 +136,10 @@ form .contact_button {
 
 .modal header img {
   cursor: pointer;
+}
+
+.modal header img:hover {
+  filter: contrast(200%) brightness(0%) saturate(200%);
 }
 
 .modal header h2 {
@@ -376,14 +392,14 @@ figure {
 
   .modal header img {
     width: 32px;
-  } 
+  }
 }
 
 @media screen and (max-width: 1149px) {
   .modal {
     width: 50%;
   }
-  
+
   header {
     flex-direction: unset;
     margin-bottom: 10px;
@@ -412,7 +428,7 @@ figure {
 }
 
 @media screen and (max-width: 720px) {
-  .modal{
+  .modal {
     padding: 20px;
     width: 67%;
   }
@@ -424,15 +440,18 @@ figure {
 
   .modal header img {
     width: 32px;
-  } 
+  }
 
   header {
     margin: 0 40px;
   }
 
-  #error-firstname, #error-lastname, #error-email, #error-message {
+  #error-firstname,
+  #error-lastname,
+  #error-email,
+  #error-message {
     font-size: 0.9em;
-}
+  }
 
   .logo {
     height: 40px;
