@@ -54,6 +54,11 @@
   border-radius: 50%;
 }
 
+.profile-zone img:hover {
+  object-fit: cover;
+  transform: scale(1.1);
+}
+
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -69,7 +74,7 @@
 
 .contact_button:hover {
   color: #000;
-  background-color: #db8876;
+  background-color: rgb(219, 136, 118);
 }
 
 form .contact_button {
@@ -249,6 +254,7 @@ textarea {
 
 .dropdown button:hover {
   background-color: #db8876;
+  color: #000;
 }
 
 #myDropdown > button:nth-child(2) {

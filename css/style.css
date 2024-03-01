@@ -82,6 +82,31 @@ h1 {
   width: 200px;
   object-fit: cover;
   border-radius: 50%;
+  transform: scale(1.6);
+  top: 20px;
+  position: relative;
+}
+
+.photographer_section article img:hover {
+  /* filter: brightness(0.8); Assombrit légèrement l'image au survol */
+  filter: sepia(100%) hue-rotate(317deg);
+}
+
+.zoom {
+  border-radius: 200px;
+  overflow: hidden;
+  width: 200px;
+  height: 200px;
+}
+
+.photographer_section article img.custom-zoom-galindo {
+  transform: scale(1.2);
+  top: 0px;
+  left: 20px;
+}
+
+.photographer_section article img.custom-zoom-bradford {
+  transform: scale(1.2);
 }
 
 /* RESPONSIVE */

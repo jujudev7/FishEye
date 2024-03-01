@@ -18,11 +18,22 @@ function photographerTemplate(data, media) {
     linkPhotographer.setAttribute("href", photographerUrl);
     linkPhotographer.setAttribute("aria-label", "Voir la page de " + name);
     article.appendChild(linkPhotographer); // Ajout du lien dans l'article
-
+    const zoom = document.createElement("div");
+    zoom.classList.add("zoom");
+    linkPhotographer.appendChild(zoom);
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", name);
-    linkPhotographer.appendChild(img); // Ajout du lien autour de l'image
+    zoom.appendChild(img);
+
+    // Vérifier si l'image est celle que vous voulez personnaliser
+    if (picture === "assets/photographers/TracyGalindo.jpg") {
+      img.classList.add("custom-zoom-galindo"); 
+    }
+
+    if (picture === "assets/photographers/NabeelBradford.jpg") {
+      img.classList.add("custom-zoom-bradford"); 
+    }
 
     // Création du lien autour du titre (h2)
     const titleLink = document.createElement("a");
