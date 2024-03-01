@@ -26,18 +26,27 @@ function mediaFactory(data, photographerId) {
     // On vérifie si mediaVideo est défini avant de créer l'élément vidéo
     if (mediaVideo) {
       const videoElement = document.createElement("video");
+      // videoElement.setAttribute("poster", "assets/icons/player-logo.png")
       const sourceVideo = document.createElement("source");
       // videoElement.setAttribute("controls", "false");
       sourceVideo.setAttribute("src", mediaVideo);
       sourceVideo.setAttribute("alt", title);
       sourceVideo.setAttribute("type", format);
+      const overlayVideo = document.createElement("div");
+      overlayVideo.classList.add("overlay-video");
+      const playerLogo = document.createElement("img")
+      playerLogo.setAttribute("src", "assets/icons/player-logo.png");
+
       videoElement.appendChild(sourceVideo);
-      figure.appendChild(videoElement); // on ajoute la vidéo à figure
-      figure.appendChild(captionLikes); 
+      overlayVideo.appendChild(playerLogo);
+      figure.appendChild(videoElement); 
+      figure.appendChild(overlayVideo);
       captionLikes.appendChild(figCaption); 
       captionLikes.appendChild(likesZone); 
       likesZone.appendChild(nbLikes); 
       likesZone.appendChild(heartIcon); 
+      figure.appendChild(captionLikes);
+      
     } else {
       const img = document.createElement("img");
       img.setAttribute("src", mediaPhoto);

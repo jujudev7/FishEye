@@ -57,6 +57,7 @@ h1 {
 
 .photographer_section article h2:hover {
   color: #901c1c;
+  font-weight: bolder;
 }
 
 .photographer_section article p.location {

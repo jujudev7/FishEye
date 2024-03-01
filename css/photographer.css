@@ -288,6 +288,34 @@ video {
   object-fit: cover;
   border-radius: 7px;
   cursor: pointer;
+  position: relative;
+  z-index: 0;
+}
+
+.gallery img:hover,
+.gallery video:hover {
+  filter: sepia(100%) hue-rotate(317deg);
+}
+
+/* video[poster] {
+  opacity: 0.5;
+} */
+
+.overlay-video {
+  position: absolute;
+  top: -27px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* Permet aux événements de souris de passer à travers l'overlay */
+}
+
+.overlay-video img {
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .caption-likes {
@@ -366,6 +394,7 @@ video {
 
 figure {
   margin: 10px;
+  position: relative;
 }
 
 .lightbox-content img {
