@@ -23,8 +23,16 @@ h1 {
   height: 50px;
 }
 
-.logo:hover {
+/* .logo:hover {
   filter: contrast(200%) brightness(0%) saturate(200%);
+} */
+
+.logo:hover {
+  filter: contrast(200%) brightness(200%) hue-rotate(236deg);
+}
+
+.logo:focus-visible {
+  filter: contrast(200%) brightness(200%) hue-rotate(236deg);
 }
 
 .photographer_section {
@@ -46,6 +54,10 @@ h1 {
 
 .photographer_section article a {
   text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .photographer_section article h2 {

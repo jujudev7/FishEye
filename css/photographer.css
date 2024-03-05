@@ -77,6 +77,11 @@
   background-color: rgb(219, 136, 118);
 }
 
+.contact_button:focus-visible {
+  color: #000;
+  background-color: rgb(29, 229, 255);
+}
+
 form .contact_button {
   margin-top: 10px;
   height: 54px;

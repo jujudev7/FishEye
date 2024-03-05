@@ -35,15 +35,9 @@ function photographerTemplate(data, media) {
       img.classList.add("custom-zoom-bradford"); 
     }
 
-    // Création du lien autour du titre (h2)
-    const titleLink = document.createElement("a");
-    titleLink.setAttribute("href", photographerUrl);
-    titleLink.setAttribute("aria-label", "Aller à la page de " + name);
-    article.appendChild(titleLink); // Ajout du lien autour du titre à l'article
-
     const h2 = document.createElement("h2");
     h2.textContent = name;
-    titleLink.appendChild(h2); // Ajout du titre dans le lien
+    linkPhotographer.appendChild(h2); // Ajout du titre dans le lien
 
     const location = document.createElement("p");
     location.classList.add("location");

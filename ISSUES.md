@@ -1,39 +1,38 @@
 # TO-DO LIST
-⛔ Faire en sorte que les icônes de navigation de lightbox restent à la même place 
-⛔ Focus
-⛔ Accessibilité
-⛔ Utiliser un lecteur d'écran
-✅ Hover liens
-⛔ Navigation au clavier
-⛔ Ajouter Description/Transcription aux Vidéos
-⛔ Vérifier contrastes : écriture blanc sur fond bordeaux / écriture noire sur fond saumon 
-⛔ Gérer le zoom sur visages de certaines photos des Photographes (cf. Figma)
-⛔ Title media (fr/en)
+⛔ Faire en sorte que les icônes de navigation de lightbox restent à la même place  
+⛔ Focus  
+⛔ Accessibilité  
+⛔ Utiliser un lecteur d'écran  
+✅ Hover liens  
+⛔ Navigation au clavier  
+⛔ Ajouter Description/Transcription aux Vidéos  
+⛔ Vérifier contrastes : écriture blanc sur fond bordeaux / écriture noire sur fond saumon   
+⛔ Gérer le zoom sur visages de certaines photos des Photographes (cf. Figma)  
+⛔ Title media (fr/en)  
 
-⛔ Vérifier Guide du Mentor
-⛔ Modal confirmation ?
+⛔ Vérifier Guide du Mentor  
+⛔ Modal confirmation ?  
 
 
-✅ Créer l'encart qui affiche le tarif journalier du photographe affiché
-✅ Créer et Gérer le nombre de likes
-✅ Griser/Masquer page quand modale ouverte ?
-✅ LightBox 
-✅ ContactForm : gérer conditions / erreurs / collecte
-✅ TRI : html
-✅ TRI : filter.js
-✅ TRI : css
-✅ Navigation Lightbox ne fonctionne plus une fois qu'on a fermé une 1ère fois la lightbox
-✅ ESLint 
-✅ Responsive Home
-✅ Responsive Photographer
-✅ Responsive Lightbox
-✅ Responsive Modale
+✅ Créer l'encart qui affiche le tarif journalier du photographe affiché  
+✅ Créer et Gérer le nombre de likes  
+✅ Griser/Masquer page quand modale ouverte ?  
+✅ LightBox   
+✅ ContactForm : gérer conditions / erreurs / collecte  
+✅ TRI : html  
+✅ TRI : filter.js  
+✅ TRI : css  
+✅ Navigation Lightbox ne fonctionne plus une fois qu'on a fermé une 1ère fois la lightbox  
+✅ ESLint   
+✅ Responsive Home  
+✅ Responsive Photographer  
+✅ Responsive Lightbox  
+✅ Responsive Modale  
 
 ## Page d'accueil 
 ✅ Liste de tous les photographes avec leur nom, leur slogan, leur
-localisation, leur prix/heure et une image miniature de leur choix.
-✅ Lorsque l'utilisateur clique sur la vignette d'un photographe, il est
-amené à sa page
+localisation, leur prix/heure et une image miniature de leur choix.  
+✅ Lorsque l'utilisateur clique sur la vignette d'un photographe, il est amené à sa page  
 
 ## Page des photographes
 ✅ Affiche une galerie des travaux du photographe.
