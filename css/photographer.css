@@ -385,11 +385,19 @@ video {
 }
 
 .lightbox .fa-chevron-left {
-  margin-left: 20px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  margin-left: -5px;
+  z-index: 1;
 }
 
 .fa-chevron-right {
-  margin-right: 20px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-right: -5px;
+  z-index: 1;
 }
 
 figure {

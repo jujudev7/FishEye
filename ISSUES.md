@@ -1,11 +1,15 @@
 # TO-DO LIST
-⛔ Focus & Hover liens
+⛔ Faire en sorte que les icônes de navigation de lightbox restent à la même place 
+⛔ Focus
+⛔ Accessibilité
+⛔ Utiliser un lecteur d'écran
+✅ Hover liens
 ⛔ Navigation au clavier
-⛔ Transcription vidéos
+⛔ Ajouter Description/Transcription aux Vidéos
 ⛔ Vérifier contrastes : écriture blanc sur fond bordeaux / écriture noire sur fond saumon 
 ⛔ Gérer le zoom sur visages de certaines photos des Photographes (cf. Figma)
 ⛔ Title media (fr/en)
-⛔ Accessibilité
+
 ⛔ Vérifier Guide du Mentor
 ⛔ Modal confirmation ?
 
@@ -124,4 +128,3 @@ Les pseudo-classes dont vous aurez besoin pour les liens seront :
 ❒ Utiliser des **linters** pour le HTML et le CSS également ;  
 ❒ Respecter le guide de style Google HTML/CSS : https://google.github.io/styleguide/htmlcssguide.html  
 ❒ Lire le guide MDN sur l'accessibilité : https://google.github.io/styleguide/htmlcssguide.html 
-

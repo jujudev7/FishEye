@@ -51,7 +51,7 @@ function mediaFactory(data, photographerId) {
       const img = document.createElement("img");
       img.setAttribute("src", mediaPhoto);
       img.setAttribute("alt", title);
-      figure.appendChild(img); // on ajoute l'image à figure
+      figure.appendChild(img); 
       figure.appendChild(captionLikes); 
       captionLikes.appendChild(figCaption); 
       captionLikes.appendChild(likesZone); 
