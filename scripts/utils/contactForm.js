@@ -5,6 +5,9 @@ function displayModal() {
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
   modal.setAttribute("role", "dialog");
+  
+  const modalDialog = modal.querySelector('.modal');
+  modalDialog.focus();
 }
 
 function closeModal() {

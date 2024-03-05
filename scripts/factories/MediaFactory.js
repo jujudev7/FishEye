@@ -9,6 +9,7 @@ function mediaFactory(data, photographerId) {
 
   function getUserGalleryDOM() {
     const figure = document.createElement("figure");
+    figure.tabIndex = 0;
     const captionLikes = document.createElement("div");
     captionLikes.classList.add("caption-likes");
     const figCaption = document.createElement("figcaption");

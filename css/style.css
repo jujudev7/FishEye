@@ -23,16 +23,13 @@ h1 {
   height: 50px;
 }
 
-/* .logo:hover {
-  filter: contrast(200%) brightness(0%) saturate(200%);
-} */
-
 .logo:hover {
-  filter: contrast(200%) brightness(200%) hue-rotate(236deg);
+  filter: brightness(200%) hue-rotate(249deg);
 }
 
-.logo:focus-visible {
-  filter: contrast(200%) brightness(200%) hue-rotate(236deg);
+a:focus {
+  background-color: yellow;
+  padding: 15px;
 }
 
 .photographer_section {
@@ -69,6 +66,11 @@ h1 {
 
 .photographer_section article h2:hover {
   color: #901c1c;
+  font-weight: bolder;
+}
+
+.photographer_section article h2:focus {
+  color: #000;
   font-weight: bolder;
 }
 

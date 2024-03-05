@@ -144,6 +144,19 @@ form .contact_button:hover {
   margin-bottom: 40px;
 }
 
+.modal:focus,
+.modal img:focus,
+input:focus,
+textarea:focus {
+  border: 5px solid #0000bc;
+}
+
+figure:focus {
+  border: 5px solid #0000bc;
+  padding: 10px;
+  background-color: yellow;
+}
+
 .modal header img {
   cursor: pointer;
 }
@@ -240,6 +253,12 @@ textarea {
 
 .dropbtn {
   border-radius: 5px;
+}
+
+.dropbtn:focus-visible,
+.dropdown button:focus-visible {
+  background-color: yellow;
+  color: #000;
 }
 
 .dropdown button {
