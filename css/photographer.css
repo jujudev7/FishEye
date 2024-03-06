@@ -80,6 +80,7 @@
 .contact_button:focus-visible {
   color: #000;
   background-color: rgb(29, 229, 255);
+  border: 5px solid #0000bc;
 }
 
 form .contact_button {
@@ -152,11 +153,15 @@ figcaption:focus-visible {
   border: 5px solid #0000bc;
 }
 
+.dropbtn:focus-visible,
+.dropdown-content button:focus-visible,
 figure img:focus-visible,
-figure video:focus-visible {
+figure video:focus-visible,
+.fa-solid:focus-visible {
   border: 5px solid #0000bc;
   padding: 10px;
   background-color: yellow;
+  color: #000;
 }
 
 .modal header img {
@@ -283,7 +288,7 @@ textarea {
   color: #000;
 }
 
-#myDropdown > button:nth-child(2) {
+#myDropdown>button:nth-child(2) {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -309,8 +314,8 @@ textarea {
 
 .gallery img,
 video {
-  width: 350px; /* Hauteur fixe de 350px */
-  height: 300px; /* Hauteur fixe de 300px */
+  width: 350px;
+  height: 300px;
   object-fit: cover;
   border-radius: 7px;
   cursor: pointer;
@@ -371,7 +376,7 @@ video {
 }
 
 .gallery .fa-heart.clicked {
-  color: red; /* Couleur rouge pour indiquer que le cœur est activé */
+  color: red;
 }
 
 /* LIGHTBOX */
@@ -424,6 +429,11 @@ video {
   right: 0;
   margin-right: -5px;
   z-index: 1;
+}
+
+.lightbox .fa-solid:hover {
+  color: #000;
+  transform: scale(1.1);
 }
 
 figure {
@@ -501,6 +511,7 @@ figure {
     padding: 20px;
     width: 67%;
   }
+
   .modal header h2 {
     font-size: 1.9em;
     font-weight: normal;

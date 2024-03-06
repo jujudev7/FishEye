@@ -16,6 +16,23 @@ function closeModal() {
   modal.setAttribute("aria-hidden", "true");
 }
 
+// Gestionnaire d'événement pour la touche Échap
+document.addEventListener("keydown", function(event) {
+  if (event.key === "Escape") {
+    closeModal(); 
+  }
+});
+
+// Gestionnaire d'événement pour la croix (fermer)
+const closeBtn = document.querySelector(".modal img")
+
+closeBtn.addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    closeModal(); 
+  }
+});
+
+
 // Récupérer l'ID du photographe à partir de la query string de l'URL
 const urlParams = new URLSearchParams(window.location.search);
 const photographerId = parseInt(urlParams.get("id"));

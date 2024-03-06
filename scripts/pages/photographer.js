@@ -49,12 +49,12 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Récupérer l'ID du photographe à partir de l'URL
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-  
+
     /* eslint-disable-next-line no-undef */
     const photographerId = parseInt(urlParams.get("id"));
 
     // Affecter tous les médias du photographe à la variable photographerMedia
-    /* eslint-disable-next-line no-undef */
+/* eslint-disable-next-line no-undef */
     photographerMedia = getAllPhotographerMedia(photographerId, media);
 
     // Récupérer la galerie d'affichage
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         : `assets/medias/${photographerId}/${mediaItem.image}`;
       const mediaType = mediaItem.video ? "video" : "image";
 
-      /* eslint-disable-next-line no-undef */
+/* eslint-disable-next-line no-undef */
       const figure = mediaFactory(
         mediaItem,
         photographerId
@@ -84,21 +84,64 @@ document.addEventListener("DOMContentLoaded", async function () {
       gallery.appendChild(figure);
       // Ajouter un écouteur d'événements click pour chaque élément de la galerie
       mediaElement.addEventListener("click", () => {
-        // Appel à openLightbox avec l'index approprié
+// Appel à openLightbox avec l'index approprié
         /* eslint-disable-next-line no-undef */
         openLightbox(mediaUrl, mediaType, mediaItem.title, index);
       });
+
+      // Initialiser la navigation au clavier
+      initKeyboardNavigation();
     });
 
     // Créer le menu de tri HTML
     /* eslint-disable-next-line no-undef */
     createSortMenu();
-    /* eslint-disable-next-line no-undef */
+/* eslint-disable-next-line no-undef */
     sortMediaByPopularity();
   } catch (error) {
     console.error("Error loading data:", error);
   }
 });
+
+// Fonction pour initialiser la navigation au clavier
+function initKeyboardNavigation() {
+  document.addEventListener("keydown", function (event) {
+    const focusableElements = document.querySelectorAll(
+      "button, [tabindex], .logo"
+    );
+    const focusedElement = document.activeElement;
+    const index = Array.prototype.indexOf.call(
+      focusableElements,
+      focusedElement
+    );
+
+    if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      if (index === 0) {
+        focusableElements[focusableElements.length - 1].focus();
+      } else if (focusedElement.classList.contains("logo")) {
+        focusableElements[focusableElements.length - 1].focus();
+      } else {
+        focusableElements[index - 1].focus();
+      }
+    } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      if (index === focusableElements.length - 1) {
+        focusableElements[0].focus();
+      } else if (focusedElement.classList.contains("logo")) {
+        focusableElements[0].focus();
+      } else {
+        focusableElements[index + 1].focus();
+      }
+    }
+  });
+
+  // Gestionnaire d'événement pour la touche Entrée sur le logo
+  const logo = document.querySelector(".logo");
+  logo.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      logo.click();
+    }
+  });
+}
 
 let totalLikesForCurrentPhotographer = 0; // Variable pour stocker le total des likes du photographe actuel
 

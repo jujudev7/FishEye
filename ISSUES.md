@@ -1,9 +1,9 @@
 # TO-DO LIST
 
-⛔ Accessibilité  
-⛔ Utiliser un lecteur d'écran  
 ⛔ Navigation au clavier (ESC / Entrée)  
 ⛔ Ajouter Description/Transcription aux Vidéos  
+⛔ Accessibilité  
+⛔ Utiliser un lecteur d'écran  
 ⛔ Title media (fr/en)  
 ⛔ Vérifier Guide du Mentor  
 ⛔ Modal confirmation ?  

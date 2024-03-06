@@ -1,8 +1,33 @@
+// Fonction pour placer le focus à l'intérieur de la lightbox
+function focusLightbox() {
+  // Sélectionnez l'élément à mettre en focus dans la lightbox
+  const lightboxContent = document.querySelector(".lightbox-content");
+  const iconNextMedia = lightboxContent.querySelector(".fa-chevron-right");
+  const iconPreviousMedia = lightboxContent.querySelector(".fa-chevron-left");
+  const iconCloseLightbox = lightboxContent.querySelector(".fa-xmark");
+
+  // Mettre le focus sur cet élément
+  iconNextMedia.focus();
+  iconNextMedia.setAttribute("tabindex", "0");
+  iconPreviousMedia.setAttribute("tabindex", "0");
+  iconCloseLightbox.setAttribute("tabindex", "0");
+
+  iconCloseLightbox.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      closeLightbox();
+    }
+  });
+}
+
+// Modifier la fonction displayLightbox pour appeler focusLightbox après l'affichage
 function displayLightbox() {
   const lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "block";
   lightbox.setAttribute("aria-hidden", "false");
   lightbox.setAttribute("role", "dialog");
+
+  // Appeler focusLightbox pour placer le focus à l'intérieur de la lightbox
+  focusLightbox();
 }
 
 function closeLightbox() {
@@ -13,6 +38,13 @@ function closeLightbox() {
   // Supprimer le contenu de la lightbox
   lightbox.innerHTML = ""; // Supprime tous les éléments enfants de la lightbox
 }
+
+// Gestionnaire d'événement pour la touche Échap
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    closeLightbox();
+  }
+});
 
 // Déclaration de la variable globale pour suivre l'index du média actuellement affiché
 let currentIndex = 0;
@@ -61,6 +93,18 @@ function openLightbox(url, type, title, index) {
   // Ajout des gestionnaires d'événements pour les icônes "iconPreviousMedia" et "iconNextMedia"
   iconPreviousMedia.addEventListener("click", () => navigateLightbox(-1));
   iconNextMedia.addEventListener("click", () => navigateLightbox(1));
+
+  iconPreviousMedia.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      navigateLightbox(-1);
+    }
+  });
+
+  iconNextMedia.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      navigateLightbox(1);
+    }
+  });
 
   // Ajout des icônes de navigation, du media et de la figcaption à la lightbox
   content.appendChild(iconCloseLightbox);
@@ -119,4 +163,8 @@ function openLightbox(url, type, title, index) {
     // Ajouter la figure au contenu de la lightbox
     content.insertBefore(newFigure, iconNextMedia); // Insérer newFigure avant iconNextMedia
   }
+
+  // Mettre le focus sur la lightbox
+  iconNextMedia.focus();
+  iconNextMedia.setAttribute("tabindex", "0");
 }
