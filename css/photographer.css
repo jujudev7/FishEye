@@ -144,14 +144,16 @@ form .contact_button:hover {
   margin-bottom: 40px;
 }
 
-.modal:focus,
-.modal img:focus,
-input:focus,
-textarea:focus {
+.modal:focus-visible,
+.modal img:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+figcaption:focus-visible {
   border: 5px solid #0000bc;
 }
 
-figure:focus {
+figure img:focus-visible,
+figure video:focus-visible {
   border: 5px solid #0000bc;
   padding: 10px;
   background-color: yellow;
@@ -255,8 +257,8 @@ textarea {
   border-radius: 5px;
 }
 
-.dropbtn:focus-visible,
-.dropdown button:focus-visible {
+.dropbtn:focus-visible-visible,
+.dropdown button:focus-visible-visible {
   background-color: yellow;
   color: #000;
 }

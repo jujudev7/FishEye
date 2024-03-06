@@ -9,7 +9,6 @@ function mediaFactory(data, photographerId) {
 
   function getUserGalleryDOM() {
     const figure = document.createElement("figure");
-    figure.tabIndex = 0;
     const captionLikes = document.createElement("div");
     captionLikes.classList.add("caption-likes");
     const figCaption = document.createElement("figcaption");
@@ -27,6 +26,8 @@ function mediaFactory(data, photographerId) {
     // On vérifie si mediaVideo est défini avant de créer l'élément vidéo
     if (mediaVideo) {
       const videoElement = document.createElement("video");
+      videoElement.tabIndex = 0;
+
       // videoElement.setAttribute("poster", "assets/icons/player-logo.png")
       const sourceVideo = document.createElement("source");
       // videoElement.setAttribute("controls", "false");
@@ -50,6 +51,7 @@ function mediaFactory(data, photographerId) {
       
     } else {
       const img = document.createElement("img");
+      img.tabIndex = 0;
       img.setAttribute("src", mediaPhoto);
       img.setAttribute("alt", title);
       figure.appendChild(img); 

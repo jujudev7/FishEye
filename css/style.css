@@ -27,7 +27,7 @@ h1 {
   filter: brightness(200%) hue-rotate(249deg);
 }
 
-a:focus {
+a:focus-visible {
   background-color: yellow;
   padding: 15px;
 }
@@ -66,11 +66,6 @@ a:focus {
 
 .photographer_section article h2:hover {
   color: #901c1c;
-  font-weight: bolder;
-}
-
-.photographer_section article h2:focus {
-  color: #000;
   font-weight: bolder;
 }
 

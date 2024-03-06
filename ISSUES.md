@@ -1,19 +1,18 @@
 # TO-DO LIST
-⛔ Faire en sorte que les icônes de navigation de lightbox restent à la même place  
-⛔ Focus  
+
 ⛔ Accessibilité  
 ⛔ Utiliser un lecteur d'écran  
-✅ Hover liens  
-⛔ Navigation au clavier  
+⛔ Navigation au clavier (ESC / Entrée)  
 ⛔ Ajouter Description/Transcription aux Vidéos  
-⛔ Vérifier contrastes : écriture blanc sur fond bordeaux / écriture noire sur fond saumon   
-⛔ Gérer le zoom sur visages de certaines photos des Photographes (cf. Figma)  
 ⛔ Title media (fr/en)  
-
 ⛔ Vérifier Guide du Mentor  
 ⛔ Modal confirmation ?  
 
-
+✅ Faire en sorte que les icônes de navigation de lightbox restent à la même place  
+✅ Focus  
+✅ Hover liens  
+✅ Vérifier contrastes : écriture blanche sur fond bordeaux / écriture noire sur fond saumon   
+✅ Gérer le zoom sur visages de certaines photos des Photographes (cf. Figma)  
 ✅ Créer l'encart qui affiche le tarif journalier du photographe affiché  
 ✅ Créer et Gérer le nombre de likes  
 ✅ Griser/Masquer page quand modale ouverte ?  
@@ -35,44 +34,26 @@ localisation, leur prix/heure et une image miniature de leur choix.
 ✅ Lorsque l'utilisateur clique sur la vignette d'un photographe, il est amené à sa page  
 
 ## Page des photographes
-✅ Affiche une galerie des travaux du photographe.
-✅ Les photographes peuvent montrer à la fois des photos et des vidéos.
-⛔ Dans le cas des vidéos, montrer une image miniature dans la
-galerie.
-✅ Chaque média comprend un titre et un nombre de likes.
-✅ Lorsque l'utilisateur clique sur l'icône "Like", le nombre de likes
-affiché est incrémenté.
-✅ Le nombre de likes total d’un photographe doit correspondre à la
-somme des likes de chacun de ses médias.aw
-✅ Les médias peuvent être triés par popularité ou par titre.
-✅ Lorsque l'utilisateur clique sur un média, celui-ci doit s’ouvrir dans une
-lightbox :
-✅ Lorsque la lightbox est affichée, il y a une croix dans le coin pour
-fermer la fenêtre.
-✅ Des boutons de navigation permettent de passer d'un élément
-média à l'autre dans la lightbox (les utilisateurs peuvent cliquer
-sur ces boutons pour naviguer).
-⛔ Les touches fléchées du clavier permettent également de
-naviguer entre les médias dans la lightbox.
-✅ Afficher un bouton pour contacter le photographe.
-✅ Le formulaire de contact est une modale qui s'affiche par-dessus
-le reste.
-✅ Il comprend des champs pour les noms, l'adresse électronique et
-le message.
-⛔ Plus tard, le bouton de contact enverra un message au
-photographe. Pour l'instant, seulement afficher le contenu des
-trois champs dans les logs de la console.
+✅ Affiche une galerie des travaux du photographe.  
+✅ Les photographes peuvent montrer à la fois des photos et des vidéos.  
+✅ Dans le cas des vidéos, montrer une image miniature dans la galerie.  
+✅ Chaque média comprend un titre et un nombre de likes.  
+✅ Lorsque l'utilisateur clique sur l'icône "Like", le nombre de likes affiché est incrémenté.  
+✅ Le nombre de likes total d’un photographe doit correspondre à la somme des likes de chacun de ses médias.  
+✅ Les médias peuvent être triés par popularité ou par titre.  
+✅ Lorsque l'utilisateur clique sur un média, celui-ci doit s’ouvrir dans une lightbox  
+✅ Lorsque la lightbox est affichée, il y a une croix dans le coin pour fermer la fenêtre.  
+✅ Des boutons de navigation permettent de passer d'un élément média à l'autre dans la lightbox (les utilisateurs peuvent cliquer sur ces boutons pour naviguer).  
+✅ Les touches fléchées du clavier permettent également de
+naviguer entre les médias dans la lightbox.  
+✅ Afficher un bouton pour contacter le photographe.  
+✅ Le formulaire de contact est une modale qui s'affiche par-dessus le reste.  
+✅ Il comprend des champs pour les noms, l'adresse électronique et le message.  
+✅ Plus tard, le bouton de contact enverra un message au
+photographe. Pour l'instant, seulement afficher le contenu des trois champs dans les logs de la console.  
+⛔ remplacer div par class ou balises html  
+✅ Afficher infos photographe sur page photographer.html  
 
-⛔ Gérer le focus :
-Les pseudo-classes dont vous aurez besoin pour les liens seront :
-    • :active qui “permet de cibler un élément lorsque celui-ci est activé par l'utilisateur” (par exemple, quand l’utilisateur a cliqué dessus) ;
-    • :hover qui permet de spécifier l'apparence d'un élément au moment où l'utilisateur le survole avec le pointeur, sans nécessairement l'activer ;
-    • :link qui cible tous les liens n’ayant pas encore été visités ;
-    • :visited concernant tous les liens visités ;
-    • :focus qui permet de cibler un élément lorsque celui-ci reçoit le focus (élément sélectionné au clavier ou à la souris).
-- remplacer div par class ou balises html
-✅ Afficher infos photographe sur page photographer.html
-⛔ ATTENTION au contraste, font NOIR sur fond orangé ??
 
 ## ACCESSIBILITÉ
 - ARIA

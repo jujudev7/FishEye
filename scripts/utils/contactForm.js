@@ -5,7 +5,7 @@ function displayModal() {
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
   modal.setAttribute("role", "dialog");
-  
+
   const modalDialog = modal.querySelector('.modal');
   modalDialog.focus();
 }
@@ -138,6 +138,11 @@ function validate() {
     errorMessage.textContent = "";
   }
 
+  console.log(firstname);
+  console.log(lastname);
+  console.log(email);
+  console.log(message);
+
   // Si toutes les validations sont OK, alors le formulaire est valide
   return isValid;
 }
@@ -150,3 +155,5 @@ function resetStyleClasses() {
     field.classList.remove("valid", "invalid");
   });
 }
+
+
