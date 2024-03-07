@@ -92,18 +92,22 @@ function validate() {
   if (firstname.trim() == "") {
     errorFirstname.textContent = "* Veuillez renseigner votre prénom svp";
     inputFirstname.classList.add("invalid");
+    inputFirstname.setAttribute("aria-invalid", "true");
     isValid = false;
   } else if (!patternText.test(firstname.trim())) {
     errorFirstname.textContent = "* Veuillez renseigner un prénom valide svp";
     inputFirstname.classList.add("invalid");
+    inputFirstname.setAttribute("aria-invalid", "true");
     isValid = false;
   } else if (firstname.trim().length < 2) {
     errorFirstname.textContent = "* Votre prénom est trop court !";
     inputFirstname.classList.add("invalid");
+    inputFirstname.setAttribute("aria-invalid", "true");
     inputFirstname.classList.remove("valid");
     isValid = false;
   } else {
     inputFirstname.classList.add("valid");
+    inputFirstname.removeAttribute("aria-invalid");
     errorFirstname.textContent = "";
   }
 
@@ -112,19 +116,23 @@ function validate() {
     errorLastname.textContent =
       "* Veuillez renseigner votre nom de famille svp";
     inputLastname.classList.add("invalid");
+    inputLastname.setAttribute("aria-invalid", "true");
     isValid = false;
   } else if (!patternText.test(lastname.trim())) {
     errorLastname.textContent =
       "* Veuillez renseigner un nom de famille valide svp";
     inputLastname.classList.add("invalid");
+    inputLastname.setAttribute("aria-invalid", "true");
     isValid = false;
   } else if (lastname.trim().length < 2) {
     errorLastname.textContent = "* Votre nom est trop court !";
     inputLastname.classList.add("invalid");
+    inputLastname.setAttribute("aria-invalid", "true");
     inputLastname.classList.remove("valid");
     isValid = false;
   } else {
     inputLastname.classList.add("valid");
+    inputLastname.removeAttribute("aria-invalid");
     errorLastname.textContent = "";
   }
 
@@ -133,10 +141,12 @@ function validate() {
     // = if (emailRegExp.test(email) == false) {
     errorEmail.textContent = "* Veuillez saisir une adresse e-mail valide svp";
     inputEmail.classList.add("invalid");
+    inputEmail.setAttribute("aria-invalid", "true");
     inputEmail.classList.remove("valid");
     isValid = false;
   } else {
     inputEmail.classList.add("valid");
+    inputEmail.removeAttribute("aria-invalid");
     errorEmail.textContent = "";
   }
 
@@ -144,14 +154,17 @@ function validate() {
   if (message.trim() == "") {
     errorMessage.textContent = "* Veuillez écrire votre message svp";
     inputMessage.classList.add("invalid");
+    inputMessage.setAttribute("aria-invalid", "true");
     isValid = false;
   } else if (message.trim().length < 40) {
     errorMessage.textContent = "* Votre message est trop court !";
     inputMessage.classList.add("invalid");
+    inputMessage.setAttribute("aria-invalid", "true");
     inputMessage.classList.remove("valid");
     isValid = false;
   } else {
     inputMessage.classList.add("valid");
+    inputMessage.removeAttribute("aria-invalid");
     errorMessage.textContent = "";
   }
 

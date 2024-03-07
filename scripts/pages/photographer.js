@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     const photographerId = parseInt(urlParams.get("id"));
 
     // Affecter tous les médias du photographe à la variable photographerMedia
-/* eslint-disable-next-line no-undef */
+    /* eslint-disable-next-line no-undef */
     photographerMedia = getAllPhotographerMedia(photographerId, media);
 
     // Récupérer la galerie d'affichage
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         : `assets/medias/${photographerId}/${mediaItem.image}`;
       const mediaType = mediaItem.video ? "video" : "image";
 
-/* eslint-disable-next-line no-undef */
+      /* eslint-disable-next-line no-undef */
       const figure = mediaFactory(
         mediaItem,
         photographerId
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       gallery.appendChild(figure);
       // Ajouter un écouteur d'événements click pour chaque élément de la galerie
       mediaElement.addEventListener("click", () => {
-// Appel à openLightbox avec l'index approprié
+        // Appel à openLightbox avec l'index approprié
         /* eslint-disable-next-line no-undef */
         openLightbox(mediaUrl, mediaType, mediaItem.title, index);
       });
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Créer le menu de tri HTML
     /* eslint-disable-next-line no-undef */
     createSortMenu();
-/* eslint-disable-next-line no-undef */
+    /* eslint-disable-next-line no-undef */
     sortMediaByPopularity();
   } catch (error) {
     console.error("Error loading data:", error);
@@ -161,6 +161,9 @@ async function displayOnePhotographer(photographers, media) {
       const userHeaderDOM = photographerHeader.getUserHeaderDOM();
       photographersHeader.appendChild(userHeaderDOM);
 
+      // Définir le titre de la page
+      document.title = `Page du photographe ${photographer.name} | Fisheye`;
+
       // On affiche le prénom du photographe dans le h2 du form
       document.querySelector(
         "header h2"
@@ -189,6 +192,7 @@ async function displayOnePhotographer(photographers, media) {
 
       const heartIcon = document.createElement("i");
       heartIcon.className = "fa-solid fa-heart";
+      heartIcon.setAttribute("aria-hidden", "true");
       zoneTotalLikes.appendChild(nombreLikes);
       zoneTotalLikes.appendChild(heartIcon);
       insert.appendChild(zoneTotalLikes);

@@ -3,8 +3,11 @@ function focusLightbox() {
   // Sélectionnez l'élément à mettre en focus dans la lightbox
   const lightboxContent = document.querySelector(".lightbox-content");
   const iconNextMedia = lightboxContent.querySelector(".fa-chevron-right");
+  iconNextMedia.setAttribute("aria-hidden", "true");
   const iconPreviousMedia = lightboxContent.querySelector(".fa-chevron-left");
+  iconPreviousMedia.setAttribute("aria-hidden", "true");
   const iconCloseLightbox = lightboxContent.querySelector(".fa-xmark");
+  iconCloseLightbox.setAttribute("aria-hidden", "true");
 
   // Mettre le focus sur cet élément
   iconNextMedia.focus();
@@ -63,6 +66,8 @@ function openLightbox(url, type, title, index) {
 
   // Création de la figure contenant le média et sa légende
   const figure = document.createElement("figure");
+  figure.setAttribute("role", "figure");
+  figure.setAttribute("aria-label", title);
   const figCaption = document.createElement("figcaption");
 
   if (type === "image") {
@@ -80,15 +85,19 @@ function openLightbox(url, type, title, index) {
     figCaption.textContent = title;
   }
 
-  const iconCloseLightbox = document.createElement("i");
-  iconCloseLightbox.classList.add("fa-solid", "fa-xmark");
-  iconCloseLightbox.addEventListener("click", closeLightbox);
-
   // Ajouter des événements pour naviguer entre les médias dans la lightbox
   const iconPreviousMedia = document.createElement("i");
   iconPreviousMedia.classList.add("fa-solid", "fa-chevron-left");
+  iconPreviousMedia.setAttribute("aria-hidden", "true");
   const iconNextMedia = document.createElement("i");
   iconNextMedia.classList.add("fa-solid", "fa-chevron-right");
+  iconNextMedia.setAttribute("aria-hidden", "true");
+
+  const iconCloseLightbox = document.createElement("i");
+  iconCloseLightbox.classList.add("fa-solid", "fa-xmark");
+  iconCloseLightbox.setAttribute("aria-hidden", "true");
+
+  iconCloseLightbox.addEventListener("click", closeLightbox);
 
   // Ajout des gestionnaires d'événements pour les icônes "iconPreviousMedia" et "iconNextMedia"
   iconPreviousMedia.addEventListener("click", () => navigateLightbox(-1));

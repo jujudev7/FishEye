@@ -1,5 +1,5 @@
 // Déclaration de la variable selectedOption pour suivre l'option sélectionnée
-let selectedOption = "Popularité";
+// let selectedOption = "Popularité";
 
 // Fonction pour créer le menu de tri
 /* exported createSortMenu */
@@ -16,8 +16,11 @@ function createSortMenu() {
   const button = document.querySelector(".dropbtn");
   const sortIcon = document.createElement("i");
   sortIcon.className = "fa-solid fa-chevron-down";
+  sortIcon.setAttribute("aria-hidden", "true");
 
   button.appendChild(sortIcon);
+  // button.setAttribute("aria-label", "Trier les médias par " + selectedOption);
+
 }
 
 /* exported toggleOptions */
@@ -46,6 +49,7 @@ function selectOption(index) {
 
   document.querySelector(".dropbtn").innerText = selectedOptionText;
   dropdownOptions[index].innerText = currentButtonText;
+  // dropdownOptions[index].setAttribute("aria-label", "Trier les médias par " + selectedOptionText);
 
   dropdownContent.style.display = "none";
 

@@ -9,6 +9,8 @@ function mediaFactory(data, photographerId) {
 
   function getUserGalleryDOM() {
     const figure = document.createElement("figure");
+    figure.setAttribute("role", "figure");
+    figure.setAttribute("aria-label", title);
     const captionLikes = document.createElement("div");
     captionLikes.classList.add("caption-likes");
     const figCaption = document.createElement("figcaption");
@@ -20,6 +22,7 @@ function mediaFactory(data, photographerId) {
     nbLikes.textContent = likes;
     const heartIcon = document.createElement("i");
     heartIcon.className = "fa-solid fa-heart";
+    heartIcon.setAttribute("aria-hidden", "true");
 
     const format = "video/mp4";
 
@@ -38,6 +41,7 @@ function mediaFactory(data, photographerId) {
       overlayVideo.classList.add("overlay-video");
       const playerLogo = document.createElement("img")
       playerLogo.setAttribute("src", "assets/icons/player-logo.png");
+      playerLogo.setAttribute("alt", "Vidéo sans audio");
 
       videoElement.appendChild(sourceVideo);
       overlayVideo.appendChild(playerLogo);

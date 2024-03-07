@@ -1,13 +1,16 @@
 # TO-DO LIST
-
-⛔ Navigation au clavier (ESC / Entrée)  
+⛔ Ajouter Video dans navigation lightbox
+⛔ aria-label="Trier les médias par Popularité"
 ⛔ Ajouter Description/Transcription aux Vidéos  
 ⛔ Accessibilité  
+⛔ Aria-current 
+⛔ .sr-only
 ⛔ Utiliser un lecteur d'écran  
 ⛔ Title media (fr/en)  
 ⛔ Vérifier Guide du Mentor  
 ⛔ Modal confirmation ?  
 
+✅ Navigation au clavier (ESC / Entrée)    
 ✅ Faire en sorte que les icônes de navigation de lightbox restent à la même place  
 ✅ Focus  
 ✅ Hover liens  
