@@ -8,13 +8,13 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header>
+    <header role="banner">
       <!-- link home page added + aria-label -->
       <a href="index.html" aria-label="Accéder à la page d'accueil">
         <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye" />
       </a>
     </header>
-    <main id="main">
+    <main role="main">
       <div class="photograph-header">
         <!-- on supprime le bouton Contactez-moi du code html pour l'intégrer via le template photographer  -->
         <!-- <button class="contact_button" onclick="displayModal()">Contactez-moi</button> -->
@@ -44,8 +44,8 @@
     </main>
 
     <!-- MODAL FORMULAIRE  -->
-    <div id="contact_modal" aria-hidden="true" role="dialog">
-      <div class="modal" tabindex="0">
+    <div id="contact_modal">
+      <div class="modal" tabindex="0" aria-hidden="true" role="dialog">
         <header>
           <h2>Contactez-moi</h2>
 
@@ -74,6 +74,7 @@
               name="firstname"
               pattern="[A-Za-zÀ-ÿ\-']+"
               aria-labelledby="firstname-label"
+              autocomplete="given-name"
               required
             />
             <!-- Adding a span error-"field" in order to send an error text message if needed -->
@@ -88,6 +89,7 @@
               name="lastname"
               pattern="[A-Za-zÀ-ÿ\-']+"
               aria-labelledby="lastname-label"
+              autocomplete="family-name"
               required
             />
             <span id="error-lastname" role="alert" aria-live="polite"></span>
@@ -100,6 +102,7 @@
               id="email"
               name="email"
               aria-labelledby="email-label"
+              autocomplete="email"
               required
             />
             <span id="error-email" role="alert" aria-live="polite"></span>
@@ -111,8 +114,8 @@
               id="message"
               name="message"
               rows="6"
-              required
               aria-labelledby="message-label"
+              required
             ></textarea>
             <span id="error-message" role="alert" aria-live="polite"></span>
           </div>
