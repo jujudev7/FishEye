@@ -1,5 +1,5 @@
 // Déclaration de la variable selectedOption pour suivre l'option sélectionnée
-// let selectedOption = "Popularité";
+let selectedOption = "Popularité";
 
 // Fonction pour créer le menu de tri
 /* exported createSortMenu */
@@ -14,27 +14,31 @@ function createSortMenu() {
   sortMenuContainer.appendChild(sortBy);
   sortMenuContainer.appendChild(dropdown);
   const button = document.querySelector(".dropbtn");
+  button.setAttribute("aria-expanded", "false");
   const sortIcon = document.createElement("i");
   sortIcon.className = "fa-solid fa-chevron-down";
   sortIcon.setAttribute("aria-hidden", "true");
 
   button.appendChild(sortIcon);
   // button.setAttribute("aria-label", "Trier les médias par " + selectedOption);
-
 }
 
 /* exported toggleOptions */
 /* eslint-disable-next-line no-unused-vars */
 function toggleOptions() {
+  const button = document.querySelector(".dropbtn");
   const dropdownContent = document.getElementById("myDropdown");
+
   if (dropdownContent.style.display === "block") {
     dropdownContent.style.display = "none";
     document.querySelector(".dropbtn i").classList.remove("fa-chevron-up");
     document.querySelector(".dropbtn i").classList.add("fa-chevron-down");
+    button.setAttribute("aria-expanded", "false");
   } else {
     dropdownContent.style.display = "block";
     document.querySelector(".dropbtn i").classList.remove("fa-chevron-down");
     document.querySelector(".dropbtn i").classList.add("fa-chevron-up");
+    button.setAttribute("aria-expanded", "true");
   }
 }
 

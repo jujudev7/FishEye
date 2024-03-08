@@ -38,7 +38,7 @@ header a:hover {
 a:focus-visible {
   background-color: yellow;
   padding: 15px;
-}
+} 
 
 .photographer_section {
   display: grid;

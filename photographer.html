@@ -22,7 +22,7 @@
 
       <div id="sort">
         <div class="dropdown">
-          <button onclick="toggleOptions()" class="dropbtn first-option">
+          <button onclick="toggleOptions()" class="dropbtn first-option" aria-haspopup="true">
             Popularité
           </button>
           <div id="myDropdown" class="dropdown-content">
@@ -42,12 +42,12 @@
         <div class="price">300 € / jour</div> -->
       </div>
     </main>
-
+    
     <!-- MODAL FORMULAIRE  -->
     <div id="contact_modal">
-      <div class="modal" tabindex="0" aria-hidden="true" role="dialog">
+      <div role="dialog" class="modal" tabindex="0" aria-modal="true" aria-hidden="true" aria-labelledby="modal-heading">
         <header>
-          <h2>Contactez-moi</h2>
+          <h2 id="modal-heading">Contactez-moi</h2>
 
           <img
             src="assets/icons/close.svg"

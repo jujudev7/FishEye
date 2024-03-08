@@ -1,14 +1,18 @@
 # TO-DO LIST
-⛔ Ajouter Video dans navigation lightbox
-⛔ aria-label="Trier les médias par Popularité"
-⛔ Ajouter Description/Transcription aux Vidéos  
+⛔ Ajouter Video dans navigation lightbox 3H
+⛔ aria-label="Trier les médias par Popularité" 2H
+⛔ Ajouter Description/Transcription aux Vidéos  3H
 ⛔ Accessibilité  
-⛔ Aria-current 
-⛔ .sr-only
-⛔ Utiliser un lecteur d'écran  
-⛔ Title media (fr/en)  
-⛔ Vérifier Guide du Mentor  
-⛔ Modal confirmation ?  
+✅ heart icon Favoris
+⛔ Aria-current 2H
+✅ .sr-only 1H
+⛔ Utiliser un lecteur d'écran  3H
+⛔ Title media (fr/en)  2H
+⛔ Vérifier Guide du Mentor  2H
+⛔ Modal confirmation ?  1H
+
+21H
+6H / J -> Mercredi midi
 
 ✅ Navigation au clavier (ESC / Entrée)    
 ✅ Faire en sorte que les icônes de navigation de lightbox restent à la même place  
@@ -54,7 +58,7 @@ naviguer entre les médias dans la lightbox.
 ✅ Il comprend des champs pour les noms, l'adresse électronique et le message.  
 ✅ Plus tard, le bouton de contact enverra un message au
 photographe. Pour l'instant, seulement afficher le contenu des trois champs dans les logs de la console.  
-⛔ remplacer div par class ou balises html  
+✅ remplacer div par class ou balises html  
 ✅ Afficher infos photographe sur page photographer.html  
 
 

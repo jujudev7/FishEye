@@ -1,6 +1,6 @@
 // Fonction pour placer le focus à l'intérieur de la lightbox
 function focusLightbox() {
-  // Sélectionnez l'élément à mettre en focus dans la lightbox
+  // Sélectionner l'élément à mettre en focus dans la lightbox
   const lightboxContent = document.querySelector(".lightbox-content");
   const iconNextMedia = lightboxContent.querySelector(".fa-chevron-right");
   iconNextMedia.setAttribute("aria-hidden", "true");
@@ -26,8 +26,6 @@ function focusLightbox() {
 function displayLightbox() {
   const lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "block";
-  lightbox.setAttribute("aria-hidden", "false");
-  lightbox.setAttribute("role", "dialog");
 
   // Appeler focusLightbox pour placer le focus à l'intérieur de la lightbox
   focusLightbox();
@@ -63,6 +61,9 @@ function openLightbox(url, type, title, index) {
 
   const content = document.createElement("div");
   content.className = "lightbox-content";
+  content.setAttribute("role", "dialog");
+  content.setAttribute("aria-live", "polite")
+  content.setAttribute("aria-hidden", "false");
 
   // Création de la figure contenant le média et sa légende
   const figure = document.createElement("figure");
@@ -89,13 +90,22 @@ function openLightbox(url, type, title, index) {
   const iconPreviousMedia = document.createElement("i");
   iconPreviousMedia.classList.add("fa-solid", "fa-chevron-left");
   iconPreviousMedia.setAttribute("aria-hidden", "true");
+  const previousText = document.createElement("p");
+  previousText.classList.add("sr-only");
+  previousText.textContent = "Média précédent"
   const iconNextMedia = document.createElement("i");
   iconNextMedia.classList.add("fa-solid", "fa-chevron-right");
   iconNextMedia.setAttribute("aria-hidden", "true");
+  const nextText = document.createElement("p");
+  nextText.classList.add("sr-only");
+  nextText.textContent = "Média suivant"
 
   const iconCloseLightbox = document.createElement("i");
   iconCloseLightbox.classList.add("fa-solid", "fa-xmark");
   iconCloseLightbox.setAttribute("aria-hidden", "true");
+  const closeText = document.createElement("p");
+  closeText.classList.add("sr-only");
+  closeText.textContent = "Fermer l'affichage en grand des médias"
 
   iconCloseLightbox.addEventListener("click", closeLightbox);
 
@@ -174,6 +184,6 @@ function openLightbox(url, type, title, index) {
   }
 
   // Mettre le focus sur la lightbox
-  iconNextMedia.focus();
-  iconNextMedia.setAttribute("tabindex", "0");
+  iconCloseLightbox.focus();
+  iconCloseLightbox.setAttribute("tabindex", "0");
 }
