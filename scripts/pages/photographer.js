@@ -28,7 +28,11 @@ function getMediaInfo(index, media) {
     : `assets/medias/${mediaItem.photographerId}/${mediaItem.image}`;
   const mediaType = mediaItem.video ? "video" : "image";
   const title = mediaItem.title;
-  return { url: mediaUrl, type: mediaType, title: title };
+  return {
+    url: mediaUrl,
+    type: mediaType,
+    title: title,
+  };
 }
 
 // Fonction pour récupérer tous les médias de la galerie du photographe dans un tableau
@@ -86,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       mediaElement.addEventListener("click", () => {
         // Appel à openLightbox avec l'index approprié
         /* eslint-disable-next-line no-undef */
-        openLightbox(mediaUrl, mediaType, mediaItem.title, index);
+        openLightbox(mediaUrl, mediaType, title, index);
       });
 
       // Initialiser la navigation au clavier
@@ -106,13 +110,19 @@ document.addEventListener("DOMContentLoaded", async function () {
 // Fonction pour initialiser la navigation au clavier
 function initKeyboardNavigation() {
   document.addEventListener("keydown", function (event) {
-    const focusableElements = document.querySelectorAll("button, [tabindex], .logo");
+    const focusableElements = document.querySelectorAll(
+      "button, [tabindex], .logo"
+    );
     const focusedElement = document.activeElement;
-    const index = Array.prototype.indexOf.call(focusableElements, focusedElement);
+    const index = Array.prototype.indexOf.call(
+      focusableElements,
+      focusedElement
+    );
 
     // Gestion de la navigation au clavier avec les touches fléchées
     if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
-      const previousIndex = index === 0 ? focusableElements.length - 1 : index - 1;
+      const previousIndex =
+        index === 0 ? focusableElements.length - 1 : index - 1;
       focusableElements[previousIndex].focus();
     } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
       const nextIndex = index === focusableElements.length - 1 ? 0 : index + 1;
@@ -120,12 +130,15 @@ function initKeyboardNavigation() {
     }
 
     // Gestion de l'ouverture de la lightbox lorsque la touche "Entrée" est enfoncée sur le média
-    if (event.key === "Enter" && (focusedElement.tagName === "IMG" || focusedElement.tagName === "VIDEO")) {
+    if (
+      event.key === "Enter" &&
+      (focusedElement.tagName === "IMG" || focusedElement.tagName === "VIDEO")
+    ) {
       // Récupérer l'URL et le type de média du média actuellement focus
       const mediaUrl = focusedElement.src;
       const mediaType = focusedElement.tagName === "VIDEO" ? "video" : "image";
       // Récupérer le titre du média
-      const title = focusedElement.alt; // Assurez-vous que l'attribut alt contient le titre du média ou une description appropriée
+      const title = focusedElement.alt; 
 
       // Récupérer l'index du média actuellement focus
       const mediaIndex = Array.from(focusableElements).indexOf(focusedElement);
@@ -143,7 +156,6 @@ function initKeyboardNavigation() {
     }
   });
 }
-
 
 let totalLikesForCurrentPhotographer = 0; // Variable pour stocker le total des likes du photographe actuel
 

@@ -1,7 +1,7 @@
 /* exported mediaFactory */
 /* eslint-disable-next-line no-unused-vars */
 function mediaFactory(data, photographerId) {
-  const { image, video, title, likes } = data;
+  const { image, video, title, likes, descFr } = data;
 
   const mediaPhoto = `assets/medias/${photographerId}/${image}`;
   // On vérifie si video est défini
@@ -36,6 +36,10 @@ function mediaFactory(data, photographerId) {
       sourceVideo.setAttribute("src", mediaVideo);
       sourceVideo.setAttribute("alt", title);
       sourceVideo.setAttribute("type", format);
+      const descriptionFr = document.createElement("div");
+      descriptionFr.id ="videoDescription";
+      descriptionFr.classList.add("sr-only");
+      descriptionFr.textContent = "Description de la vidéo : " + descFr;
       const overlayVideo = document.createElement("div");
       overlayVideo.classList.add("overlay-video");
       const playerLogo = document.createElement("img")
@@ -43,6 +47,7 @@ function mediaFactory(data, photographerId) {
       playerLogo.setAttribute("alt", "Vidéo sans audio");
 
       videoElement.appendChild(sourceVideo);
+      videoElement.appendChild(descriptionFr);
       videoElement.tabIndex = 0;
       overlayVideo.appendChild(playerLogo);
       figure.appendChild(videoElement); 

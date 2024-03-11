@@ -15,47 +15,45 @@ function focusLightbox() {
   iconNextMedia.focus();
 
   iconCloseLightbox.addEventListener("keydown", function (event) {
-      if (event.key === "Enter") {
-          closeLightbox();
-      } else if (event.key === "Tab" && event.shiftKey) {
-          // Si l'utilisateur appuie sur Shift+Tab à partir de l'icône de fermeture, déplacer le focus vers la vidéo s'il existe, sinon vers l'icône précédente
-          event.preventDefault();
-          videoElement ? videoElement.focus() : iconPreviousMedia.focus();
-      }
+    if (event.key === "Enter") {
+      closeLightbox();
+    } else if (event.key === "Tab" && event.shiftKey) {
+      // Si l'utilisateur appuie sur Shift+Tab à partir de l'icône de fermeture, déplacer le focus vers la vidéo s'il existe, sinon vers l'icône précédente
+      event.preventDefault();
+      videoElement ? videoElement.focus() : iconPreviousMedia.focus();
+    }
   });
 
   iconPreviousMedia.addEventListener("keydown", function (event) {
-      if (event.key === "Tab" && !event.shiftKey) {
-          // Si l'utilisateur appuie sur Tab à partir de l'icône précédente, déplacer le focus vers la vidéo s'il existe, sinon vers l'icône suivante
-          event.preventDefault();
-          videoElement ? videoElement.focus() : iconNextMedia.focus();
-      }
+    if (event.key === "Tab" && !event.shiftKey) {
+      // Si l'utilisateur appuie sur Tab à partir de l'icône précédente, déplacer le focus vers la vidéo s'il existe, sinon vers l'icône suivante
+      event.preventDefault();
+      videoElement ? videoElement.focus() : iconNextMedia.focus();
+    }
   });
 
   iconNextMedia.addEventListener("keydown", function (event) {
-      if (event.key === "Tab" && !event.shiftKey) {
-          // Si l'utilisateur appuie sur Tab à partir de l'icône suivante, déplacer le focus vers la vidéo s'il existe, sinon vers l'icône de fermeture
-          event.preventDefault();
-          videoElement ? videoElement.focus() : iconCloseLightbox.focus();
-      }
+    if (event.key === "Tab" && !event.shiftKey) {
+      // Si l'utilisateur appuie sur Tab à partir de l'icône suivante, déplacer le focus vers la vidéo s'il existe, sinon vers l'icône de fermeture
+      event.preventDefault();
+      videoElement ? videoElement.focus() : iconCloseLightbox.focus();
+    }
   });
 
   if (videoElement) {
-      videoElement.addEventListener("keydown", function (event) {
-          if (event.key === "Tab" && !event.shiftKey) {
-              // Si l'utilisateur appuie sur Tab à partir de la vidéo, déplacer le focus vers l'icône de fermeture, puis boucler sur les icônes de navigation
-              event.preventDefault();
-              iconCloseLightbox.focus();
-          } else if (event.key === "Tab" && event.shiftKey) {
-              // Si l'utilisateur appuie sur Shift+Tab à partir de la vidéo, déplacer le focus vers l'icône suivante
-              event.preventDefault();
-              iconNextMedia.focus();
-          }
-      });
+    videoElement.addEventListener("keydown", function (event) {
+      if (event.key === "Tab" && !event.shiftKey) {
+        // Si l'utilisateur appuie sur Tab à partir de la vidéo, déplacer le focus vers l'icône de fermeture, puis boucler sur les icônes de navigation
+        event.preventDefault();
+        iconCloseLightbox.focus();
+      } else if (event.key === "Tab" && event.shiftKey) {
+        // Si l'utilisateur appuie sur Shift+Tab à partir de la vidéo, déplacer le focus vers l'icône suivante
+        event.preventDefault();
+        iconNextMedia.focus();
+      }
+    });
   }
 }
-
-
 
 // Modifier la fonction displayLightbox pour appeler focusLightbox après l'affichage
 function displayLightbox() {
@@ -100,6 +98,11 @@ function openLightbox(mediaUrl, mediaType, title, index) {
   content.setAttribute("aria-live", "polite");
   content.setAttribute("aria-hidden", "false");
 
+  // Créer un élément pour afficher la description de la vidéo
+  const descriptionElement = document.createElement("div");
+  descriptionElement.id = "videoDescription"; // ID utilisé pour la référence aria-describedby
+  descriptionElement.classList.add("sr-only");
+
   // Création de la figure contenant le média et sa légende
   const figure = document.createElement("figure");
   figure.setAttribute("role", "figure");
@@ -116,7 +119,10 @@ function openLightbox(mediaUrl, mediaType, title, index) {
     const source = document.createElement("source");
     source.src = mediaUrl;
     source.type = "video/mp4"; // Définissez le type de média correctement
+    const videoDescFr = photographerMedia[currentIndex].descFr;
+    descriptionElement.textContent = "Description de la vidéo : " + videoDescFr;
     video.appendChild(source);
+    video.appendChild(descriptionElement);
     figure.appendChild(video);
   }
 
@@ -203,13 +209,21 @@ function openLightbox(mediaUrl, mediaType, title, index) {
       mediaElement.alt = newMediaInfo.title;
     } else if (newMediaInfo.type === "video") {
       mediaElement = document.createElement("video");
-      mediaElement.src = newMediaInfo.url;
       mediaElement.controls = true;
       mediaElement.setAttribute("tabindex", "0"); // Définir l'attribut tabindex sur l'élément vidéo
+      // Ajoutez de la description à l'attribut aria-describedby
+      mediaElement.setAttribute("aria-describedby", "videoDescription");
       const source = document.createElement("source");
       source.src = newMediaInfo.url;
       source.type = "video/mp4";
+      const descriptionElement = document.createElement("div");
+      descriptionElement.id = "videoDescription"; // ID utilisé pour la référence aria-describedby
+      descriptionElement.classList.add("sr-only");
+      const videoDescFr = photographerMedia[currentIndex].descFr;
+      descriptionElement.textContent = "Description de la vidéo : " + videoDescFr;
+      
       mediaElement.appendChild(source);
+      mediaElement.appendChild(descriptionElement);
 
       // Mettre le focus sur la vidéo lorsque celle-ci est ajoutée
       mediaElement.addEventListener("loadeddata", function () {
