@@ -1,15 +1,16 @@
 # TO-DO LIST
 ⛔ Ajouter Video dans navigation lightbox 3H
-⛔ aria-label="Trier les médias par Popularité" 2H
 ⛔ Ajouter Description/Transcription aux Vidéos  3H
 ⛔ Accessibilité  
-✅ heart icon Favoris
 ⛔ Aria-current 2H
-✅ .sr-only 1H
 ⛔ Utiliser un lecteur d'écran  3H
 ⛔ Title media (fr/en)  2H
 ⛔ Vérifier Guide du Mentor  2H
 ⛔ Modal confirmation ?  1H
+✅ aria-label="Trier les médias par Popularité" 2H
+✅ heart icon Favoris
+✅ Ouvrir media focused dans lightbox avec Enter
+✅ .sr-only 1H
 
 21H
 6H / J -> Mercredi midi

@@ -10,10 +10,10 @@ function focusLightbox() {
   iconCloseLightbox.setAttribute("aria-hidden", "true");
 
   // Mettre le focus sur cet élément
-  iconNextMedia.focus();
   iconNextMedia.setAttribute("tabindex", "0");
   iconPreviousMedia.setAttribute("tabindex", "0");
   iconCloseLightbox.setAttribute("tabindex", "0");
+  iconCloseLightbox.focus();
 
   iconCloseLightbox.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
@@ -53,7 +53,7 @@ let currentIndex = 0;
 // Fonction pour afficher la lightbox
 /* exported openLightbox */
 /* eslint-disable-next-line no-unused-vars */
-function openLightbox(url, type, title, index) {
+function openLightbox(mediaUrl, mediaType, title, index) {
   const lightbox = document.querySelector(".lightbox");
 
   // Initialiser l'index du média actuellement affiché
@@ -62,29 +62,32 @@ function openLightbox(url, type, title, index) {
   const content = document.createElement("div");
   content.className = "lightbox-content";
   content.setAttribute("role", "dialog");
-  content.setAttribute("aria-live", "polite")
+  content.setAttribute("aria-live", "polite");
   content.setAttribute("aria-hidden", "false");
 
   // Création de la figure contenant le média et sa légende
   const figure = document.createElement("figure");
   figure.setAttribute("role", "figure");
   figure.setAttribute("aria-label", title);
-  const figCaption = document.createElement("figcaption");
 
-  if (type === "image") {
+  if (mediaType === "image") {
     const img = document.createElement("img");
-    img.src = url;
+    img.src = mediaUrl;
     figure.appendChild(img);
-    figCaption.textContent = title;
-  } else if (type === "video") {
+  } else if (mediaType === "video") {
     const video = document.createElement("video");
     video.controls = true;
+    video.tabIndex = "0"; // Assurez-vous que la vidéo est focusable
     const source = document.createElement("source");
-    source.src = url;
+    source.src = mediaUrl;
+    source.type = "video/mp4"; // Définissez le type de média correctement
     video.appendChild(source);
     figure.appendChild(video);
-    figCaption.textContent = title;
   }
+
+  // Créer la légende du média
+  const figCaption = document.createElement("figcaption");
+  figCaption.textContent = title;
 
   // Ajouter des événements pour naviguer entre les médias dans la lightbox
   const iconPreviousMedia = document.createElement("i");
@@ -92,20 +95,20 @@ function openLightbox(url, type, title, index) {
   iconPreviousMedia.setAttribute("aria-hidden", "true");
   const previousText = document.createElement("p");
   previousText.classList.add("sr-only");
-  previousText.textContent = "Média précédent"
+  previousText.textContent = "Média précédent";
   const iconNextMedia = document.createElement("i");
   iconNextMedia.classList.add("fa-solid", "fa-chevron-right");
   iconNextMedia.setAttribute("aria-hidden", "true");
   const nextText = document.createElement("p");
   nextText.classList.add("sr-only");
-  nextText.textContent = "Média suivant"
+  nextText.textContent = "Média suivant";
 
   const iconCloseLightbox = document.createElement("i");
   iconCloseLightbox.classList.add("fa-solid", "fa-xmark");
   iconCloseLightbox.setAttribute("aria-hidden", "true");
   const closeText = document.createElement("p");
   closeText.classList.add("sr-only");
-  closeText.textContent = "Fermer l'affichage en grand des médias"
+  closeText.textContent = "Fermer l'affichage en grand des médias";
 
   iconCloseLightbox.addEventListener("click", closeLightbox);
 
@@ -128,8 +131,8 @@ function openLightbox(url, type, title, index) {
   // Ajout des icônes de navigation, du media et de la figcaption à la lightbox
   content.appendChild(iconCloseLightbox);
   content.appendChild(iconPreviousMedia);
-  content.appendChild(figure);
   figure.appendChild(figCaption);
+  content.appendChild(figure);
   content.appendChild(iconNextMedia);
   lightbox.appendChild(content);
 
@@ -138,14 +141,9 @@ function openLightbox(url, type, title, index) {
   // Fonction pour naviguer dans la lightbox
   function navigateLightbox(direction) {
     // Mettre à jour l'index du média en fonction de la direction
-    currentIndex =
-      /* eslint-disable-next-line no-undef */
-      (currentIndex + direction + photographerMedia.length) %
-      /* eslint-disable-next-line no-undef */
-      photographerMedia.length;
+    currentIndex = (currentIndex + direction + photographerMedia.length) % photographerMedia.length;
 
     // Récupérer les informations sur le nouveau média
-    /* eslint-disable-next-line no-undef */
     const newMediaInfo = getMediaInfo(currentIndex, photographerMedia);
 
     // Récupérer le contenu de la lightbox
@@ -165,10 +163,15 @@ function openLightbox(url, type, title, index) {
     if (newMediaInfo.type === "image") {
       mediaElement = document.createElement("img");
       mediaElement.src = newMediaInfo.url;
+      mediaElement.alt = newMediaInfo.title;
     } else if (newMediaInfo.type === "video") {
       mediaElement = document.createElement("video");
       mediaElement.src = newMediaInfo.url;
       mediaElement.controls = true;
+      const source = document.createElement("source");
+      source.src = newMediaInfo.url;
+      source.type = "video/mp4";
+      mediaElement.appendChild(source);
     }
 
     // Créer la légende du média
@@ -180,10 +183,12 @@ function openLightbox(url, type, title, index) {
     // Ajouter la légende au nouvel élément figure
     newFigure.appendChild(figCaption);
     // Ajouter la figure au contenu de la lightbox
-    content.insertBefore(newFigure, iconNextMedia); // Insérer newFigure avant iconNextMedia
+    content.insertBefore(newFigure, document.querySelector(".fa-chevron-right")); // Insérer newFigure avant .fa-chevron-right
   }
-
-  // Mettre le focus sur la lightbox
-  iconCloseLightbox.focus();
-  iconCloseLightbox.setAttribute("tabindex", "0");
 }
+
+
+//   // Mettre le focus sur la lightbox
+//   iconCloseLightbox.setAttribute("tabindex", "0");
+//   iconCloseLightbox.focus();
+// }

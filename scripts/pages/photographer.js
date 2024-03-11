@@ -106,31 +106,32 @@ document.addEventListener("DOMContentLoaded", async function () {
 // Fonction pour initialiser la navigation au clavier
 function initKeyboardNavigation() {
   document.addEventListener("keydown", function (event) {
-    const focusableElements = document.querySelectorAll(
-      "button, [tabindex], .logo"
-    );
+    const focusableElements = document.querySelectorAll("button, [tabindex], .logo");
     const focusedElement = document.activeElement;
-    const index = Array.prototype.indexOf.call(
-      focusableElements,
-      focusedElement
-    );
+    const index = Array.prototype.indexOf.call(focusableElements, focusedElement);
 
+    // Gestion de la navigation au clavier avec les touches fléchées
     if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
-      if (index === 0) {
-        focusableElements[focusableElements.length - 1].focus();
-      } else if (focusedElement.classList.contains("logo")) {
-        focusableElements[focusableElements.length - 1].focus();
-      } else {
-        focusableElements[index - 1].focus();
-      }
+      const previousIndex = index === 0 ? focusableElements.length - 1 : index - 1;
+      focusableElements[previousIndex].focus();
     } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
-      if (index === focusableElements.length - 1) {
-        focusableElements[0].focus();
-      } else if (focusedElement.classList.contains("logo")) {
-        focusableElements[0].focus();
-      } else {
-        focusableElements[index + 1].focus();
-      }
+      const nextIndex = index === focusableElements.length - 1 ? 0 : index + 1;
+      focusableElements[nextIndex].focus();
+    }
+
+    // Gestion de l'ouverture de la lightbox lorsque la touche "Entrée" est enfoncée sur le média
+    if (event.key === "Enter" && (focusedElement.tagName === "IMG" || focusedElement.tagName === "VIDEO")) {
+      // Récupérer l'URL et le type de média du média actuellement focus
+      const mediaUrl = focusedElement.src;
+      const mediaType = focusedElement.tagName === "VIDEO" ? "video" : "image";
+      // Récupérer le titre du média
+      const title = focusedElement.alt; // Assurez-vous que l'attribut alt contient le titre du média ou une description appropriée
+
+      // Récupérer l'index du média actuellement focus
+      const mediaIndex = Array.from(focusableElements).indexOf(focusedElement);
+
+      // Appel à openLightbox avec les informations du média
+      openLightbox(mediaUrl, mediaType, title, mediaIndex);
     }
   });
 
@@ -142,6 +143,7 @@ function initKeyboardNavigation() {
     }
   });
 }
+
 
 let totalLikesForCurrentPhotographer = 0; // Variable pour stocker le total des likes du photographe actuel
 

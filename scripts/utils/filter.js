@@ -1,6 +1,20 @@
 // Déclaration de la variable selectedOption pour suivre l'option sélectionnée
 let selectedOption = "Popularité";
 
+// Fonction pour mettre à jour les aria-labels du bouton .dropbtn et des options du dropdown
+function updateAriaLabels() {
+  const dropbtn = document.querySelector(".dropbtn");
+  dropbtn.setAttribute("aria-label", "Trier les médias par " + selectedOption);
+
+  const dropdownContent = document.getElementById("myDropdown");
+  const dropdownOptions = dropdownContent.getElementsByTagName("button");
+
+  for (let i = 0; i < dropdownOptions.length; i++) {
+    const optionText = dropdownOptions[i].innerText;
+    dropdownOptions[i].setAttribute("aria-label", "Trier les médias par " + optionText);
+  }
+}
+
 // Fonction pour créer le menu de tri
 /* exported createSortMenu */
 /* eslint-disable-next-line no-unused-vars */
@@ -20,7 +34,8 @@ function createSortMenu() {
   sortIcon.setAttribute("aria-hidden", "true");
 
   button.appendChild(sortIcon);
-  // button.setAttribute("aria-label", "Trier les médias par " + selectedOption);
+
+  updateAriaLabels();
 }
 
 /* exported toggleOptions */
@@ -51,11 +66,11 @@ function selectOption(index) {
   const currentButtonText = document.querySelector(".dropbtn").innerText;
   const sortIcon = document.querySelector(".dropbtn i");
 
+  dropdownContent.style.display = "none";
+
   document.querySelector(".dropbtn").innerText = selectedOptionText;
   dropdownOptions[index].innerText = currentButtonText;
-  // dropdownOptions[index].setAttribute("aria-label", "Trier les médias par " + selectedOptionText);
-
-  dropdownContent.style.display = "none";
+  
 
   // Déplacer l'icône dans le bouton
   const button = document.querySelector(".dropbtn");
@@ -75,6 +90,8 @@ function selectOption(index) {
   } else if (selectedOption === "Titre") {
     sortMediaByTitle();
   }
+
+  updateAriaLabels();
 }
 
 // Fonction pour trier les médias par Popularité

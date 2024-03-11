@@ -29,7 +29,6 @@ function mediaFactory(data, photographerId) {
     // On vérifie si mediaVideo est défini avant de créer l'élément vidéo
     if (mediaVideo) {
       const videoElement = document.createElement("video");
-      videoElement.tabIndex = 0;
 
       // videoElement.setAttribute("poster", "assets/icons/player-logo.png")
       const sourceVideo = document.createElement("source");
@@ -44,6 +43,7 @@ function mediaFactory(data, photographerId) {
       playerLogo.setAttribute("alt", "Vidéo sans audio");
 
       videoElement.appendChild(sourceVideo);
+      videoElement.tabIndex = 0;
       overlayVideo.appendChild(playerLogo);
       figure.appendChild(videoElement); 
       figure.appendChild(overlayVideo);
