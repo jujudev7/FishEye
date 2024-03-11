@@ -28,6 +28,7 @@ const closeBtn = document.querySelector(".modal img")
 
 closeBtn.addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
+    event.stopPropagation(); // Empêche la propagation de l'événement
     closeModal(); 
   }
 });
