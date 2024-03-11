@@ -29,16 +29,15 @@ header a:hover {
   border-radius: 5px;
 }
 
-
 .logo:hover {
   filter: brightness(0%);
 }
 
-
 a:focus-visible {
   background-color: yellow;
-  padding: 15px;
-} 
+  padding: 10px;
+  border: solid 3px;
+}
 
 .photographer_section {
   display: grid;

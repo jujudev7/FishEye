@@ -1,26 +1,45 @@
 // Fonction pour placer le focus à l'intérieur de la lightbox
 function focusLightbox() {
-  // Sélectionner l'élément à mettre en focus dans la lightbox
   const lightboxContent = document.querySelector(".lightbox-content");
   const iconNextMedia = lightboxContent.querySelector(".fa-chevron-right");
-  iconNextMedia.setAttribute("aria-hidden", "true");
   const iconPreviousMedia = lightboxContent.querySelector(".fa-chevron-left");
-  iconPreviousMedia.setAttribute("aria-hidden", "true");
   const iconCloseLightbox = lightboxContent.querySelector(".fa-xmark");
-  iconCloseLightbox.setAttribute("aria-hidden", "true");
 
-  // Mettre le focus sur cet élément
-  iconNextMedia.setAttribute("tabindex", "0");
-  iconPreviousMedia.setAttribute("tabindex", "0");
+  // Assurer que tous les éléments ont un attribut tabindex
   iconCloseLightbox.setAttribute("tabindex", "0");
-  iconCloseLightbox.focus();
+  iconPreviousMedia.setAttribute("tabindex", "0");
+  iconNextMedia.setAttribute("tabindex", "0");
+
+  // Mettre le focus sur le premier élément
+  iconNextMedia.focus();
 
   iconCloseLightbox.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       closeLightbox();
+    } else if (event.key === "Tab" && event.shiftKey) {
+      // Si l'utilisateur appuie sur Shift+Tab à partir de l'icône de fermeture, déplacer le focus vers l'icône précédente
+      event.preventDefault();
+      iconPreviousMedia.focus();
+    }
+  });
+
+  iconPreviousMedia.addEventListener("keydown", function (event) {
+    if (event.key === "Tab" && !event.shiftKey) {
+      // Si l'utilisateur appuie sur Tab à partir de l'icône précédente, déplacer le focus vers l'icône suivante
+      event.preventDefault();
+      iconNextMedia.focus();
+    }
+  });
+
+  iconNextMedia.addEventListener("keydown", function (event) {
+    if (event.key === "Tab" && !event.shiftKey) {
+      // Si l'utilisateur appuie sur Tab à partir de l'icône suivante, déplacer le focus vers l'icône de fermeture
+      event.preventDefault();
+      iconCloseLightbox.focus();
     }
   });
 }
+
 
 // Modifier la fonction displayLightbox pour appeler focusLightbox après l'affichage
 function displayLightbox() {
@@ -141,7 +160,9 @@ function openLightbox(mediaUrl, mediaType, title, index) {
   // Fonction pour naviguer dans la lightbox
   function navigateLightbox(direction) {
     // Mettre à jour l'index du média en fonction de la direction
-    currentIndex = (currentIndex + direction + photographerMedia.length) % photographerMedia.length;
+    currentIndex =
+      (currentIndex + direction + photographerMedia.length) %
+      photographerMedia.length;
 
     // Récupérer les informations sur le nouveau média
     const newMediaInfo = getMediaInfo(currentIndex, photographerMedia);
@@ -183,12 +204,9 @@ function openLightbox(mediaUrl, mediaType, title, index) {
     // Ajouter la légende au nouvel élément figure
     newFigure.appendChild(figCaption);
     // Ajouter la figure au contenu de la lightbox
-    content.insertBefore(newFigure, document.querySelector(".fa-chevron-right")); // Insérer newFigure avant .fa-chevron-right
+    content.insertBefore(
+      newFigure,
+      document.querySelector(".fa-chevron-right")
+    ); // Insérer newFigure avant .fa-chevron-right
   }
 }
-
-
-//   // Mettre le focus sur la lightbox
-//   iconCloseLightbox.setAttribute("tabindex", "0");
-//   iconCloseLightbox.focus();
-// }

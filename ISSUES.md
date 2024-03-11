@@ -2,11 +2,11 @@
 ⛔ Ajouter Video dans navigation lightbox 3H
 ⛔ Ajouter Description/Transcription aux Vidéos  3H
 ⛔ Accessibilité  
-⛔ Aria-current 2H
 ⛔ Utiliser un lecteur d'écran  3H
 ⛔ Title media (fr/en)  2H
 ⛔ Vérifier Guide du Mentor  2H
 ⛔ Modal confirmation ?  1H
+✅ Aria-current 2H
 ✅ aria-label="Trier les médias par Popularité" 2H
 ✅ heart icon Favoris
 ✅ Ouvrir media focused dans lightbox avec Enter
