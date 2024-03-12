@@ -1,0 +1,12 @@
+# Ignorer le répertoire node_modules
+node_modules/
+
+# Ignorer les fichiers de configuration locaux
+.env
+
+# Fichiers générés par Visual Studio Code
+.vscode/
+.history/
+
+# Fichiers de configuration de l'utilisateur
+.settings.json
