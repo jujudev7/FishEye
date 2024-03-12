@@ -111,7 +111,7 @@ function sortMediaByDate() {
 // Fonction pour trier les médias par Titre
 function sortMediaByTitle() {
   /* eslint-disable-next-line no-undef */
-  photographerMedia.sort((a, b) => a.title.localeCompare(b.title));
+  photographerMedia.sort((a, b) => a.title_fr.localeCompare(b.title_fr));
   updateGallery();
 }
 
@@ -145,7 +145,7 @@ function updateGallery() {
     mediaElement.addEventListener("click", () => {
       // Appel à openLightbox avec l'index approprié
       /* eslint-disable-next-line no-undef */
-      openLightbox(mediaUrl, mediaType, mediaItem.title, index);
+      openLightbox(mediaUrl, mediaType, mediaItem.title_fr, index);
     });
   });
 }

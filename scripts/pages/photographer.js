@@ -1,6 +1,6 @@
 // on importe les données des photographes depuis le fichier JSON
 async function getPhotographers() {
-  const response = await fetch("data/photographers.json");
+  const response = await fetch("data/photographers_fr.json");
   if (response.ok === true) {
     const data = await response.json();
     return data.photographers;
@@ -10,7 +10,7 @@ async function getPhotographers() {
 
 // on importe les données des médias depuis le fichier JSON
 async function getMedia() {
-  const response = await fetch("data/photographers.json");
+  const response = await fetch("data/photographers_fr.json");
   if (response.ok === true) {
     const data = await response.json();
     return data.media;
@@ -27,11 +27,11 @@ function getMediaInfo(index, media) {
     ? `assets/medias/${mediaItem.photographerId}/${mediaItem.video}`
     : `assets/medias/${mediaItem.photographerId}/${mediaItem.image}`;
   const mediaType = mediaItem.video ? "video" : "image";
-  const title = mediaItem.title;
+  const title_fr = mediaItem.title_fr;
   return {
     url: mediaUrl,
     type: mediaType,
-    title: title,
+    title_fr: title_fr,
   };
 }
 
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       mediaElement.addEventListener("click", () => {
         // Appel à openLightbox avec l'index approprié
         /* eslint-disable-next-line no-undef */
-        openLightbox(mediaUrl, mediaType, title, index);
+        openLightbox(mediaUrl, mediaType, title_fr, index);
       });
 
       // Initialiser la navigation au clavier
@@ -138,13 +138,13 @@ function initKeyboardNavigation() {
       const mediaUrl = focusedElement.src;
       const mediaType = focusedElement.tagName === "VIDEO" ? "video" : "image";
       // Récupérer le titre du média
-      const title = focusedElement.alt; 
+      const title_fr = focusedElement.alt; 
 
       // Récupérer l'index du média actuellement focus
       const mediaIndex = Array.from(focusableElements).indexOf(focusedElement);
 
       // Appel à openLightbox avec les informations du média
-      openLightbox(mediaUrl, mediaType, title, mediaIndex);
+      openLightbox(mediaUrl, mediaType, title_fr, mediaIndex);
     }
   });
 
@@ -176,7 +176,7 @@ async function displayOnePhotographer(photographers, media) {
       photographersHeader.appendChild(userHeaderDOM);
 
       // Définir le titre de la page
-      document.title = `Page du photographe ${photographer.name} | Fisheye`;
+      document.title_fr = `Page du photographe ${photographer.name} | Fisheye`;
 
       // On affiche le prénom du photographe dans le h2 du form
       document.querySelector(

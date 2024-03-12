@@ -1,7 +1,7 @@
 /* exported mediaFactory */
 /* eslint-disable-next-line no-unused-vars */
 function mediaFactory(data, photographerId) {
-  const { image, video, title, likes, descFr } = data;
+  const { image, video, title_fr, likes, descFr } = data;
 
   const mediaPhoto = `assets/medias/${photographerId}/${image}`;
   // On vérifie si video est défini
@@ -10,11 +10,11 @@ function mediaFactory(data, photographerId) {
   function getUserGalleryDOM() {
     const figure = document.createElement("figure");
     figure.setAttribute("role", "figure");
-    figure.setAttribute("aria-label", title);
+    figure.setAttribute("aria-label", title_fr);
     const captionLikes = document.createElement("div");
     captionLikes.classList.add("caption-likes");
     const figCaption = document.createElement("figcaption");
-    figCaption.textContent = title;
+    figCaption.textContent = title_fr;
     const likesZone = document.createElement("div");
     likesZone.classList.add("likes-zone");
     const nbLikes = document.createElement("span");
@@ -34,7 +34,7 @@ function mediaFactory(data, photographerId) {
       const sourceVideo = document.createElement("source");
       // videoElement.setAttribute("controls", "false");
       sourceVideo.setAttribute("src", mediaVideo);
-      sourceVideo.setAttribute("alt", title);
+      sourceVideo.setAttribute("alt", title_fr);
       sourceVideo.setAttribute("type", format);
       const descriptionFr = document.createElement("div");
       descriptionFr.id ="videoDescription";
@@ -62,7 +62,7 @@ function mediaFactory(data, photographerId) {
       const img = document.createElement("img");
       img.tabIndex = 0;
       img.setAttribute("src", mediaPhoto);
-      img.setAttribute("alt", title);
+      img.setAttribute("alt", title_fr);
       figure.appendChild(img); 
       figure.appendChild(captionLikes); 
       captionLikes.appendChild(figCaption); 

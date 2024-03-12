@@ -25,7 +25,7 @@ async function getPhotographers() {
   //   return {
   //     photographers: [...photographers, ...photographers, ...photographers],
   //   };
-  const response = await fetch("data/photographers.json");
+  const response = await fetch("data/photographers_fr.json");
   if (response.ok === true) {
     return response.json();
   }

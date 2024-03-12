@@ -28,5 +28,8 @@
   "homepage": "https://github.com/jujudev7/FishEye#readme",
   "devDependencies": {
     "eslint": "^8.57.0"
+  },
+  "dependencies": {
+    "@google-cloud/translate": "^8.1.0"
   }
 }

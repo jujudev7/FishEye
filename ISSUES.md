@@ -1,12 +1,11 @@
 # TO-DO LIST
 ✅ Ajouter Video dans navigation lightbox 3H
-⛔ Ajouter Description/Transcription aux Vidéos  3H
-⛔ Accessibilité  
-⛔ Utiliser un lecteur d'écran  3H
+✅ Ajouter Description/Transcription aux Vidéos  3H
 ⛔ Title media (fr/en)  2H
+⛔ Utiliser un lecteur d'écran  3H
+⛔ Passer en revue les notices d'Accessibilité
 ⛔ Repasser ESLint   
 ⛔ Vérifier Guide du Mentor  2H
-⛔ Modal confirmation ?  1H
 ✅ Aria-current 2H
 ✅ aria-label="Trier les médias par Popularité" 2H
 ✅ heart icon Favoris

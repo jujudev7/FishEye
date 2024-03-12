@@ -86,7 +86,7 @@ let currentIndex = 0;
 // Fonction pour afficher la lightbox
 /* exported openLightbox */
 /* eslint-disable-next-line no-unused-vars */
-function openLightbox(mediaUrl, mediaType, title, index) {
+function openLightbox(mediaUrl, mediaType, title_fr, index) {
   const lightbox = document.querySelector(".lightbox");
 
   // Initialiser l'index du média actuellement affiché
@@ -106,7 +106,7 @@ function openLightbox(mediaUrl, mediaType, title, index) {
   // Création de la figure contenant le média et sa légende
   const figure = document.createElement("figure");
   figure.setAttribute("role", "figure");
-  figure.setAttribute("aria-label", title);
+  figure.setAttribute("aria-label", title_fr);
 
   if (mediaType === "image") {
     const img = document.createElement("img");
@@ -128,7 +128,7 @@ function openLightbox(mediaUrl, mediaType, title, index) {
 
   // Créer la légende du média
   const figCaption = document.createElement("figcaption");
-  figCaption.textContent = title;
+  figCaption.textContent = title_fr;
 
   // Ajouter des événements pour naviguer entre les médias dans la lightbox
   const iconPreviousMedia = document.createElement("i");
@@ -206,7 +206,7 @@ function openLightbox(mediaUrl, mediaType, title, index) {
     if (newMediaInfo.type === "image") {
       mediaElement = document.createElement("img");
       mediaElement.src = newMediaInfo.url;
-      mediaElement.alt = newMediaInfo.title;
+      mediaElement.alt = newMediaInfo.title_fr;
     } else if (newMediaInfo.type === "video") {
       mediaElement = document.createElement("video");
       mediaElement.controls = true;
@@ -233,7 +233,7 @@ function openLightbox(mediaUrl, mediaType, title, index) {
 
     // Créer la légende du média
     const figCaption = document.createElement("figcaption");
-    figCaption.textContent = newMediaInfo.title;
+    figCaption.textContent = newMediaInfo.title_fr;
 
     // Ajouter le nouvel élément média à la figure
     newFigure.appendChild(mediaElement);
