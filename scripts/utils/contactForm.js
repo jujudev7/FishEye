@@ -5,10 +5,28 @@ function displayModal() {
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
   modal.setAttribute("role", "dialog");
-
-  const modalDialog = modal.querySelector('.modal');
+  
+  const modalDialog = modal.querySelector(".modal");
   modalDialog.focus();
+
+  // Empêcher le focus de sortir de la modale
+  modal.addEventListener("keydown", function(event) {
+    if (event.key === "Tab") {
+      const focusableElements = modal.querySelectorAll("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])");
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        lastElement.focus();
+        event.preventDefault();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        firstElement.focus();
+        event.preventDefault();
+      }
+    }
+  });
 }
+
 
 function closeModal() {
   const modal = document.getElementById("contact_modal");
@@ -17,22 +35,31 @@ function closeModal() {
 }
 
 // Gestionnaire d'événement pour la touche Échap
-document.addEventListener("keydown", function(event) {
-  if (event.key === "Escape") {
-    closeModal(); 
+document.addEventListener("keydown", function (event) {
+  const modal = document.getElementById("contact_modal");
+  if (event.key === "Escape" && modal.style.display === "block") {
+    closeModal();
   }
 });
 
 // Gestionnaire d'événement pour la croix (fermer)
-const closeBtn = document.querySelector(".modal img")
+const closeBtn = document.querySelector(".modal img");
 
-closeBtn.addEventListener("keydown", function(event) {
+closeBtn.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     event.stopPropagation(); // Empêche la propagation de l'événement
-    closeModal(); 
+    closeModal();
   }
 });
 
+// Gestionnaire d'événement pour empêcher le focus en dehors de la modale
+document.addEventListener("focusout", function (event) {
+  const modal = document.getElementById("contact_modal");
+  const modalDialog = modal.querySelector(".modal");
+  if (!modalDialog.contains(event.target)) {
+    modalDialog.focus();
+  }
+});
 
 // Récupérer l'ID du photographe à partir de la query string de l'URL
 const urlParams = new URLSearchParams(window.location.search);
@@ -186,5 +213,3 @@ function resetStyleClasses() {
     field.classList.remove("valid", "invalid");
   });
 }
-
-

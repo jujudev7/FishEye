@@ -1,7 +1,7 @@
 # TO-DO LIST
 ✅ Ajouter Video dans navigation lightbox 3H
 ✅ Ajouter Description/Transcription aux Vidéos  3H
-⛔ Title media (fr/en)  2H
+✅ Title media (fr/en)  2H
 ⛔ Utiliser un lecteur d'écran  3H
 ⛔ Passer en revue les notices d'Accessibilité
 ⛔ Repasser ESLint   

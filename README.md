@@ -8,13 +8,23 @@ HTML, CSS and JavaScript
 
 ## Objectives 🎯
 
-**Priority : accessibility**  
+**Priority : accessibility** 
+- Importing data (JSON / fetch)  
+- Aria
 - Pattern Factory Method  
 - Understanding of layouts  
-- Importing data (JSON / fetch)  
 - Integration  
-- Aria  
 - Modal management  
 - Display and management of likes  
 - Sorting system  
 - Linter  
+
+## Tuto 💡
+Install Node.js : https://nodejs.org/en  
+
+Check installation in the terminal : ```npm node -v```
+
+Create an account on Google Cloud Platform : https://console.cloud.google.com
+
+Install Cloud Translation API : ```npm install --save @google-cloud/translate```
+
