@@ -5,14 +5,17 @@ function displayModal() {
   modal.style.display = "block";
   modal.setAttribute("aria-hidden", "false");
   modal.setAttribute("role", "dialog");
-  
+  modal.setAttribute("aria-label", "Formulaire de contact");
+
   const modalDialog = modal.querySelector(".modal");
   modalDialog.focus();
 
   // Empêcher le focus de sortir de la modale
-  modal.addEventListener("keydown", function(event) {
+  modal.addEventListener("keydown", function (event) {
     if (event.key === "Tab") {
-      const focusableElements = modal.querySelectorAll("button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])");
+      const focusableElements = modal.querySelectorAll(
+        "button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])"
+      );
       const firstElement = focusableElements[0];
       const lastElement = focusableElements[focusableElements.length - 1];
 
@@ -25,8 +28,13 @@ function displayModal() {
       }
     }
   });
-}
 
+  // Définir le focus initial
+  const firstnameInput = modal.querySelector("#firstname");
+  if (firstnameInput) {
+    firstnameInput.focus();
+  }
+}
 
 function closeModal() {
   const modal = document.getElementById("contact_modal");
