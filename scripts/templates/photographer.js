@@ -23,7 +23,7 @@ function photographerTemplate(data, media) {
     linkPhotographer.appendChild(zoom);
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", name);
+    img.setAttribute("alt", "");
     zoom.appendChild(img);
 
     // Vérifier si l'image est celle que vous voulez personnaliser
@@ -65,7 +65,7 @@ function photographerTemplate(data, media) {
     const h1 = document.createElement("h1");
     h1.textContent = name;
 
-    const location = document.createElement("h2");
+    const location = document.createElement("p");
     location.classList.add("location");
     location.textContent = city + ", " + country;
 
@@ -85,7 +85,7 @@ function photographerTemplate(data, media) {
 
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", name);
+    img.setAttribute("alt", "");
 
     profileZone.appendChild(photographerProfile);
     photographerProfile.appendChild(h1);

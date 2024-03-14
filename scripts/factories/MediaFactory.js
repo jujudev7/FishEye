@@ -10,10 +10,10 @@ function mediaFactory(data, photographerId) {
   function getUserGalleryDOM() {
     const figure = document.createElement("figure");
     figure.setAttribute("role", "figure");
-    figure.setAttribute("aria-label", title_fr);
     const captionLikes = document.createElement("div");
-    captionLikes.classList.add("caption-likes");
+    captionLikes.classList.add("caption-likes");    
     const figCaption = document.createElement("figcaption");
+    figCaption.setAttribute("aria-hidden", "true");
     figCaption.textContent = title_fr;
     const likesZone = document.createElement("div");
     likesZone.classList.add("likes-zone");
@@ -23,13 +23,13 @@ function mediaFactory(data, photographerId) {
     const heartIcon = document.createElement("i");
     heartIcon.className = "fa-solid fa-heart";
     heartIcon.setAttribute("aria-hidden", "true");
+    heartIcon.setAttribute("aria-label", "likes");
 
     const format = "video/mp4";
 
     // On vérifie si mediaVideo est défini avant de créer l'élément vidéo
     if (mediaVideo) {
       const videoElement = document.createElement("video");
-
       // videoElement.setAttribute("poster", "assets/icons/player-logo.png")
       const sourceVideo = document.createElement("source");
       // videoElement.setAttribute("controls", "false");

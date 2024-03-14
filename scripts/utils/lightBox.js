@@ -8,8 +8,11 @@ function focusLightbox() {
 
   // Assurer que tous les éléments ont un attribut tabindex
   iconCloseLightbox.setAttribute("tabindex", "0");
+  iconCloseLightbox.setAttribute("aria-label", "Fermer la modale");
   iconPreviousMedia.setAttribute("tabindex", "0");
+  iconPreviousMedia.setAttribute("aria-label", "Aller au média précédent");
   iconNextMedia.setAttribute("tabindex", "0");
+  iconNextMedia.setAttribute("aria-label", "Aller au média suivant");
 
   // Mettre le focus sur le premier élément
   iconNextMedia.focus();
@@ -89,8 +92,23 @@ let currentIndex = 0;
 function openLightbox(mediaUrl, mediaType, title_fr, index) {
   const lightbox = document.querySelector(".lightbox");
 
+  // Vérifier si l'index est valide
+  if (index < 0 || index >= photographerMedia.length) {
+    console.error("Index out of bounds:", index);
+    return;
+  }
+
   // Initialiser l'index du média actuellement affiché
-  currentIndex = index; // Utilisation de la variable globale currentIndex
+  currentIndex = index;
+
+  // Récupérer les informations sur le média
+  const mediaInfo = photographerMedia[currentIndex];
+
+  // Vérifier si mediaInfo est défini
+  if (!mediaInfo) {
+    console.error("Media info is undefined for index:", index);
+    return;
+  }
 
   const content = document.createElement("div");
   content.className = "lightbox-content";
@@ -220,8 +238,9 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
       descriptionElement.id = "videoDescription"; // ID utilisé pour la référence aria-describedby
       descriptionElement.classList.add("sr-only");
       const videoDescFr = photographerMedia[currentIndex].descFr;
-      descriptionElement.textContent = "Description de la vidéo : " + videoDescFr;
-      
+      descriptionElement.textContent =
+        "Description de la vidéo : " + videoDescFr;
+
       mediaElement.appendChild(source);
       mediaElement.appendChild(descriptionElement);
 

@@ -134,25 +134,29 @@ function initKeyboardNavigation() {
       event.key === "Enter" &&
       (focusedElement.tagName === "IMG" || focusedElement.tagName === "VIDEO")
     ) {
-      // Récupérer l'URL et le type de média du média actuellement focus
-      const mediaUrl = focusedElement.src;
-      const mediaType = focusedElement.tagName === "VIDEO" ? "video" : "image";
-      // Récupérer le titre du média
-      const title_fr = focusedElement.alt; 
+      event.preventDefault(); // Empêcher le comportement par défaut
 
-      // Récupérer l'index du média actuellement focus
-      const mediaIndex = Array.from(focusableElements).indexOf(focusedElement);
+      let mediaUrl;
+      let mediaType;
+      const title_fr = focusedElement.alt;
+      const index = Array.from(focusableElements).indexOf(focusedElement);
 
-      // Appel à openLightbox avec les informations du média
-      openLightbox(mediaUrl, mediaType, title_fr, mediaIndex);
-    }
-  });
+      if (focusedElement.tagName === "VIDEO") {
+        mediaUrl = focusedElement.src;
+        mediaType = "video";
+      } else {
+        const videoElement =
+          focusedElement.parentElement.querySelector("video");
+        if (videoElement) {
+          mediaUrl = videoElement.src;
+          mediaType = "video";
+        } else {
+          mediaUrl = focusedElement.src;
+          mediaType = "image";
+        }
+      }
 
-  // Gestionnaire d'événement pour la touche Entrée sur le logo
-  const logo = document.querySelector(".logo");
-  logo.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      logo.click();
+      openLightbox(mediaUrl, mediaType, title_fr, index);
     }
   });
 }
@@ -207,6 +211,7 @@ async function displayOnePhotographer(photographers, media) {
       const heartIcon = document.createElement("i");
       heartIcon.className = "fa-solid fa-heart";
       heartIcon.setAttribute("aria-hidden", "true");
+      heartIcon.setAttribute("aria-label", "likes");
       zoneTotalLikes.appendChild(nombreLikes);
       zoneTotalLikes.appendChild(heartIcon);
       insert.appendChild(zoneTotalLikes);
