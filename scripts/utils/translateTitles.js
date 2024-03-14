@@ -2,7 +2,7 @@ const { Translate } = require('@google-cloud/translate').v2;
 const fs = require('fs');
 
 // Remplacez 'YOUR_API_KEY' par votre propre clé d'API
-const translate = new Translate({ key: 'AIzaSyDHvCLGwCQRZUqPlhBhscG4CrgD5Sf2YJ8' });
+const translate = new Translate({ key: '' });
 
 // Chargez le contenu du fichier photographers.json
 const photographersJson = JSON.parse(fs.readFileSync('data/photographers.json'));
