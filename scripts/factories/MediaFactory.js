@@ -62,7 +62,7 @@ function mediaFactory(data, photographerId) {
       const img = document.createElement("img");
       img.tabIndex = 0;
       img.setAttribute("src", mediaPhoto);
-      img.setAttribute("alt", "");
+      img.setAttribute("alt", title_fr);
       figure.appendChild(img); 
       figure.appendChild(captionLikes); 
       captionLikes.appendChild(figCaption); 

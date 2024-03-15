@@ -48,11 +48,11 @@ function focusLightbox() {
       if (event.key === "Tab" && !event.shiftKey) {
         // Si l'utilisateur appuie sur Tab à partir de la vidéo, déplacer le focus vers l'icône de fermeture, puis boucler sur les icônes de navigation
         event.preventDefault();
-        iconCloseLightbox.focus();
+        iconNextMedia.focus();
       } else if (event.key === "Tab" && event.shiftKey) {
         // Si l'utilisateur appuie sur Shift+Tab à partir de la vidéo, déplacer le focus vers l'icône suivante
         event.preventDefault();
-        iconNextMedia.focus();
+        iconPreviousMedia.focus();
       }
     });
   }
@@ -178,6 +178,7 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
   iconPreviousMedia.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
       navigateLightbox(-1);
+      iconPreviousMedia.focus();
     }
   });
 
