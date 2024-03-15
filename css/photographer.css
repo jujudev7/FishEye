@@ -274,8 +274,8 @@ textarea {
   border-radius: 5px;
 }
 
-.dropbtn:focus-visible-visible,
-.dropdown button:focus-visible-visible {
+.dropbtn:focus-visible,
+.dropdown button:focus-visible {
   background-color: yellow;
   color: #000;
 }

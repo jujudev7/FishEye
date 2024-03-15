@@ -215,7 +215,7 @@ function validate() {
 
 // On supprime les classes "valid" / "invalid" une fois que le formulaire est validé
 function resetStyleClasses() {
-  const fields = document.querySelectorAll(".text-control");
+  const fields = document.querySelectorAll("input, textarea");
 
   fields.forEach(function (field) {
     field.classList.remove("valid", "invalid");

@@ -232,7 +232,7 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
       // Ajoutez de la description à l'attribut aria-describedby
       mediaElement.setAttribute("aria-describedby", "videoDescription");
       const source = document.createElement("source");
-      source.src = newMediaInfo.url;
+      source.src = newMediaInfo.url; // Ajouter le chemin de la vidéo à la balise source
       source.type = "video/mp4";
       const descriptionElement = document.createElement("div");
       descriptionElement.id = "videoDescription"; // ID utilisé pour la référence aria-describedby
@@ -243,8 +243,7 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
 
       mediaElement.appendChild(source);
       mediaElement.appendChild(descriptionElement);
-
-      // Mettre le focus sur la vidéo lorsque celle-ci est ajoutée
+      // Mettre le focus sur le média lorsque celui-ci est ajouté
       mediaElement.addEventListener("loadeddata", function () {
         mediaElement.focus();
       });
@@ -258,10 +257,13 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
     newFigure.appendChild(mediaElement);
     // Ajouter la légende au nouvel élément figure
     newFigure.appendChild(figCaption);
-    // Ajouter la figure au contenu de la lightbox
+
+    // Ajouter le nouvel élément figure au contenu de la lightbox
     content.insertBefore(
       newFigure,
       document.querySelector(".fa-chevron-right")
     ); // Insérer newFigure avant .fa-chevron-right
+
+    displayLightbox(); // Appeler la fonction pour afficher la lightbox
   }
 }

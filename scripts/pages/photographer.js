@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async function () {
       mediaElement.addEventListener("click", () => {
         // Appel à openLightbox avec l'index approprié
         /* eslint-disable-next-line no-undef */
-        openLightbox(mediaUrl, mediaType, title_fr, index);
+        openLightbox(mediaUrl, mediaType, mediaItem.title_fr, index);
       });
 
       // Initialiser la navigation au clavier
@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     createSortMenu();
     /* eslint-disable-next-line no-undef */
     sortMediaByPopularity();
+
   } catch (error) {
     console.error("Error loading data:", error);
   }
