@@ -1,3 +1,12 @@
+function closeLightbox() {
+  const lightbox = document.querySelector(".lightbox");
+  lightbox.style.display = "none";
+  lightbox.setAttribute("aria-hidden", "true");
+
+  // Supprimer le contenu de la lightbox
+  lightbox.innerHTML = ""; // Supprime tous les éléments enfants de la lightbox
+}
+
 // Fonction pour placer le focus à l'intérieur de la lightbox
 function focusLightbox() {
   const lightboxContent = document.querySelector(".lightbox-content");
@@ -67,15 +76,6 @@ function displayLightbox() {
   focusLightbox();
 }
 
-function closeLightbox() {
-  const lightbox = document.querySelector(".lightbox");
-  lightbox.style.display = "none";
-  lightbox.setAttribute("aria-hidden", "true");
-
-  // Supprimer le contenu de la lightbox
-  lightbox.innerHTML = ""; // Supprime tous les éléments enfants de la lightbox
-}
-
 // Gestionnaire d'événement pour la touche Échap
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
@@ -130,14 +130,18 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
     const img = document.createElement("img");
     img.src = mediaUrl;
     figure.appendChild(img);
+    console.log(mediaUrl);
   } else if (mediaType === "video") {
     const video = document.createElement("video");
     video.controls = true;
     video.tabIndex = "0"; // Assurez-vous que la vidéo est focusable
     const source = document.createElement("source");
     source.src = mediaUrl;
+    console.log(mediaUrl);
     source.type = "video/mp4"; // Définissez le type de média correctement
+
     const videoDescFr = photographerMedia[currentIndex].descFr;
+    // const videoDescFr = newMediaInfo.descFr;
     descriptionElement.textContent = "Description de la vidéo : " + videoDescFr;
     video.appendChild(source);
     video.appendChild(descriptionElement);
@@ -225,7 +229,7 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
     if (newMediaInfo.type === "image") {
       mediaElement = document.createElement("img");
       mediaElement.src = newMediaInfo.url;
-      mediaElement.alt = newMediaInfo.title_fr;
+      mediaElement.alt = "";
     } else if (newMediaInfo.type === "video") {
       mediaElement = document.createElement("video");
       mediaElement.controls = true;
@@ -233,16 +237,15 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
       // Ajoutez de la description à l'attribut aria-describedby
       mediaElement.setAttribute("aria-describedby", "videoDescription");
       const source = document.createElement("source");
-      source.src = newMediaInfo.url; // Ajouter le chemin de la vidéo à la balise source
+      source.src = newMediaInfo.url; // Mettre à jour le chemin de la vidéo
       source.type = "video/mp4";
+      mediaElement.appendChild(source);
       const descriptionElement = document.createElement("div");
       descriptionElement.id = "videoDescription"; // ID utilisé pour la référence aria-describedby
       descriptionElement.classList.add("sr-only");
-      const videoDescFr = photographerMedia[currentIndex].descFr;
+      const videoDescFr = newMediaInfo.descFr;
       descriptionElement.textContent =
         "Description de la vidéo : " + videoDescFr;
-
-      mediaElement.appendChild(source);
       mediaElement.appendChild(descriptionElement);
       // Mettre le focus sur le média lorsque celui-ci est ajouté
       mediaElement.addEventListener("loadeddata", function () {

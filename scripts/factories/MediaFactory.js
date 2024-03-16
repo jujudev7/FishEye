@@ -11,7 +11,7 @@ function mediaFactory(data, photographerId) {
     const figure = document.createElement("figure");
     figure.setAttribute("role", "figure");
     const captionLikes = document.createElement("div");
-    captionLikes.classList.add("caption-likes");    
+    captionLikes.classList.add("caption-likes");
     const figCaption = document.createElement("figcaption");
     figCaption.setAttribute("aria-hidden", "true");
     figCaption.textContent = title_fr;
@@ -27,6 +27,11 @@ function mediaFactory(data, photographerId) {
 
     const format = "video/mp4";
 
+    const descriptionFr = document.createElement("div");
+    descriptionFr.id = "videoDescription";
+    descriptionFr.classList.add("sr-only");
+    descriptionFr.textContent = "Description de la vidéo : " + descFr;
+
     // On vérifie si mediaVideo est défini avant de créer l'élément vidéo
     if (mediaVideo) {
       const videoElement = document.createElement("video");
@@ -36,13 +41,9 @@ function mediaFactory(data, photographerId) {
       sourceVideo.setAttribute("src", mediaVideo);
       sourceVideo.setAttribute("alt", title_fr);
       sourceVideo.setAttribute("type", format);
-      const descriptionFr = document.createElement("div");
-      descriptionFr.id ="videoDescription";
-      descriptionFr.classList.add("sr-only");
-      descriptionFr.textContent = "Description de la vidéo : " + descFr;
       const overlayVideo = document.createElement("div");
       overlayVideo.classList.add("overlay-video");
-      const playerLogo = document.createElement("img")
+      const playerLogo = document.createElement("img");
       playerLogo.setAttribute("src", "assets/icons/player-logo.png");
       playerLogo.setAttribute("alt", "Vidéo sans audio");
 
@@ -50,25 +51,24 @@ function mediaFactory(data, photographerId) {
       videoElement.appendChild(descriptionFr);
       videoElement.tabIndex = 0;
       overlayVideo.appendChild(playerLogo);
-      figure.appendChild(videoElement); 
+      figure.appendChild(videoElement);
       figure.appendChild(overlayVideo);
-      captionLikes.appendChild(figCaption); 
-      captionLikes.appendChild(likesZone); 
-      likesZone.appendChild(nbLikes); 
-      likesZone.appendChild(heartIcon); 
+      captionLikes.appendChild(figCaption);
+      captionLikes.appendChild(likesZone);
+      likesZone.appendChild(nbLikes);
+      likesZone.appendChild(heartIcon);
       figure.appendChild(captionLikes);
-      
     } else {
       const img = document.createElement("img");
       img.tabIndex = 0;
       img.setAttribute("src", mediaPhoto);
-      img.setAttribute("alt", title_fr);
-      figure.appendChild(img); 
-      figure.appendChild(captionLikes); 
-      captionLikes.appendChild(figCaption); 
-      captionLikes.appendChild(likesZone); 
-      likesZone.appendChild(nbLikes); 
-      likesZone.appendChild(heartIcon); 
+      img.setAttribute("alt", "");
+      figure.appendChild(img);
+      figure.appendChild(captionLikes);
+      captionLikes.appendChild(figCaption);
+      captionLikes.appendChild(likesZone);
+      likesZone.appendChild(nbLikes);
+      likesZone.appendChild(heartIcon);
     }
 
     return figure;

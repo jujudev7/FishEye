@@ -139,7 +139,7 @@ function initKeyboardNavigation() {
 
       let mediaUrl;
       let mediaType;
-      const title_fr = focusedElement.alt;
+      const title_fr = focusedElement.figcaption;
       const index = Array.from(focusableElements).indexOf(focusedElement);
 
       if (focusedElement.tagName === "VIDEO") {
