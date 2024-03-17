@@ -62,7 +62,7 @@ async function init() {
 init();
 
 
-// Gestionnaire d'événement pour la touche Entrée
+// Gestionnaire d"événement pour la touche Entrée
 const logo = document.querySelector(".logo");
 
 logo.addEventListener("keydown", function (event) {
@@ -71,24 +71,24 @@ logo.addEventListener("keydown", function (event) {
   }
 });
 
-document.addEventListener('keydown', function(event) {
+document.addEventListener("keydown", function(event) {
   const focusableElements = document.querySelectorAll("a");
   const focusedElement = document.activeElement;
   const index = Array.prototype.indexOf.call(focusableElements, focusedElement);
 
-  if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+  if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
     if (index > 0) {
       focusableElements[index - 1].focus();
     } else {
       focusableElements[focusableElements.length - 1].focus();
     }
-  } else if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-    if (index < focusableElements.length - 1) {
+  } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+    if (focusedElement.classList.contains("logo")) {
+      focusableElements[0].focus(); // Change focus to the first focusable element
+    } else if (index < focusableElements.length - 1) {
       focusableElements[index + 1].focus();
     } else {
       focusableElements[0].focus();
     }
-  } else if (event.key === 'ArrowRight' && focusedElement.classList.contains('logo')) {
-    focusableElements[0].focus(); // Change focus to the first focusable element
-  }
+  } 
 });

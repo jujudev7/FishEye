@@ -102,7 +102,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     createSortMenu();
     /* eslint-disable-next-line no-undef */
     sortMediaByPopularity();
-
   } catch (error) {
     console.error("Error loading data:", error);
   }
@@ -156,7 +155,7 @@ function initKeyboardNavigation() {
           mediaType = "image";
         }
       }
-
+      /* eslint-disable-next-line no-undef */
       openLightbox(mediaUrl, mediaType, title_fr, index);
     }
   });

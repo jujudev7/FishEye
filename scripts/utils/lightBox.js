@@ -1,3 +1,5 @@
+/* global photographerMedia, getMediaInfo */
+
 function closeLightbox() {
   const lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "none";

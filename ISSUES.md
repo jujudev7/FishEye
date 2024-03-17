@@ -3,9 +3,6 @@
 ✅ Ajouter Description/Transcription aux Vidéos  3H
 ✅ Title media (fr/en)  2H
 ⛔ Utiliser un lecteur d'écran  3H
-⛔ Gérer aria menu déroulant :
-Si listbox ARIA: le trigger du menu a comme attributs role=”button”, aria-haspopup=”listbox”, aria-expanded. 
-Liste d’options : role=”listbox”, aria-activedescendant, aria-selected, aria-labelledby qui pointe vers l’input label
 ⛔ Passer en revue les notices d'Accessibilité
 ⛔ Repasser ESLint   
 ⛔ Vérifier Guide du Mentor  2H
