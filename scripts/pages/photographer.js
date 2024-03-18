@@ -41,7 +41,7 @@ function getAllPhotographerMedia(photographerId, media) {
 let photographerMedia; // Variable globale pour stocker les médias du photographe actuel
 
 // Fonction pour afficher les détails du photographe et sa galerie
-function displayPhotographerDetailsAndGallery(photographers, media) {
+async function displayPhotographerDetailsAndGallery(photographers, media) {
   try {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -105,6 +105,11 @@ function displayPhotographerDetailsAndGallery(photographers, media) {
 
     // Afficher la galerie du photographe
     displayPhotographerGallery();
+
+    // Attendre que la galerie soit affichée avant d'appeler la fonction pour incrémenter/décrémenter les likes
+    await new Promise((resolve) => setTimeout(resolve, 100)); // Attente de 100 ms pour s'assurer que la galerie est bien affichée
+
+    incrementDecrementLikesOnClick(media);
   } catch (error) {
     console.error(
       "An error occurred while displaying photographer details and gallery:",
@@ -228,7 +233,7 @@ function initKeyboardNavigation() {
       // Vérifier si mediaUrl et title_fr sont définis
       if (mediaUrl && title_fr) {
         openLightbox(mediaUrl, mediaType, title_fr, index);
-      } 
+      }
       // else {
       //   console.error("Media URL or title_fr is undefined.");
       // }
@@ -236,7 +241,15 @@ function initKeyboardNavigation() {
   });
 }
 
-let totalLikesForCurrentPhotographer = 0; // Variable pour stocker le total des likes du photographe actuel
+// let totalLikesForCurrentPhotographer = 0; // Variable pour stocker le total des likes du photographe actuel
+
+// Fonction pour mettre à jour l'affichage du total des likes
+function updateTotalLikes() {
+  const nombreLikes = document.querySelector(".nombre-likes");
+  if (nombreLikes) {
+    nombreLikes.textContent = totalLikesForCurrentPhotographer;
+  }
+}
 
 // Fonction pour incrémenter ou décrémenter les likes lors du clic sur l'icône de cœur
 function incrementDecrementLikesOnClick(media) {
@@ -269,14 +282,6 @@ function incrementDecrementLikesOnClick(media) {
       updateTotalLikes();
     });
   });
-}
-
-// Fonction pour mettre à jour l'affichage du total des likes
-function updateTotalLikes() {
-  const nombreLikes = document.querySelector(".nombre-likes");
-  if (nombreLikes) {
-    nombreLikes.textContent = totalLikesForCurrentPhotographer;
-  }
 }
 
 // Fonction pour initialiser l'application
