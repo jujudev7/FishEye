@@ -236,6 +236,8 @@ function initKeyboardNavigation() {
   });
 }
 
+let totalLikesForCurrentPhotographer = 0; // Variable pour stocker le total des likes du photographe actuel
+
 // Fonction pour incrémenter ou décrémenter les likes lors du clic sur l'icône de cœur
 function incrementDecrementLikesOnClick(media) {
   const heartIcons = document.querySelectorAll(".gallery i.fa-solid.fa-heart");

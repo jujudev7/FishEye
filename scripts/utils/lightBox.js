@@ -25,8 +25,27 @@ function focusLightbox() {
   iconNextMedia.setAttribute("tabindex", "0");
   iconNextMedia.setAttribute("aria-label", "Aller au média suivant");
 
-  // Mettre le focus sur le premier élément
-  iconNextMedia.focus();
+  if (videoElement) {
+    videoElement.focus();
+
+    videoElement.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        // Si l'utilisateur appuie sur Entrée, lire la vidéo
+        videoElement.play();
+      } else if (event.key === "Tab" && !event.shiftKey) {
+        // Si l'utilisateur appuie sur Tab à partir de la vidéo, déplacer le focus vers l'icône suivante
+        event.preventDefault();
+        iconNextMedia.focus();
+      } else if (event.key === "Tab" && event.shiftKey) {
+        // Si l'utilisateur appuie sur Shift+Tab à partir de la vidéo, déplacer le focus vers l'icône de fermeture
+        event.preventDefault();
+        iconPreviousMedia.focus();
+      }
+    });
+  } else {
+    // Mettre le focus sur le premier élément
+    iconNextMedia.focus();
+  }
 
   iconCloseLightbox.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
@@ -53,26 +72,6 @@ function focusLightbox() {
       videoElement ? videoElement.focus() : iconCloseLightbox.focus();
     }
   });
-
-  if (videoElement) {
-    videoElement.focus();
-
-    videoElement.addEventListener("keydown", function (event) {
-      if (event.key === "Tab" && !event.shiftKey) {
-        // Si l'utilisateur appuie sur Tab à partir de la vidéo, déplacer le focus vers l'icône suivante
-        event.preventDefault();
-        iconNextMedia.focus();
-      } else if (event.key === "Tab" && event.shiftKey) {
-        // Si l'utilisateur appuie sur Shift+Tab à partir de la vidéo, déplacer le focus vers l'icône de fermeture
-        event.preventDefault();
-        iconPreviousMedia.focus();
-      } else if (event.key === "Enter") {
-        // Si l'utilisateur appuie sur Entrée, lire la vidéo
-        event.preventDefault();
-        videoElement.play();
-      }
-    });
-  }
 }
 
 // Modifier la fonction displayLightbox pour appeler focusLightbox après l'affichage
