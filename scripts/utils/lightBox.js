@@ -88,6 +88,71 @@ document.addEventListener("keydown", function (event) {
 // Déclaration de la variable globale pour suivre l'index du média actuellement affiché
 let currentIndex = 0;
 
+// Fonction pour naviguer dans la lightbox
+function navigateLightbox(direction) {
+  // Mettre à jour l'index du média en fonction de la direction
+  currentIndex =
+    (currentIndex + direction + photographerMedia.length) %
+    photographerMedia.length;
+
+  // Récupérer les informations sur le nouveau média
+  const newMediaInfo = getMediaInfo(currentIndex, photographerMedia);
+
+  // Récupérer le contenu de la lightbox
+  const content = document.querySelector(".lightbox-content");
+
+  // Supprimer l'ancien élément figure s'il existe
+  const oldFigure = content.querySelector("figure");
+  if (oldFigure) {
+    content.removeChild(oldFigure);
+  }
+
+  // Créer le nouvel élément figure
+  const newFigure = document.createElement("figure");
+
+  // Créer le nouvel élément média en fonction du type
+  if (newMediaInfo.type === "image") {
+    const img = document.createElement("img");
+    img.src = newMediaInfo.url;
+    img.alt = "";
+    newFigure.appendChild(img);
+  } else if (newMediaInfo.type === "video") {
+    const video = document.createElement("video");
+    video.controls = true;
+    video.tabIndex = "0"; // Définir l'attribut tabindex sur l'élément vidéo
+    // Ajoutez de la description à l'attribut aria-describedby
+    video.setAttribute("aria-describedby", "videoDescription");
+    // Créer un élément pour afficher la description de la vidéo
+    const descriptionElement = document.createElement("div");
+    descriptionElement.id = "videoDescription"; // ID utilisé pour la référence aria-describedby
+    descriptionElement.classList.add("sr-only");
+    const videoDescFr = newMediaInfo.title_fr;
+    descriptionElement.textContent = "Description de la vidéo : " + videoDescFr;
+    video.appendChild(descriptionElement);
+    const source = document.createElement("source");
+    source.src = newMediaInfo.url; // Mettre à jour le chemin de la vidéo
+    source.type = "video/mp4";
+    video.appendChild(source);
+    // Mettre le focus sur le média lorsque celui-ci est ajouté
+    video.addEventListener("loadeddata", function () {
+      video.focus();
+    });
+    newFigure.appendChild(video);
+  }
+
+  // Créer la légende du média
+  const figCaption = document.createElement("figcaption");
+  figCaption.textContent = newMediaInfo.title_fr;
+
+  // Ajouter le nouvel élément média à la figure
+  newFigure.appendChild(figCaption);
+
+  // Ajouter le nouvel élément figure au contenu de la lightbox
+  content.insertBefore(newFigure, document.querySelector(".fa-chevron-right")); // Insérer newFigure avant .fa-chevron-right
+
+  displayLightbox(); // Appeler la fonction pour afficher la lightbox
+}
+
 // Fonction pour afficher la lightbox
 /* exported openLightbox */
 /* eslint-disable-next-line no-unused-vars */
@@ -103,12 +168,9 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
   // Initialiser l'index du média actuellement affiché
   currentIndex = index;
 
-  // Récupérer les informations sur le média
-  const mediaInfo = photographerMedia[currentIndex];
-
-  // Vérifier si mediaInfo est défini
-  if (!mediaInfo) {
-    console.error("Media info is undefined for index:", index);
+  // Vérifier si mediaUrl et title_fr sont définis
+  if (!mediaUrl || !title_fr) {
+    console.error("Media URL or title_fr is undefined.");
     return;
   }
 
@@ -118,35 +180,24 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
   content.setAttribute("aria-live", "polite");
   content.setAttribute("aria-hidden", "false");
 
-  // Créer un élément pour afficher la description de la vidéo
-  const descriptionElement = document.createElement("div");
-  descriptionElement.id = "videoDescription"; // ID utilisé pour la référence aria-describedby
-  descriptionElement.classList.add("sr-only");
-
   // Création de la figure contenant le média et sa légende
   const figure = document.createElement("figure");
   figure.setAttribute("role", "figure");
   figure.setAttribute("aria-label", title_fr);
 
+  // Créer le média en fonction du type
   if (mediaType === "image") {
     const img = document.createElement("img");
     img.src = mediaUrl;
     figure.appendChild(img);
-    console.log(mediaUrl);
   } else if (mediaType === "video") {
     const video = document.createElement("video");
     video.controls = true;
     video.tabIndex = "0"; // Assurez-vous que la vidéo est focusable
     const source = document.createElement("source");
     source.src = mediaUrl;
-    console.log(mediaUrl);
     source.type = "video/mp4"; // Définissez le type de média correctement
-
-    const videoDescFr = photographerMedia[currentIndex].descFr;
-    // const videoDescFr = newMediaInfo.descFr;
-    descriptionElement.textContent = "Description de la vidéo : " + videoDescFr;
     video.appendChild(source);
-    video.appendChild(descriptionElement);
     figure.appendChild(video);
   }
 
@@ -158,41 +209,19 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
   const iconPreviousMedia = document.createElement("i");
   iconPreviousMedia.classList.add("fa-solid", "fa-chevron-left");
   iconPreviousMedia.setAttribute("aria-hidden", "true");
-  const previousText = document.createElement("p");
-  previousText.classList.add("sr-only");
-  previousText.textContent = "Média précédent";
+  // Ajout des gestionnaires d'événements pour les icônes "iconPreviousMedia" et "iconNextMedia"
+  iconPreviousMedia.addEventListener("click", () => navigateLightbox(-1));
+
   const iconNextMedia = document.createElement("i");
   iconNextMedia.classList.add("fa-solid", "fa-chevron-right");
   iconNextMedia.setAttribute("aria-hidden", "true");
-  const nextText = document.createElement("p");
-  nextText.classList.add("sr-only");
-  nextText.textContent = "Média suivant";
+  // Ajout des gestionnaires d'événements pour les icônes "iconPreviousMedia" et "iconNextMedia"
+  iconNextMedia.addEventListener("click", () => navigateLightbox(1));
 
   const iconCloseLightbox = document.createElement("i");
   iconCloseLightbox.classList.add("fa-solid", "fa-xmark");
   iconCloseLightbox.setAttribute("aria-hidden", "true");
-  const closeText = document.createElement("p");
-  closeText.classList.add("sr-only");
-  closeText.textContent = "Fermer l'affichage en grand des médias";
-
   iconCloseLightbox.addEventListener("click", closeLightbox);
-
-  // Ajout des gestionnaires d'événements pour les icônes "iconPreviousMedia" et "iconNextMedia"
-  iconPreviousMedia.addEventListener("click", () => navigateLightbox(-1));
-  iconNextMedia.addEventListener("click", () => navigateLightbox(1));
-
-  iconPreviousMedia.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      navigateLightbox(-1);
-      iconPreviousMedia.focus();
-    }
-  });
-
-  iconNextMedia.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      navigateLightbox(1);
-    }
-  });
 
   // Ajout des icônes de navigation, du media et de la figcaption à la lightbox
   content.appendChild(iconCloseLightbox);
@@ -204,72 +233,16 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
 
   displayLightbox(); // Appeler la fonction pour afficher la lightbox
 
-  // Fonction pour naviguer dans la lightbox
-  function navigateLightbox(direction) {
-    // Mettre à jour l'index du média en fonction de la direction
-    currentIndex =
-      (currentIndex + direction + photographerMedia.length) %
-      photographerMedia.length;
-
-    // Récupérer les informations sur le nouveau média
-    const newMediaInfo = getMediaInfo(currentIndex, photographerMedia);
-
-    // Récupérer le contenu de la lightbox
-    const content = document.querySelector(".lightbox-content");
-
-    // Supprimer l'ancien élément figure s'il existe
-    const oldFigure = content.querySelector("figure");
-    if (oldFigure) {
-      content.removeChild(oldFigure);
+  // Gestion de l'ouverture de la lightbox lorsque la touche "Entrée" est enfoncée sur les icônes de navigation
+  iconPreviousMedia.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      navigateLightbox(-1);
     }
+  });
 
-    // Créer le nouvel élément figure
-    const newFigure = document.createElement("figure");
-
-    // Créer le nouvel élément média en fonction du type
-    let mediaElement;
-    if (newMediaInfo.type === "image") {
-      mediaElement = document.createElement("img");
-      mediaElement.src = newMediaInfo.url;
-      mediaElement.alt = "";
-    } else if (newMediaInfo.type === "video") {
-      mediaElement = document.createElement("video");
-      mediaElement.controls = true;
-      mediaElement.setAttribute("tabindex", "0"); // Définir l'attribut tabindex sur l'élément vidéo
-      // Ajoutez de la description à l'attribut aria-describedby
-      mediaElement.setAttribute("aria-describedby", "videoDescription");
-      const source = document.createElement("source");
-      source.src = newMediaInfo.url; // Mettre à jour le chemin de la vidéo
-      source.type = "video/mp4";
-      mediaElement.appendChild(source);
-      const descriptionElement = document.createElement("div");
-      descriptionElement.id = "videoDescription"; // ID utilisé pour la référence aria-describedby
-      descriptionElement.classList.add("sr-only");
-      const videoDescFr = newMediaInfo.descFr;
-      descriptionElement.textContent =
-        "Description de la vidéo : " + videoDescFr;
-      mediaElement.appendChild(descriptionElement);
-      // Mettre le focus sur le média lorsque celui-ci est ajouté
-      mediaElement.addEventListener("loadeddata", function () {
-        mediaElement.focus();
-      });
+  iconNextMedia.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      navigateLightbox(1);
     }
-
-    // Créer la légende du média
-    const figCaption = document.createElement("figcaption");
-    figCaption.textContent = newMediaInfo.title_fr;
-
-    // Ajouter le nouvel élément média à la figure
-    newFigure.appendChild(mediaElement);
-    // Ajouter la légende au nouvel élément figure
-    newFigure.appendChild(figCaption);
-
-    // Ajouter le nouvel élément figure au contenu de la lightbox
-    content.insertBefore(
-      newFigure,
-      document.querySelector(".fa-chevron-right")
-    ); // Insérer newFigure avant .fa-chevron-right
-
-    displayLightbox(); // Appeler la fonction pour afficher la lightbox
-  }
+  });
 }
