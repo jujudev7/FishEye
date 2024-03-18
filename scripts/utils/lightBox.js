@@ -6,7 +6,7 @@ function closeLightbox() {
   lightbox.setAttribute("aria-hidden", "true");
 
   // Supprimer le contenu de la lightbox
-  lightbox.innerHTML = ""; // Supprime tous les éléments enfants de la lightbox
+  lightbox.innerHTML = ""; 
 }
 
 // Fonction pour placer le focus à l'intérieur de la lightbox
@@ -204,6 +204,14 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
     source.type = "video/mp4"; // Définissez le type de média correctement
     video.appendChild(source);
     figure.appendChild(video);
+
+    // Mettre le focus sur le bouton de lecture lorsque la vidéo est chargée
+    video.addEventListener("loadeddata", function () {
+      const playButton = video.querySelector('[aria-label="Play"]');
+      if (playButton) {
+        playButton.focus();
+      }
+    });
   }
 
   // Créer la légende du média

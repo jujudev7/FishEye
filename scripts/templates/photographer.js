@@ -7,9 +7,6 @@ function photographerTemplate(data, media) {
 
   const photographerUrl = `photographer.html?id=${id}`; // URL de la page du photographe
 
-  // Calcul du total des likes
-  // const totalLikes = media.reduce((acc, curr) => acc + curr.likes, 0);
-
   function getUserCardDOM() {
     const article = document.createElement("article");
 
@@ -73,7 +70,6 @@ function photographerTemplate(data, media) {
     baseline.classList.add("baseline");
     baseline.textContent = tagline;
 
-    // <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     const button = document.createElement("button");
     button.classList.add("contact_button");
     button.textContent = "Contactez-moi";

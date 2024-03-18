@@ -70,7 +70,6 @@ function selectOption(index) {
 
   document.querySelector(".dropbtn").innerText = selectedOptionText;
   dropdownOptions[index].innerText = currentButtonText;
-  
 
   // Déplacer l'icône dans le bouton
   const button = document.querySelector(".dropbtn");

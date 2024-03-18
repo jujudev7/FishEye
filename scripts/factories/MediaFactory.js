@@ -22,6 +22,7 @@ function mediaFactory(data, photographerId) {
     nbLikes.textContent = likes;
     const heartIcon = document.createElement("i");
     heartIcon.className = "fa-solid fa-heart";
+    heartIcon.setAttribute("tabindex", "0");
     heartIcon.setAttribute("aria-hidden", "true");
     heartIcon.setAttribute("aria-label", "likes");
 
@@ -35,9 +36,7 @@ function mediaFactory(data, photographerId) {
     // On vérifie si mediaVideo est défini avant de créer l'élément vidéo
     if (mediaVideo) {
       const videoElement = document.createElement("video");
-      // videoElement.setAttribute("poster", "assets/icons/player-logo.png")
       const sourceVideo = document.createElement("source");
-      // videoElement.setAttribute("controls", "false");
       sourceVideo.setAttribute("src", mediaVideo);
       sourceVideo.setAttribute("alt", title_fr);
       sourceVideo.setAttribute("type", format);

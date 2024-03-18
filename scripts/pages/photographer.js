@@ -63,7 +63,7 @@ async function displayPhotographerDetailsAndGallery(photographers, media) {
     const userHeaderDOM = photographerHeader.getUserHeaderDOM();
     photographersHeader.appendChild(userHeaderDOM);
 
-    // Définir le titre de la page
+    // On définit le titre de la page
     document.title_fr = `Page du photographe ${photographer.name} | Fisheye`;
 
     // On affiche le prénom du photographe dans le h2 du form
@@ -71,7 +71,7 @@ async function displayPhotographerDetailsAndGallery(photographers, media) {
       "header h2"
     ).innerHTML = `Contactez-moi<br>${photographer.name}`;
 
-    // Récupérer les médias du photographe actuel
+    // On récupère les médias du photographe actuel
     photographerMedia = getAllPhotographerMedia(id, media);
 
     // On calcule le total des likes des médias du photographe actuel
@@ -142,7 +142,7 @@ function displayPhotographerGallery() {
 
       gallery.appendChild(figure);
 
-      // Ajouter un écouteur d'événements click pour chaque élément de la galerie
+      // Ajout d'un écouteur d'événements click pour chaque élément de la galerie
       mediaElement.addEventListener("click", () => {
         openLightbox(mediaUrl, mediaType, mediaItem.title_fr, index);
       });
@@ -241,8 +241,6 @@ function initKeyboardNavigation() {
   });
 }
 
-// let totalLikesForCurrentPhotographer = 0; // Variable pour stocker le total des likes du photographe actuel
-
 // Fonction pour mettre à jour l'affichage du total des likes
 function updateTotalLikes() {
   const nombreLikes = document.querySelector(".nombre-likes");
@@ -280,6 +278,15 @@ function incrementDecrementLikesOnClick(media) {
       likesCountSpan.textContent = mediaItem.likes;
 
       updateTotalLikes();
+    });
+
+    // Ajout d'un événement pour la touche "Entrée" lorsqu'un élément est en surbrillance
+    heartIcon.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        // Effectuez la même action que pour le clic
+        // Pour cela, vous pouvez invoquer le gestionnaire de clic existant
+        heartIcon.click(); // Cela déclenchera le gestionnaire de clic existant
+      }
     });
   });
 }
