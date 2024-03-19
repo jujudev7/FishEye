@@ -12,19 +12,12 @@ HTML, CSS and JavaScript
 - Importing data (JSON / fetch)  
 - Aria
 - Pattern Factory Method  
-- Understanding of layouts  
 - Integration  
 - Modal management  
 - Display and management of likes  
 - Sorting system  
 - Linter  
 
-## Tuto 💡
-Install Node.js : https://nodejs.org/en  
+## Demo 👀
 
-Check installation in the terminal : ```npm node -v```
-
-Create an account on Google Cloud Platform : https://console.cloud.google.com
-
-Install Cloud Translation API : ```npm install --save @google-cloud/translate```
-
+▶️ https://jujudev7.github.io/FishEye/  
