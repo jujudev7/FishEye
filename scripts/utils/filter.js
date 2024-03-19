@@ -1,4 +1,4 @@
-// Déclaration de la variable selectedOption pour suivre l'option sélectionnée
+// Déclaration de la variable selectedOption par défaut pour suivre l'option sélectionnée
 let selectedOption = "Popularité";
 
 // Fonction pour mettre à jour les aria-labels du bouton .dropbtn et des options du dropdown
@@ -38,6 +38,7 @@ function createSortMenu() {
   updateAriaLabels();
 }
 
+// Fonction pour alterner entre le chevron down et up
 /* exported toggleOptions */
 /* eslint-disable-next-line no-unused-vars */
 function toggleOptions() {

@@ -56,7 +56,7 @@ document.addEventListener("keydown", function(event) {
     }
   } else if (event.key === "ArrowRight" || event.key === "ArrowDown") {
     if (focusedElement.classList.contains("logo")) {
-      focusableElements[0].focus(); // Change focus to the first focusable element
+      focusableElements[0].focus(); // On met le focus sur le 1er élément focussable
     } else if (index < focusableElements.length - 1) {
       focusableElements[index + 1].focus();
     } else {

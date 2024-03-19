@@ -82,7 +82,7 @@ async function displayPhotographerDetailsAndGallery(photographers, media) {
       totalLikesForCurrentPhotographer += mediaItem.likes;
     });
 
-    updateTotalLikes(); // Mettre à jour le total des likes affichés
+    updateTotalLikes(); // On met à jour le total des likes affichés
 
     const insert = document.querySelector(".insert");
 
@@ -169,10 +169,7 @@ function displayPhotographerGallery() {
 document.addEventListener("DOMContentLoaded", async function () {
   try {
     // Récupérer les données des photographes et des médias
-    await Promise.all([
-      getPhotographers(),
-      getMedia(),
-    ]);
+    await Promise.all([getPhotographers(), getMedia()]);
 
     // Créer le menu de tri HTML
     /* eslint-disable-next-line no-undef */
@@ -242,10 +239,9 @@ function initKeyboardNavigation() {
       if (mediaUrl && title_fr) {
         /* eslint-disable-next-line no-undef */
         openLightbox(mediaUrl, mediaType, title_fr, index);
+      } else {
+        console.error("Media URL or title_fr is undefined.");
       }
-      // else {
-      //   console.error("Media URL or title_fr is undefined.");
-      // }
     }
   });
 }
@@ -289,12 +285,11 @@ function incrementDecrementLikesOnClick(media) {
       updateTotalLikes();
     });
 
-    // Ajout d'un événement pour la touche "Entrée" lorsqu'un élément est en surbrillance
+    // Ajout d'un événement pour la touche "Entrée" lorsqu'une l'icone Like est en surbrillance
     heartIcon.addEventListener("keydown", function (event) {
       if (event.key === "Enter") {
-        // Effectuez la même action que pour le clic
-        // Pour cela, vous pouvez invoquer le gestionnaire de clic existant
-        heartIcon.click(); // Cela déclenchera le gestionnaire de clic existant
+        // Effectuer la même action que pour le clic
+        heartIcon.click(); // Déclenchera le gestionnaire de clic existant
       }
     });
   });

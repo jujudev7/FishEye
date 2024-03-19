@@ -3,7 +3,7 @@
 function photographerTemplate(data, media) {
   const { id, name, portrait, city, country, tagline, price } = data;
 
-  const picture = `assets/photographers/${portrait}`;
+  const picture = `assets/photographers/${portrait}`; // miniature du photographe
 
   const photographerUrl = `photographer.html?id=${id}`; // URL de la page du photographe
 
@@ -23,7 +23,7 @@ function photographerTemplate(data, media) {
     img.setAttribute("alt", "");
     zoom.appendChild(img);
 
-    // Vérifier si l'image est celle que vous voulez personnaliser
+    // On vérifie que l'on cible bien l'image que l'on veut personnaliser
     if (picture === "assets/photographers/TracyGalindo.jpg") {
       img.classList.add("custom-zoom-galindo"); 
     }
