@@ -46,7 +46,7 @@ a:focus-visible {
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 40px;
   row-gap: 70px;
-  margin: 100px 50px;
+  margin: 70px 50px;
   justify-content: space-between;
 }
 

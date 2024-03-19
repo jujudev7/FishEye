@@ -204,11 +204,11 @@ function validate() {
     errorMessage.textContent = "";
   }
 
-  console.log(firstname);
-  console.log(lastname);
-  console.log(email);
-  console.log(message);
-
+  console.log("prénom : " + firstname);
+  console.log("nom : " + lastname);
+  console.log("email : " + email);
+  console.log("message : " + message);
+  
   // Si toutes les validations sont OK, alors le formulaire est valide
   return isValid;
 }

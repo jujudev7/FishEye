@@ -4,8 +4,8 @@
 ✅ Title media (fr/en)  2H
 ⛔ Utiliser un lecteur d'écran  3H
 ⛔ Passer en revue les notices d'Accessibilité
-⛔ Repasser ESLint   
-⛔ Vérifier Guide du Mentor  2H
+✅ Repasser ESLint   
+✅ Vérifier Guide du Mentor  2H
 ✅ Aria-current 2H
 ✅ aria-label="Trier les médias par Popularité" 2H
 ✅ heart icon Favoris
@@ -61,19 +61,6 @@ naviguer entre les médias dans la lightbox.
 photographe. Pour l'instant, seulement afficher le contenu des trois champs dans les logs de la console.  
 ✅ remplacer div par class ou balises html  
 ✅ Afficher infos photographe sur page photographer.html  
-
-
-## ACCESSIBILITÉ
-- ARIA
-- sémantique HTML
-- img
-- clavier
-- ALT
-
-## ISSUES
-
-- Réduire dimensions img à la mano ? (trop lourdes) **PhotoFiltre** library JS (Sharp)
-- Remplir DOC / TUTOS
 
 ## Le code est complet quand :
 ❒ Aucun bug n'est rencontré.  
