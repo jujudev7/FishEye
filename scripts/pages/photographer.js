@@ -96,8 +96,12 @@ async function displayPhotographerDetailsAndGallery(photographers, media) {
     heartIcon.className = "fa-solid fa-heart";
     heartIcon.setAttribute("aria-hidden", "true");
     heartIcon.setAttribute("aria-label", "likes");
+    const spanIconHeart = document.createElement("span");
+    spanIconHeart.classList.add("sr-only");
+    spanIconHeart.textContent = nombreLikes + " likes";
     zoneTotalLikes.appendChild(nombreLikes);
     zoneTotalLikes.appendChild(heartIcon);
+    zoneTotalLikes.appendChild(spanIconHeart);
     insert.appendChild(zoneTotalLikes);
 
     const pricingPhotographer = document.createElement("span");

@@ -6,7 +6,7 @@ function closeLightbox() {
   lightbox.setAttribute("aria-hidden", "true");
 
   // Supprimer le contenu de la lightbox
-  lightbox.innerHTML = ""; 
+  lightbox.innerHTML = "";
 }
 
 // Fonction pour placer le focus à l'intérieur de la lightbox
@@ -95,13 +95,18 @@ let currentIndex = 0;
 
 // Fonction pour naviguer dans la lightbox
 function navigateLightbox(direction) {
-  // Mettre à jour l'index du média en fonction de la direction
-  currentIndex =
-    (currentIndex + direction + photographerMedia.length) %
-    photographerMedia.length;
+  // Calculate the new index by adding the direction to the current index
+  let newIndex = currentIndex + direction;
 
-  // Récupérer les informations sur le nouveau média
-  const newMediaInfo = getMediaInfo(currentIndex, photographerMedia);
+  // If the new index is out of bounds, set it to the closest valid index
+  if (newIndex < 0) {
+    newIndex = photographerMedia.length - 1;
+  } else if (newIndex >= photographerMedia.length) {
+    newIndex = 0;
+  }
+
+  // Get the new media info based on the new index
+  const newMediaInfo = getMediaInfo(newIndex, photographerMedia);
 
   // Récupérer le contenu de la lightbox
   const content = document.querySelector(".lightbox-content");
@@ -156,7 +161,11 @@ function navigateLightbox(direction) {
   content.insertBefore(newFigure, document.querySelector(".fa-chevron-right")); // Insérer newFigure avant .fa-chevron-right
 
   displayLightbox(); // Appeler la fonction pour afficher la lightbox
+
+  // Update the current index to the new index
+  currentIndex = newIndex;
 }
+
 
 // Fonction pour afficher la lightbox
 /* exported openLightbox */
@@ -166,7 +175,7 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
 
   // Vérifier si l'index est valide
   if (index < 0 || index >= photographerMedia.length) {
-    console.error("Index out of bounds:", index);
+    // console.error("Index out of bounds:", index);
     return;
   }
 
@@ -187,7 +196,7 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
 
   // Création de la figure contenant le média et sa légende
   const figure = document.createElement("figure");
-  figure.setAttribute("role", "figure");
+  // figure.setAttribute("role", "figure");
   figure.setAttribute("aria-label", title_fr);
 
   // Créer le média en fonction du type

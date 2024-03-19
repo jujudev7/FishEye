@@ -9,7 +9,7 @@ function mediaFactory(data, photographerId) {
 
   function getUserGalleryDOM() {
     const figure = document.createElement("figure");
-    figure.setAttribute("role", "figure");
+    // figure.setAttribute("role", "figure");
     const captionLikes = document.createElement("div");
     captionLikes.classList.add("caption-likes");
     const figCaption = document.createElement("figcaption");
@@ -25,6 +25,9 @@ function mediaFactory(data, photographerId) {
     heartIcon.setAttribute("tabindex", "0");
     heartIcon.setAttribute("aria-hidden", "true");
     heartIcon.setAttribute("aria-label", "likes");
+    const spanIconHeart = document.createElement("span");
+    spanIconHeart.classList.add("sr-only");
+    spanIconHeart.textContent = likes + " likes";
 
     const format = "video/mp4";
 
@@ -56,18 +59,20 @@ function mediaFactory(data, photographerId) {
       captionLikes.appendChild(likesZone);
       likesZone.appendChild(nbLikes);
       likesZone.appendChild(heartIcon);
+      likesZone.appendChild(spanIconHeart);
       figure.appendChild(captionLikes);
     } else {
       const img = document.createElement("img");
       img.tabIndex = 0;
       img.setAttribute("src", mediaPhoto);
-      img.setAttribute("alt", "");
+      img.setAttribute("alt", title_fr);
       figure.appendChild(img);
       figure.appendChild(captionLikes);
       captionLikes.appendChild(figCaption);
       captionLikes.appendChild(likesZone);
       likesZone.appendChild(nbLikes);
       likesZone.appendChild(heartIcon);
+      likesZone.appendChild(spanIconHeart);
     }
 
     return figure;
