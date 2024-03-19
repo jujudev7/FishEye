@@ -207,7 +207,7 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
 
     // Mettre le focus sur le bouton de lecture lorsque la vidéo est chargée
     video.addEventListener("loadeddata", function () {
-      const playButton = video.querySelector('[aria-label="Play"]');
+      const playButton = video.querySelector("[aria-label='Play']");
       if (playButton) {
         playButton.focus();
       }

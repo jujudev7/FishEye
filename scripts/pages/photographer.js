@@ -19,6 +19,7 @@ async function getMedia() {
 }
 
 // Fonction pour obtenir les informations sur le média en fonction de son index
+/* eslint-disable-next-line no-unused-vars */
 function getMediaInfo(index, media) {
   const mediaItem = media[index];
   const mediaUrl = mediaItem.video
@@ -39,6 +40,8 @@ function getAllPhotographerMedia(photographerId, media) {
 }
 
 let photographerMedia; // Variable globale pour stocker les médias du photographe actuel
+
+let totalLikesForCurrentPhotographer = 0; // Réinitialiser le total des likes
 
 // Fonction pour afficher les détails du photographe et sa galerie
 async function displayPhotographerDetailsAndGallery(photographers, media) {
@@ -75,7 +78,6 @@ async function displayPhotographerDetailsAndGallery(photographers, media) {
     photographerMedia = getAllPhotographerMedia(id, media);
 
     // On calcule le total des likes des médias du photographe actuel
-    totalLikesForCurrentPhotographer = 0; // Réinitialiser le total des likes
     photographerMedia.forEach((mediaItem) => {
       totalLikesForCurrentPhotographer += mediaItem.likes;
     });
@@ -130,6 +132,7 @@ function displayPhotographerGallery() {
         : `assets/medias/${mediaItem.photographerId}/${mediaItem.image}`;
       const mediaType = mediaItem.video ? "video" : "image";
 
+      /* eslint-disable-next-line no-undef */
       const figure = mediaFactory(mediaItem).getUserGalleryDOM();
       const mediaElement = figure.querySelector("img, video");
 
@@ -144,6 +147,7 @@ function displayPhotographerGallery() {
 
       // Ajout d'un écouteur d'événements click pour chaque élément de la galerie
       mediaElement.addEventListener("click", () => {
+        /* eslint-disable-next-line no-undef */
         openLightbox(mediaUrl, mediaType, mediaItem.title_fr, index);
       });
     });
@@ -161,7 +165,7 @@ function displayPhotographerGallery() {
 document.addEventListener("DOMContentLoaded", async function () {
   try {
     // Récupérer les données des photographes et des médias
-    const [photographers, media] = await Promise.all([
+    await Promise.all([
       getPhotographers(),
       getMedia(),
     ]);
@@ -232,6 +236,7 @@ function initKeyboardNavigation() {
 
       // Vérifier si mediaUrl et title_fr sont définis
       if (mediaUrl && title_fr) {
+        /* eslint-disable-next-line no-undef */
         openLightbox(mediaUrl, mediaType, title_fr, index);
       }
       // else {
