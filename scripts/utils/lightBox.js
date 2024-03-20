@@ -234,6 +234,15 @@ function openLightbox(mediaUrl, mediaType, title_fr, index) {
   // Ajout des gestionnaires d'événements pour les icônes "iconPreviousMedia" et "iconNextMedia"
   iconPreviousMedia.addEventListener("click", () => navigateLightbox(-1));
 
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "ArrowLeft") {
+      navigateLightbox(-1);
+      iconPreviousMedia.focus();
+    } else if (event.key === "ArrowRight") {
+      navigateLightbox(1);
+    }
+  });
+
   const iconNextMedia = document.createElement("i");
   iconNextMedia.classList.add("fa-solid", "fa-chevron-right");
   iconNextMedia.setAttribute("aria-hidden", "true");
