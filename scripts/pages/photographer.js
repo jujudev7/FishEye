@@ -27,7 +27,10 @@ function getMediaInfo(index, media) {
     : `assets/medias/${mediaItem.photographerId}/${mediaItem.image}`;
   const mediaType = mediaItem.video ? "video" : "image";
   const title_fr = mediaItem.title_fr;
+  const mediaId = mediaItem.id; // Ajout de l'ID du média
+
   return {
+    mediaId: mediaId, // Retour de l'ID du média
     url: mediaUrl,
     type: mediaType,
     title_fr: title_fr,
@@ -149,6 +152,12 @@ function displayPhotographerGallery() {
 
       gallery.appendChild(figure);
 
+      // Initialise les likes en fonction de l'état actuel
+      const heartIcon = figure.querySelector("i.fa-solid.fa-heart");
+      if (mediaItem.liked) {
+        heartIcon.classList.add("clicked");
+      }
+
       // Ajout d'un écouteur d'événements click pour chaque élément de la galerie
       mediaElement.addEventListener("click", () => {
         /* eslint-disable-next-line no-undef */
@@ -165,6 +174,8 @@ function displayPhotographerGallery() {
     );
   }
 }
+// Déclaration globale de la variable media
+let media;
 
 document.addEventListener("DOMContentLoaded", async function () {
   try {
@@ -176,6 +187,9 @@ document.addEventListener("DOMContentLoaded", async function () {
     createSortMenu();
     /* eslint-disable-next-line no-undef */
     sortMediaByPopularity();
+
+    // Appel à la fonction pour incrémenter/décrémenter les likes lors de l'initialisation de la page
+    incrementDecrementLikesOnClick(media);
   } catch (error) {
     console.error("Error loading data:", error);
   }
@@ -254,18 +268,21 @@ function updateTotalLikes() {
   }
 }
 
-// Fonction pour incrémenter ou décrémenter les likes lors du clic sur l'icône de cœur
+// Fonction pour incrémenter ou décrémenter les likes lors du clic sur l'icône cœur
 function incrementDecrementLikesOnClick(media) {
   const heartIcons = document.querySelectorAll(".gallery i.fa-solid.fa-heart");
-  heartIcons.forEach((heartIcon, index) => {
+  heartIcons.forEach((heartIcon) => {
     heartIcon.addEventListener("click", () => {
-      const mediaId = photographerMedia[index].id;
-
-      const alreadyLiked = media.some(
-        (mediaItem) => mediaItem.id === mediaId && mediaItem.liked
-      );
+      const mediaId = parseInt(heartIcon.dataset.id); // Récupérer l'ID du média associé à cette icône cœur
 
       const mediaItem = media.find((mediaItem) => mediaItem.id === mediaId);
+
+      if (!mediaItem) {
+        console.error("Media not found with ID:", mediaId);
+        return;
+      }
+
+      const alreadyLiked = mediaItem.liked;
 
       if (alreadyLiked) {
         mediaItem.likes--;
@@ -299,13 +316,20 @@ function incrementDecrementLikesOnClick(media) {
 async function init() {
   try {
     // Récupérer les données des photographes et des médias
-    const [photographers, media] = await Promise.all([
+    const [photographersData, mediaData] = await Promise.all([
       getPhotographers(),
       getMedia(),
     ]);
 
+    // Assigner les données récupérées aux variables correspondantes
+    photographers = photographersData;
+    media = mediaData;
+
     // Afficher les détails du photographe et sa galerie
     displayPhotographerDetailsAndGallery(photographers, media);
+
+    // Appeler la fonction pour incrémenter/décrémenter les likes
+    incrementDecrementLikesOnClick(media);
   } catch (error) {
     console.error(
       "Une erreur s'est produite lors de l'initialisation :",
@@ -316,3 +340,5 @@ async function init() {
 
 // Appeler la fonction d'initialisation
 init();
+
+

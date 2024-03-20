@@ -11,7 +11,10 @@ function updateAriaLabels() {
 
   for (let i = 0; i < dropdownOptions.length; i++) {
     const optionText = dropdownOptions[i].innerText;
-    dropdownOptions[i].setAttribute("aria-label", "Trier les médias par " + optionText);
+    dropdownOptions[i].setAttribute(
+      "aria-label",
+      "Trier les médias par " + optionText
+    );
   }
 }
 
@@ -123,14 +126,18 @@ function updateGallery() {
   /* eslint-disable-next-line no-undef */
   photographerMedia.forEach((mediaItem, index) => {
     const mediaUrl = mediaItem.video
-    /* eslint-disable-next-line no-undef */
-      ? `assets/medias/${photographerId}/${mediaItem.video}`
-      /* eslint-disable-next-line no-undef */
-      : `assets/medias/${photographerId}/${mediaItem.image}`;
+      ? /* eslint-disable-next-line no-undef */
+        `assets/medias/${photographerId}/${mediaItem.video}`
+      : /* eslint-disable-next-line no-undef */
+        `assets/medias/${photographerId}/${mediaItem.image}`;
     const mediaType = mediaItem.video ? "video" : "image";
 
     /* eslint-disable-next-line no-undef */
-    const figure = mediaFactory(mediaItem, photographerId).getUserGalleryDOM();
+    const figure = mediaFactory(
+      mediaItem,
+      photographerId,
+      mediaItem.id
+    ).getUserGalleryDOM();
     const mediaElement = figure.querySelector("img, video");
 
     if (mediaType === "video") {
@@ -141,6 +148,13 @@ function updateGallery() {
     }
 
     gallery.appendChild(figure);
+
+    // Initialise les likes en fonction de l'état actuel
+    const heartIcon = figure.querySelector("i.fa-solid.fa-heart");
+    if (mediaItem.liked) {
+      heartIcon.classList.add("clicked");
+    }
+
     // Ajouter un écouteur d'événements click pour chaque élément de la galerie
     mediaElement.addEventListener("click", () => {
       // Appel à openLightbox avec l'index approprié
@@ -148,4 +162,6 @@ function updateGallery() {
       openLightbox(mediaUrl, mediaType, mediaItem.title_fr, index);
     });
   });
+
+  incrementDecrementLikesOnClick(photographerMedia); // Mettre à jour les écouteurs d'événements
 }

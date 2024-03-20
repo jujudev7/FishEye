@@ -1,6 +1,6 @@
 /* exported mediaFactory */
 /* eslint-disable-next-line no-unused-vars */
-function mediaFactory(data, photographerId) {
+function mediaFactory(data, photographerId, mediaId) {
   const { image, video, title_fr, likes, descFr } = data;
 
   const mediaPhoto = `assets/medias/${photographerId}/${image}`;
@@ -25,6 +25,7 @@ function mediaFactory(data, photographerId) {
     heartIcon.setAttribute("tabindex", "0");
     heartIcon.setAttribute("aria-hidden", "true");
     heartIcon.setAttribute("aria-label", "likes");
+    heartIcon.setAttribute("data-id", mediaId);
     const spanIconHeart = document.createElement("span");
     spanIconHeart.classList.add("sr-only");
     spanIconHeart.textContent = likes + " likes";

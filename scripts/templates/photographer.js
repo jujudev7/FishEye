@@ -1,11 +1,11 @@
 /* exported photographerTemplate */
 /* eslint-disable-next-line no-unused-vars */
-function photographerTemplate(data, media) {
+function photographerTemplate(data) {
   const { id, name, portrait, city, country, tagline, price } = data;
 
-  const picture = `assets/photographers/${portrait}`; // miniature du photographe
-
   const photographerUrl = `photographer.html?id=${id}`; // URL de la page du photographe
+
+  const picture = `assets/photographers/${portrait}`; // miniature du photographe
 
   function getUserCardDOM() {
     const article = document.createElement("article");
