@@ -1,3 +1,5 @@
+let photographers;
+
 // Fonction pour récupérer les données des photographes depuis le fichier JSON
 async function getPhotographers() {
   const response = await fetch("data/photographers_fr.json");
@@ -340,5 +342,3 @@ async function init() {
 
 // Appeler la fonction d'initialisation
 init();
-
-
