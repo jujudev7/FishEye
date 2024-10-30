@@ -33,8 +33,6 @@ header a:hover {
   border-radius: 5px;
 }
 
-
-
 a:focus-visible {
   background-color: yellow;
   padding: 10px;
